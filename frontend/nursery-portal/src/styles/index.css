@@ -1,0 +1,116 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom base styles ------------------------------------------------------ */
+@layer base {
+  :root {
+    --color-primary: 59 130 246;  /* blue-500 */
+    --color-primary-light: 37 99 235; /* blue-600 */
+  }
+
+  /* Toast notification styles */
+  .Toastify__toast {
+    @apply font-sans text-sm rounded-md shadow-lg;
+  }
+  .Toastify__toast--success {
+    @apply bg-green-500 text-white;
+  }
+  .Toastify__toast--error {
+    @apply bg-red-500 text-white;
+  }
+  .Toastify__toast--warning {
+    @apply bg-yellow-500 text-gray-900;
+  }
+  .Toastify__toast--info {
+    @apply bg-blue-500 text-white;
+  }
+}
+
+/* Reusable components ---------------------------------------------------- */
+@layer components {
+  /* Form elements */
+  .input {
+    @apply block w-full px-3 py-2 text-sm border border-gray-300 rounded-md shadow-sm
+           focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500
+           transition-colors duration-150;
+  }
+
+  /* Buttons */
+  .btn {
+    @apply inline-flex items-center justify-center font-medium rounded-md 
+           focus:outline-none focus:ring-2 focus:ring-offset-2 
+           transition-colors duration-150;
+  }
+  
+  .btn-primary {
+    @apply px-4 py-2 bg-blue-600 text-white hover:bg-blue-700 
+           focus:ring-blue-500 disabled:opacity-50;
+  }
+
+  /* Cards */
+  .card {
+    @apply bg-white shadow rounded-md p-6;
+  }
+
+  /* Tables */
+  .table-container {
+    @apply overflow-x-auto shadow ring-1 ring-black ring-opacity-5 rounded-lg;
+  }
+
+  .table {
+    @apply min-w-full divide-y divide-gray-200;
+  }
+
+  .table-header {
+    @apply bg-gray-50;
+  }
+
+  .table-header-cell {
+    @apply px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider;
+  }
+
+  .table-body {
+    @apply bg-white divide-y divide-gray-200;
+  }
+
+  .table-row {
+    @apply hover:bg-gray-50;
+  }
+
+  .table-cell {
+    @apply px-6 py-4 whitespace-nowrap text-sm text-gray-500;
+  }
+
+  .table-row-even {
+    @apply bg-white hover:bg-gray-50;
+  }
+
+  .table-row-odd {
+    @apply bg-gray-50 hover:bg-gray-100;
+  }
+}
+
+/* Utility classes -------------------------------------------------------- */
+@layer utilities {
+  /* Animation */
+  .transition-fast {
+    @apply transition-all duration-150 ease-in-out;
+  }
+
+  /* Typography */
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* Layout */
+  .container-padded {
+    @apply container mx-auto px-4 sm:px-6 lg:px-8;
+  }
+}
+
+/* tiny helpers --------------------------------------------------- */
+.input       { @apply block w-full rounded-md border-gray-300 px-2 py-1 focus:ring-primary; }
+.btn-primary { @apply bg-primary text-white font-semibold px-4 py-2 rounded hover:bg-primary-light; }
+.btn-secondary { @apply bg-gray-300 text-gray-800 font-semibold px-4 py-2 rounded; }
+  

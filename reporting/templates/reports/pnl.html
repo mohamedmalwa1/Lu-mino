@@ -1,0 +1,18 @@
+<!doctype html>
+<h2>Profit & Loss ({{ start }} to {{ end }})</h2>
+<table>
+  <tr><td>Total Revenue:</td><td>{{ revenue }}</td></tr>
+  <tr><td>Total Expense:</td><td>{{ expense }}</td></tr>
+  <tr><td><strong>Net Profit:</strong></td><td><strong>{{ profit }}</strong></td></tr>
+</table>
+<hr>
+<h4>Transactions</h4>
+<table border="1" cellpadding="4">
+{% for tx in transactions %}
+  <tr>
+    <td>{{ tx.date }}</td><td>{{ tx.reference }}</td>
+    <td>{{ tx.amount }} {% if tx.is_inflow %}+{% else %}-{% endif %}</td>
+  </tr>
+{% endfor %}
+</table>
+

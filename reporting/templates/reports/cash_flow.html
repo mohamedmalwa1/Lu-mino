@@ -1,0 +1,11 @@
+<h3>Cash-Flow ({{ start }} → {{ end }})</h3>
+<table border="1" cellpadding="4">
+<tr><th>Month</th><th>Inflow</th><th>Outflow</th><th>Net</th></tr>
+{% for r in rows %}
+<tr><td>{{ r.month|date:"M Y" }}</td>
+    <td align="right">{{ r.in }}</td>
+    <td align="right">{{ r.out }}</td>
+    <td align="right">{{ r.net }}</td></tr>
+{% endfor %}
+</table>
+

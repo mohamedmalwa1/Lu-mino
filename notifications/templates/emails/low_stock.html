@@ -1,0 +1,10 @@
+<h3>Low-stock items (as of {{ today }})</h3>
+<table border="1" cellpadding="4">
+<tr><th>Name</th><th>SKU</th><th>Qty</th><th>Reorder lvl</th></tr>
+{% for i in items %}
+<tr><td>{{ i.name }}</td><td>{{ i.sku }}</td>
+    <td align="right">{{ i.quantity }}</td>
+    <td align="right">{{ i.reorder_level }}</td></tr>
+{% endfor %}
+</table>
+
