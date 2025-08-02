@@ -60,3 +60,19 @@ export const updateStaffDocument = (id, formData) =>
 export const deleteStaffDocument = (id) =>
   axios.delete(`${HR_URL}/documents/${id}/`);
 
+/* ------------- Vacations ------------- */
+export const listVacations = () =>
+  axios.get(`${HR_URL}/vacations/`).then((r) => r.data);
+
+export const getVacation = (id) =>
+    axios.get(`${HR_URL}/vacations/${id}/`).then((r) => r.data);
+
+export const createVacation = (data) =>
+  axios.post(`${HR_URL}/vacations/`, data).then((r) => r.data);
+
+export const updateVacation = (id, data) =>
+  axios.put(`${HR_URL}/vacations/${id}/`, data).then((r) => r.data);
+
+export const deleteVacation = (id) =>
+  axios.delete(`${HR_URL}/vacations/${id}/`);
+

@@ -36,18 +36,19 @@ class StaffAttendanceSerializer(serializers.ModelSerializer):
         model = StaffAttendance
         fields = "__all__"
 
-# --- THIS SERIALIZER IS NOW UPDATED ---
 class StaffDocumentSerializer(serializers.ModelSerializer):
     staff_name = serializers.CharField(source='staff.full_name', read_only=True)
     class Meta:
         model = StaffDocument
         fields = "__all__"
 
-
+# --- THIS SERIALIZER IS NOW UPDATED ---
 class VacationSerializer(serializers.ModelSerializer):
+    staff_name = serializers.CharField(source='staff.full_name', read_only=True)
     class Meta:
         model = Vacation
         fields = "__all__"
+
 
 class StaffEvaluationSerializer(serializers.ModelSerializer):
     class Meta:
