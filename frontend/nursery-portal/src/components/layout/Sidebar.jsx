@@ -12,7 +12,14 @@ import {
   FiGift,
   FiUserCheck,
   FiCalendar,
-  FiFile // Icon for Documents
+  FiFile,
+  FiSun,
+  FiAward,
+  FiDollarSign,
+  FiPackage, // Icon for Inventory Items
+  FiTruck, // Icon for Vendors
+  FiShare2, // Icon for Custody
+  FiCheckCircle // Icon for Stock Takes
 } from "react-icons/fi";
 
 const MenuItem = ({ to, icon: Icon, children, end = false }) => {
@@ -52,6 +59,17 @@ export default function Sidebar() {
         <MenuItem to="/hr/staff" icon={FiUserCheck}>Staff</MenuItem>
         <MenuItem to="/hr/attendance" icon={FiCalendar}>Attendance</MenuItem>
         <MenuItem to="/hr/documents" icon={FiFile}>Documents</MenuItem>
+        <MenuItem to="/hr/vacations" icon={FiSun}>Vacations</MenuItem>
+        <MenuItem to="/hr/evaluations" icon={FiAward}>Evaluations</MenuItem>
+        <MenuItem to="/hr/contracts" icon={FiFileText}>Payroll</MenuItem>
+        <MenuItem to="/hr/salary-records" icon={FiDollarSign}>Salary Records</MenuItem>
+
+        {/* Inventory Section */}
+        <p className="text-xs font-semibold text-gray-400 uppercase pt-4 pb-1 px-4">Inventory</p>
+        <MenuItem to="/inventory/vendors" icon={FiTruck}>Vendors</MenuItem>
+        <MenuItem to="/inventory/items" icon={FiPackage}>Items</MenuItem>
+        <MenuItem to="/inventory/custody" icon={FiShare2}>Custody</MenuItem>
+        <MenuItem to="/inventory/stock-takes" icon={FiCheckCircle}>Stock Takes</MenuItem>
 
         {/* Finance Section */}
         <p className="text-xs font-semibold text-gray-400 uppercase pt-4 pb-1 px-4">Business</p>

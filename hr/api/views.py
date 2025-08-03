@@ -22,22 +22,22 @@ class StaffViewSet(viewsets.ModelViewSet):
     queryset = Staff.objects.all()
     serializer_class = StaffSerializer
 
+# --- THIS VIEWSET IS NOW UPDATED ---
 class PayrollContractViewSet(viewsets.ModelViewSet):
-    queryset = PayrollContract.objects.all()
+    queryset = PayrollContract.objects.select_related("staff")
     serializer_class = PayrollContractSerializer
+
 
 class SalaryRecordViewSet(viewsets.ModelViewSet):
     queryset = SalaryRecord.objects.select_related("staff")
     serializer_class = SalaryRecordSerializer
 
-# --- THIS VIEWSET IS NOW UPDATED ---
 class StaffAttendanceViewSet(viewsets.ModelViewSet):
     queryset = StaffAttendance.objects.select_related("staff")
     serializer_class = StaffAttendanceSerializer
 
-
 class StaffDocumentViewSet(viewsets.ModelViewSet):
-    queryset = StaffDocument.objects.all()
+    queryset = StaffDocument.objects.select_related("staff")
     serializer_class = StaffDocumentSerializer
 
 class VacationViewSet(viewsets.ModelViewSet):

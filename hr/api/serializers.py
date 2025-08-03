@@ -19,10 +19,13 @@ class StaffSerializer(serializers.ModelSerializer):
         model  = Staff
         fields = "__all__"
 
+# --- THIS SERIALIZER IS NOW UPDATED ---
 class PayrollContractSerializer(serializers.ModelSerializer):
+    staff_name = serializers.CharField(source='staff.full_name', read_only=True)
     class Meta:
         model = PayrollContract
         fields = "__all__"
+
 
 class SalaryRecordSerializer(serializers.ModelSerializer):
     staff_name = serializers.CharField(source='staff.full_name', read_only=True)
@@ -42,15 +45,14 @@ class StaffDocumentSerializer(serializers.ModelSerializer):
         model = StaffDocument
         fields = "__all__"
 
-# --- THIS SERIALIZER IS NOW UPDATED ---
 class VacationSerializer(serializers.ModelSerializer):
     staff_name = serializers.CharField(source='staff.full_name', read_only=True)
     class Meta:
         model = Vacation
         fields = "__all__"
 
-
 class StaffEvaluationSerializer(serializers.ModelSerializer):
+    staff_name = serializers.CharField(source='staff.full_name', read_only=True)
     class Meta:
         model = StaffEvaluation
         fields = "__all__"

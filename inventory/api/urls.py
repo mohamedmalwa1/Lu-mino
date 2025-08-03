@@ -6,9 +6,9 @@ from .views import (
 router = DefaultRouter()
 router.register("items",      ItemViewSet,     basename="item")
 router.register("vendors",    VendorViewSet,   basename="vendor")
-router.register("CustodyAssignment",    CustodyViewSet,  basename="CustodyAssignment")
+# --- THIS LINE IS NOW CORRECTED ---
+router.register("custody-assignments",    CustodyViewSet,  basename="custody-assignment")
 router.register("stocktakes", StockTakeViewSet, basename="stocktake")
 
 urlpatterns = router.urls
-
 

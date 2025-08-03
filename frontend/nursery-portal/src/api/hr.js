@@ -76,3 +76,35 @@ export const updateVacation = (id, data) =>
 export const deleteVacation = (id) =>
   axios.delete(`${HR_URL}/vacations/${id}/`);
 
+/* ------------- Staff Evaluations ------------- */
+export const listStaffEvaluations = () =>
+  axios.get(`${HR_URL}/evaluations/`).then((r) => r.data);
+
+export const getStaffEvaluation = (id) =>
+    axios.get(`${HR_URL}/evaluations/${id}/`).then((r) => r.data);
+
+export const createStaffEvaluation = (data) =>
+  axios.post(`${HR_URL}/evaluations/`, data).then((r) => r.data);
+
+export const updateStaffEvaluation = (id, data) =>
+  axios.put(`${HR_URL}/evaluations/${id}/`, data).then((r) => r.data);
+
+export const deleteStaffEvaluation = (id) =>
+  axios.delete(`${HR_URL}/evaluations/${id}/`);
+
+/* ------------- Payroll Contracts ------------- */
+export const listPayrollContracts = () =>
+  axios.get(`${HR_URL}/contracts/`).then((r) => r.data);
+
+export const getPayrollContract = (id) =>
+    axios.get(`${HR_URL}/contracts/${id}/`).then((r) => r.data);
+
+export const createPayrollContract = (data) =>
+  axios.post(`${HR_URL}/contracts/`, data).then((r) => r.data);
+
+export const updatePayrollContract = (id, data) =>
+  axios.put(`${HR_URL}/contracts/${id}/`, data).then((r) => r.data);
+
+export const deletePayrollContract = (id) =>
+  axios.delete(`${HR_URL}/contracts/${id}/`);
+

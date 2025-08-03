@@ -20,12 +20,29 @@ import Evaluations from "../features/evaluations/pages/Evaluations";
 import EvaluationForm from "../features/evaluations/pages/EvaluationForm";
 
 /* --- HR Management --- */
-import Staff from "../features/hr/pages/Staff";
-import StaffForm from "../features/hr/pages/StaffForm";
-import StaffAttendance from "../features/hr/pages/StaffAttendance";
-import StaffAttendanceForm from "../features/hr/pages/StaffAttendanceForm";
+import Staff from "../features/hr/pages/Staff.jsx";
+import StaffForm from "../features/hr/pages/StaffForm.jsx";
+import StaffAttendance from "../features/hr/pages/StaffAttendance.jsx";
+import StaffAttendanceForm from "../features/hr/pages/StaffAttendanceForm.jsx";
 import StaffDocuments from "../features/hr/pages/StaffDocuments.jsx";
 import StaffDocumentForm from "../features/hr/pages/StaffDocumentForm.jsx";
+import Vacations from "../features/hr/pages/Vacations.jsx";
+import VacationForm from "../features/hr/pages/VacationForm.jsx";
+import StaffEvaluations from "../features/hr/pages/StaffEvaluations.jsx";
+import StaffEvaluationForm from "../features/hr/pages/StaffEvaluationForm.jsx";
+import PayrollContracts from "../features/hr/pages/PayrollContracts.jsx";
+import PayrollContractForm from "../features/hr/pages/PayrollContractForm.jsx";
+import SalaryRecords from "../features/hr/pages/SalaryRecords.jsx";
+
+/* --- Inventory Management --- */
+import Vendors from "../features/inventory/pages/Vendors.jsx";
+import VendorForm from "../features/inventory/pages/VendorForm.jsx";
+import Items from "../features/inventory/pages/Items.jsx";
+import ItemForm from "../features/inventory/pages/ItemForm.jsx";
+import CustodyAssignments from "../features/inventory/pages/CustodyAssignments.jsx";
+import CustodyAssignmentForm from "../features/inventory/pages/CustodyAssignmentForm.jsx";
+import StockTakes from "../features/inventory/pages/StockTakes.jsx";
+import StockTakeForm from "../features/inventory/pages/StockTakeForm.jsx";
 
 /* --- Finance Management --- */
 import Invoices from "../features/finance/pages/Invoices";
@@ -59,23 +76,15 @@ export const router = createBrowserRouter([
       { path: "students", element: <Students /> },
       { path: "students/new", element: <StudentForm /> },
       { path: "students/:id", element: <StudentForm /> },
-
-      /* Classrooms */
       { path: "classrooms", element: <Classrooms /> },
       { path: "classrooms/new", element: <ClassroomForm /> },
       { path: "classrooms/:id", element: <ClassroomForm /> },
-
-      /* Enrollments */
       { path: "enrollments", element: <Enrollments /> },
       { path: "enrollments/new", element: <EnrollmentForm /> },
       { path: "enrollments/:id", element: <EnrollmentForm /> },
-
-      /* Medical */
       { path: "medical", element: <MedicalRecords /> },
       { path: "medical/new", element: <MedicalForm /> },
       { path: "medical/:id", element: <MedicalForm /> },
-
-      /* Evaluations */
       { path: "evaluations", element: <Evaluations /> },
       { path: "evaluations/new", element: <EvaluationForm /> },
       { path: "evaluations/:id", element: <EvaluationForm /> },
@@ -90,6 +99,30 @@ export const router = createBrowserRouter([
       { path: "hr/documents", element: <StaffDocuments /> },
       { path: "hr/documents/new", element: <StaffDocumentForm /> },
       { path: "hr/documents/:id", element: <StaffDocumentForm /> },
+      { path: "hr/vacations", element: <Vacations /> },
+      { path: "hr/vacations/new", element: <VacationForm /> },
+      { path: "hr/vacations/:id", element: <VacationForm /> },
+      { path: "hr/evaluations", element: <StaffEvaluations /> },
+      { path: "hr/evaluations/new", element: <StaffEvaluationForm /> },
+      { path: "hr/evaluations/:id", element: <StaffEvaluationForm /> },
+      { path: "hr/contracts", element: <PayrollContracts /> },
+      { path: "hr/contracts/new", element: <PayrollContractForm /> },
+      { path: "hr/contracts/:id", element: <PayrollContractForm /> },
+      { path: "hr/salary-records", element: <SalaryRecords /> },
+
+      /* Inventory */
+      { path: "inventory/vendors", element: <Vendors /> },
+      { path: "inventory/vendors/new", element: <VendorForm /> },
+      { path: "inventory/vendors/:id", element: <VendorForm /> },
+      { path: "inventory/items", element: <Items /> },
+      { path: "inventory/items/new", element: <ItemForm /> },
+      { path: "inventory/items/:id", element: <ItemForm /> },
+      { path: "inventory/custody", element: <CustodyAssignments /> },
+      { path: "inventory/custody/new", element: <CustodyAssignmentForm /> },
+      { path: "inventory/custody/:id", element: <CustodyAssignmentForm /> },
+      { path: "inventory/stock-takes", element: <StockTakes /> },
+      { path: "inventory/stock-takes/new", element: <StockTakeForm /> },
+      { path: "inventory/stock-takes/:id", element: <StockTakeForm /> },
       
       /* Finance */
       { path: "finance/invoices", element: <Invoices /> },
@@ -110,7 +143,6 @@ export const router = createBrowserRouter([
       { path: "finance/purchase-orders/:id", element: <PurchaseOrderForm /> },
       { path: "finance/salary-payments", element: <SalaryPayments /> },
       { path: "finance/salary-payments/new", element: <SalaryPaymentForm /> },
-
 
       /* Fallback Redirect */
       { path: "*", loader: () => redirect("/") },
