@@ -3,6 +3,7 @@ from student.models import (
     Student, Classroom, StudentDocument,
     Enrollment, Attendance, Evaluation, MedicalRecord
 )
+from hr.models import Staff
 
 class ClassroomSerializer(serializers.ModelSerializer):
     # Use a source to get the full_name directly from the Staff model
@@ -64,11 +65,21 @@ class MedicalRecordSerializer(serializers.ModelSerializer):
         model  = MedicalRecord
         fields = "__all__"
 
+# student/serializers.py - Update StudentDocumentSerializer only
 class StudentDocumentSerializer(serializers.ModelSerializer):
     student_name = serializers.CharField(source='student.name', read_only=True)
     doc_type_display = serializers.CharField(source='get_doc_type_display', read_only=True)
+    is_expired = serializers.BooleanField(read_only=True)  # Add computed property
 
     class Meta:
         model = StudentDocument
-        fields = "__all__"
+        fields = [
+            'id', 'student', 'student_name', 'doc_type', 'doc_type_display',
+            'file', 'issue_date', 'expiration_date', 'is_expired', 'notes',
+            'created_at', 'updated_at'
+        ]
+        extra_kwargs = {
+            'expiration_date': {'required': False},
+            'notes': {'required': False}
+        }
 

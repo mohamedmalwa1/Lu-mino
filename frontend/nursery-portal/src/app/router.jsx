@@ -9,40 +9,36 @@ import Dashboard from "../pages/Dashboard";
 
 /* --- Student Management --- */
 import Students from "../features/students/pages/Students";
-import StudentForm from "../features/students/pages/StudentForm";
-import Classrooms from "../features/classrooms/pages/Classrooms";
-import ClassroomForm from "../features/classrooms/pages/ClassroomForm";
-import Enrollments from "../features/enrollments/pages/Enrollments";
-import EnrollmentForm from "../features/enrollments/pages/EnrollmentForm";
-import MedicalRecords from "../features/medical/pages/MedicalRecords";
-import MedicalForm from "../features/medical/pages/MedicalForm";
-import Evaluations from "../features/evaluations/pages/Evaluations";
-import EvaluationForm from "../features/evaluations/pages/EvaluationForm";
+import Classrooms from "../features/students/pages/Classrooms";
+import Enrollments from "../features/students/pages/Enrollments";
+import Evaluations from "../features/students/pages/Evaluations";
+import MedicalRecords from "../features/students/pages/MedicalRecords";
+import Documents from "../features/students/pages/Documents";
 
 /* --- HR Management --- */
-import Staff from "../features/hr/pages/Staff.jsx";
-import StaffForm from "../features/hr/pages/StaffForm.jsx";
-import StaffAttendance from "../features/hr/pages/StaffAttendance.jsx";
-import StaffAttendanceForm from "../features/hr/pages/StaffAttendanceForm.jsx";
-import StaffDocuments from "../features/hr/pages/StaffDocuments.jsx";
-import StaffDocumentForm from "../features/hr/pages/StaffDocumentForm.jsx";
-import Vacations from "../features/hr/pages/Vacations.jsx";
-import VacationForm from "../features/hr/pages/VacationForm.jsx";
-import StaffEvaluations from "../features/hr/pages/StaffEvaluations.jsx";
-import StaffEvaluationForm from "../features/hr/pages/StaffEvaluationForm.jsx";
-import PayrollContracts from "../features/hr/pages/PayrollContracts.jsx";
-import PayrollContractForm from "../features/hr/pages/PayrollContractForm.jsx";
-import SalaryRecords from "../features/hr/pages/SalaryRecords.jsx";
+import Staff from "../features/hr/pages/Staff";
+import StaffForm from "../features/hr/pages/StaffForm";
+import StaffAttendance from "../features/hr/pages/StaffAttendance";
+import StaffAttendanceForm from "../features/hr/pages/StaffAttendanceForm";
+import StaffDocuments from "../features/hr/pages/StaffDocuments";
+import StaffDocumentForm from "../features/hr/pages/StaffDocumentForm";
+import Vacations from "../features/hr/pages/Vacations";
+import VacationForm from "../features/hr/pages/VacationForm";
+import StaffEvaluations from "../features/hr/pages/StaffEvaluations";
+import StaffEvaluationForm from "../features/hr/pages/StaffEvaluationForm";
+import PayrollContracts from "../features/hr/pages/PayrollContracts";
+import PayrollContractForm from "../features/hr/pages/PayrollContractForm";
+import SalaryRecords from "../features/hr/pages/SalaryRecords";
 
 /* --- Inventory Management --- */
-import Vendors from "../features/inventory/pages/Vendors.jsx";
-import VendorForm from "../features/inventory/pages/VendorForm.jsx";
-import Items from "../features/inventory/pages/Items.jsx";
-import ItemForm from "../features/inventory/pages/ItemForm.jsx";
-import CustodyAssignments from "../features/inventory/pages/CustodyAssignments.jsx";
-import CustodyAssignmentForm from "../features/inventory/pages/CustodyAssignmentForm.jsx";
-import StockTakes from "../features/inventory/pages/StockTakes.jsx";
-import StockTakeForm from "../features/inventory/pages/StockTakeForm.jsx";
+import Vendors from "../features/inventory/pages/Vendors";
+import VendorForm from "../features/inventory/pages/VendorForm";
+import Items from "../features/inventory/pages/Items";
+import ItemForm from "../features/inventory/pages/ItemForm";
+import CustodyAssignments from "../features/inventory/pages/CustodyAssignments";
+import CustodyAssignmentForm from "../features/inventory/pages/CustodyAssignmentForm";
+import StockTakes from "../features/inventory/pages/StockTakes";
+import StockTakeForm from "../features/inventory/pages/StockTakeForm";
 
 /* --- Finance Management --- */
 import Invoices from "../features/finance/pages/Invoices";
@@ -56,40 +52,30 @@ import Payments from "../features/finance/pages/Payments";
 import PaymentForm from "../features/finance/pages/PaymentForm";
 import PurchaseOrders from "../features/finance/pages/PurchaseOrders";
 import PurchaseOrderForm from "../features/finance/pages/PurchaseOrderForm";
-import SalaryPayments from "../features/finance/pages/SalaryPayments.jsx";
-import SalaryPaymentForm from "../features/finance/pages/SalaryPaymentForm.jsx";
+import SalaryPayments from "../features/finance/pages/SalaryPayments";
+import SalaryPaymentForm from "../features/finance/pages/SalaryPaymentForm";
+
+/* --- Reporting Module --- */
+import ReportsPage from "../features/reporting/pages/ReportsPage";
 
 
 export const router = createBrowserRouter([
-  /* --- Public Route --- */
   { path: "/login", element: <Login /> },
-
-  /* --- Protected Section --- */
   {
     path: "/",
     element: ( <Protected> <Layout /> </Protected> ),
     children: [
-      /* Dashboard */
       { index: true, element: <Dashboard /> },
 
-      /* Students */
+      // Student Module
       { path: "students", element: <Students /> },
-      { path: "students/new", element: <StudentForm /> },
-      { path: "students/:id", element: <StudentForm /> },
       { path: "classrooms", element: <Classrooms /> },
-      { path: "classrooms/new", element: <ClassroomForm /> },
-      { path: "classrooms/:id", element: <ClassroomForm /> },
       { path: "enrollments", element: <Enrollments /> },
-      { path: "enrollments/new", element: <EnrollmentForm /> },
-      { path: "enrollments/:id", element: <EnrollmentForm /> },
-      { path: "medical", element: <MedicalRecords /> },
-      { path: "medical/new", element: <MedicalForm /> },
-      { path: "medical/:id", element: <MedicalForm /> },
       { path: "evaluations", element: <Evaluations /> },
-      { path: "evaluations/new", element: <EvaluationForm /> },
-      { path: "evaluations/:id", element: <EvaluationForm /> },
+      { path: "medical", element: <MedicalRecords /> },
+      { path: "documents", element: <Documents /> },
 
-      /* HR */
+      // HR Module
       { path: "hr/staff", element: <Staff /> },
       { path: "hr/staff/new", element: <StaffForm /> },
       { path: "hr/staff/:id", element: <StaffForm /> },
@@ -110,7 +96,7 @@ export const router = createBrowserRouter([
       { path: "hr/contracts/:id", element: <PayrollContractForm /> },
       { path: "hr/salary-records", element: <SalaryRecords /> },
 
-      /* Inventory */
+      // Inventory Module
       { path: "inventory/vendors", element: <Vendors /> },
       { path: "inventory/vendors/new", element: <VendorForm /> },
       { path: "inventory/vendors/:id", element: <VendorForm /> },
@@ -124,13 +110,13 @@ export const router = createBrowserRouter([
       { path: "inventory/stock-takes/new", element: <StockTakeForm /> },
       { path: "inventory/stock-takes/:id", element: <StockTakeForm /> },
       
-      /* Finance */
+      // Finance Module
       { path: "finance/invoices", element: <Invoices /> },
       { path: "finance/invoices/new", element: <InvoiceForm /> },
       { path: "finance/invoices/:id", element: <InvoiceForm /> },
       { path: "finance/expenses", element: <Expenses /> },
-      { path: "finance/expenses/new", element: <ExpenseForm /> }, 
-      { path: "finance/expenses/:id", element: <ExpenseForm /> }, 
+      { path: "finance/expenses/new", element: <ExpenseForm /> },
+      { path: "finance/expenses/:id", element: <ExpenseForm /> },
       { path: "finance/treasuries", element: <Treasuries /> },
       { path: "finance/treasuries/new", element: <TreasuryForm /> },
       { path: "finance/treasuries/:id", element: <TreasuryForm /> },
@@ -144,9 +130,10 @@ export const router = createBrowserRouter([
       { path: "finance/salary-payments", element: <SalaryPayments /> },
       { path: "finance/salary-payments/new", element: <SalaryPaymentForm /> },
 
-      /* Fallback Redirect */
+      // Reporting Module
+      { path: "reports", element: <ReportsPage /> },
+
       { path: "*", loader: () => redirect("/") },
     ],
   },
 ]);
-

@@ -1,3 +1,4 @@
+# myapp/urls.py
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework_simplejwt.views import (
@@ -18,5 +19,7 @@ urlpatterns = [
     path("api/v1/hr/",        include("hr.api.urls")),
     path("api/v1/inventory/", include("inventory.api.urls")),
     path("api/v1/finance/",   include("finance.api.urls")),
+    
+    # Add this line to include your reporting API
+    path("api/reporting/", include("reporting.api.urls")),
 ]
-

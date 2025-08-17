@@ -1,206 +1,104 @@
-// src/features/students/pages/Students.jsx
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast, Toaster } from "react-hot-toast";
-import {
-  FiSearch,
-  FiX,
-  FiPrinter,
-  FiPlus,
-  FiFileText,
-} from "react-icons/fi";
-
-import {
-  listStudents,
-  deleteStudent,
-} from "../../../api/students";                 // ✅ same relative path
-import DataTable      from "../../../components/ui/DataTable";
-import Drawer         from "../../../components/ui/Drawer";
-import StudentForm    from "./StudentForm";
+import { FiSearch, FiX, FiPlus } from "react-icons/fi";
+import cx from "classnames";
+import { listStudents, deleteStudent } from "../../../api/students";
+import DataTable from "../../../components/ui/DataTable";
+import SkeletonTable from "../../../components/ui/SkeletonTable";
+import Drawer from "../../../components/ui/Drawer";
+import ConfirmDialog from "../../../components/ui/ConfirmDialog";
+import StudentForm from "./StudentForm";
 
 export default function Students() {
-  /* ——— state ——— */
-  const [rows,    setRows]   = useState([]);
-  const [loading, setLoad]   = useState(true);
-  const [drawer,  setDrawer] = useState(false);
-  const [edit,    setEdit]   = useState(null);
-  const [search,  setSearch] = useState("");
+  const queryClient = useQueryClient();
+  const [isDrawerOpen, setDrawerOpen] = useState(false);
+  const [editingStudent, setEditingStudent] = useState(null);
+  const [confirmDeleteId, setConfirmDeleteId] = useState(null);
+  const [search, setSearch] = useState("");
 
-  /* ——— fetch list ——— */
-  const load = async () => {
-    setLoad(true);
-    try {
-      const data = await listStudents();               // GET /api/v1/student/students/
-      setRows(data);
-    } catch {
-      toast.error("Failed to load students");
-    } finally {
-      setLoad(false);
-    }
-  };
-  useEffect(() => { load(); }, []);
+  const { data: students = [], isLoading } = useQuery({ queryKey: ["students"], queryFn: listStudents });
 
-  /* ——— single / bulk delete ——— */
-  const delOne = async (id) => {
-    if (!window.confirm("Delete this student?")) return;
-    try {
-      await deleteStudent(id);
-      toast.success("Deleted");
-      load();
-    } catch {
-      toast.error("Delete failed");
-    }
-  };
-  const delMany = async (ids) => {
-    if (!window.confirm(`Delete ${ids.length} students?`)) return;
-    try {
-      await Promise.all(ids.map(deleteStudent));
-      toast.success("Bulk deleted");
-      load();
-    } catch {
-      toast.error("Bulk delete failed");
-    }
+  const { mutate: removeStudent } = useMutation({
+    mutationFn: deleteStudent,
+    onSuccess: () => {
+      toast.success("Student deleted!");
+      queryClient.invalidateQueries({ queryKey: ["students"] });
+      setConfirmDeleteId(null);
+    },
+    onError: () => toast.error("Delete failed. Student may have linked financial records."),
+  });
+
+  const onSaved = () => {
+    setDrawerOpen(false);
+    queryClient.invalidateQueries({ queryKey: ["students"] });
   };
 
-  /* ——— search filter ——— */
-  const filtered = rows.filter((s) =>
-    (s.name || "").toLowerCase().includes(search.toLowerCase())
-  );
+  const openDrawer = (student = null) => {
+    setEditingStudent(student);
+    setDrawerOpen(true);
+  };
 
-  /* ——— table mapping ——— */
-  const tableRows = filtered.map((s, index) => ({
+  // --- THIS FUNCTION ENABLES BULK DELETE ---
+  const handleBulkDelete = (ids) => {
+    toast.promise(
+      Promise.all(ids.map(deleteStudent)),
+      {
+        loading: "Deleting students...",
+        success: `${ids.length} students deleted!`,
+        error: "Failed to delete one or more students.",
+      }
+    ).then(() => {
+        queryClient.invalidateQueries({ queryKey: ["students"] });
+    });
+  };
+
+  const filtered = students.filter(s => (s.name || "").toLowerCase().includes(search.toLowerCase()));
+
+  const rows = filtered.map((s, idx) => ({
     ...s,
-    idx: index + 1,
-    enrollment_date: s.enrollment_date
-      ? new Date(s.enrollment_date).toLocaleDateString()
-      : "",
-    date_of_birth: s.date_of_birth
-      ? new Date(s.date_of_birth).toLocaleDateString()
-      : "",
+    idx: idx + 1,
+    is_active_status: (
+      <span className={cx("px-2 py-1 text-xs font-semibold rounded-full", { "bg-green-100 text-green-800": s.is_active, "bg-gray-100 text-gray-800": !s.is_active })}>
+        {s.is_active ? "Active" : "Inactive"}
+      </span>
+    ),
     _actions: (
       <div className="flex gap-3">
-        <button
-          className="text-blue-600 hover:underline"
-          onClick={() => {
-            setEdit(s);
-            setDrawer(true);
-          }}
-        >
-          Edit
-        </button>
-        <button
-          className="text-red-600 hover:underline"
-          onClick={() => delOne(s.id)}
-        >
-          Delete
-        </button>
+        <button className="text-blue-600 hover:underline" onClick={() => openDrawer(s)}>Edit</button>
+        <button className="text-red-600 hover:underline" onClick={() => setConfirmDeleteId(s.id)}>Delete</button>
       </div>
     ),
   }));
 
-  /* ——— columns ——— */
-  const cols = [
-    { key: "idx",            label: "#" },
-    { key: "name",           label: "Name" },
-    { key: "class_name",     label: "Class" },
-    { key: "teacher_name",   label: "Teacher" },
-    { key: "enrollment_date",label: "Enrolled" },
-    { key: "gender",         label: "Gender" },
-    { key: "date_of_birth",  label: "DOB" },
-    { key: "guardian_name",  label: "Guardian" },
-    { key: "guardian_phone", label: "Phone" },
-    { key: "_actions",       label: "Actions" },
+  const columns = [
+    { key: "idx", label: "#" }, { key: "name", label: "Name" }, { key: "class_name", label: "Class" },
+    { key: "enrollment_status", label: "Status" }, { key: "is_active_status", label: "Active?" },
+    { key: "guardian_name", label: "Guardian" }, { key: "_actions", label: "Actions" },
   ];
 
-  /* ——— helpers ——— */
-  const handlePrint     = () => window.print();
-  const handleExportPDF = () =>
-    window.open("/api/reports/students/pdf/", "_blank");
-
-  /* ——— UI ——— */
   return (
     <>
       <Toaster position="top-right" />
-
-      <div className="px-4 sm:px-6 lg:px-8 py-6 space-y-6">
+      <div className="p-6 space-y-6">
         <div className="bg-white shadow-lg rounded-2xl p-6 space-y-6">
-          {/* header */}
-          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-            <h2 className="text-2xl font-semibold text-gray-800">
-              Student Management
-            </h2>
-
-            <div className="flex flex-wrap gap-3">
-              <button
-                onClick={handlePrint}
-                className="flex items-center gap-2 px-4 py-2 rounded-md bg-emerald-600 text-white hover:bg-emerald-700"
-              >
-                <FiPrinter /> Print
-              </button>
-              <button
-                onClick={() => {
-                  setEdit(null);
-                  setDrawer(true);
-                }}
-                className="flex items-center gap-2 px-4 py-2 rounded-md bg-blue-600 text-white hover:bg-blue-700"
-              >
-                <FiPlus /> Add Student
-              </button>
-              <button
-                onClick={handleExportPDF}
-                className="flex items-center gap-2 px-4 py-2 rounded-md bg-fuchsia-600 text-white hover:bg-fuchsia-700"
-              >
-                <FiFileText /> Export PDF
-              </button>
-            </div>
+          <div className="flex justify-between items-center">
+            <h2 className="text-2xl font-semibold">Student Management</h2>
+            <button onClick={() => openDrawer(null)} className="btn-primary flex items-center gap-2">
+              <FiPlus /> Add Student
+            </button>
           </div>
-
-          {/* search */}
           <div className="relative w-full max-w-lg">
             <FiSearch className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" />
-            <input
-              type="text"
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              placeholder="Search student name…"
-              className="w-full pl-12 pr-12 py-2 rounded-full border border-gray-300 shadow-sm focus:ring-2 focus:ring-blue-500 outline-none"
-            />
-            {search && (
-              <button
-                onClick={() => setSearch("")}
-                className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
-              >
-                <FiX />
-              </button>
-            )}
+            <input value={search} onChange={e => setSearch(e.target.value)} placeholder="Search by name..." className="input w-full pl-12" />
           </div>
-
-          {/* table */}
-          {loading ? (
-            <p className="p-4 text-gray-600">Loading students…</p>
-          ) : (
-            <DataTable
-              columns={cols}
-              rows={tableRows}
-              onBulkDelete={delMany}
-              defaultSort="name"
-            />
-          )}
+          
+          {/* --- FIX IS HERE: onBulkDelete prop is now correctly passed --- */}
+          {isLoading ? <SkeletonTable /> : <DataTable columns={columns} rows={rows} onBulkDelete={handleBulkDelete} />}
         </div>
       </div>
-
-      {/* drawer */}
-      <Drawer open={drawer} onClose={() => setDrawer(false)} width="40rem">
-        {drawer && (
-          <StudentForm
-            initial={edit}
-            onSaved={() => {
-              setDrawer(false);
-              load();
-            }}
-          />
-        )}
-      </Drawer>
+      <Drawer open={isDrawerOpen} onClose={() => setDrawerOpen(false)} width="40rem">{isDrawerOpen && <StudentForm initialData={editingStudent} onSaved={onSaved} />}</Drawer>
+      {confirmDeleteId && (<ConfirmDialog title="Delete Student?" onCancel={() => setConfirmDeleteId(null)} onConfirm={() => removeStudent(confirmDeleteId)}>This action cannot be undone.</ConfirmDialog>)}
     </>
   );
 }
-

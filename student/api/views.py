@@ -1,31 +1,16 @@
+# student/api/views.py
 from rest_framework import viewsets
-from student.models import (
-    Student,
-    StudentDocument,
-    Classroom,
-    Enrollment,
-    Attendance,
-    Evaluation,
-    MedicalRecord
-)
-from student.api.serializers import (
-    StudentSerializer,
-    StudentDocumentSerializer,
-    ClassroomSerializer,
-    EnrollmentSerializer,
-    AttendanceSerializer,
-    EvaluationSerializer,
-    MedicalRecordSerializer
+from student.models import Student, StudentDocument, Classroom, Enrollment, Attendance, Evaluation, MedicalRecord
+from .serializers import (
+    StudentSerializer, StudentDocumentSerializer, ClassroomSerializer, EnrollmentSerializer,
+    AttendanceSerializer, EvaluationSerializer, MedicalRecordSerializer
 )
 
 class StudentViewSet(viewsets.ModelViewSet):
-    # Join the classroom and teacher tables to prevent extra queries
-    queryset = Student.objects.select_related("classroom__assigned_teacher")
+    queryset = Student.objects.select_related("classroom")
     serializer_class = StudentSerializer
-
-class StudentDocumentViewSet(viewsets.ModelViewSet):
-    queryset = StudentDocument.objects.select_related("student")
-    serializer_class = StudentDocumentSerializer
+    filterset_fields = ['is_active', 'classroom', 'enrollment_status']
+    search_fields = ['first_name', 'last_name']
 
 class ClassroomViewSet(viewsets.ModelViewSet):
     queryset = Classroom.objects.select_related("assigned_teacher")
@@ -38,8 +23,6 @@ class EnrollmentViewSet(viewsets.ModelViewSet):
 class AttendanceViewSet(viewsets.ModelViewSet):
     queryset = Attendance.objects.select_related("student")
     serializer_class = AttendanceSerializer
-    filterset_fields = ["student", "date", "status"]
-    ordering_fields = ["date"]
 
 class EvaluationViewSet(viewsets.ModelViewSet):
     queryset = Evaluation.objects.select_related("student")
@@ -49,3 +32,6 @@ class MedicalRecordViewSet(viewsets.ModelViewSet):
     queryset = MedicalRecord.objects.select_related("student")
     serializer_class = MedicalRecordSerializer
 
+class StudentDocumentViewSet(viewsets.ModelViewSet):
+    queryset = StudentDocument.objects.select_related("student")
+    serializer_class = StudentDocumentSerializer
