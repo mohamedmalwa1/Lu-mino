@@ -1,133 +1,264 @@
-import React, { useState } from 'react';
-import { useQuery } from '@tanstack/react-query';
-import { toast, Toaster } from "react-hot-toast";
+// src/features/reporting/pages/ReportsPage.jsx
+import React, { useMemo, useState } from "react";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { FiFile, FiClock, FiCheckCircle, FiXCircle, FiDownload, FiLoader } from 'react-icons/fi';
+import { FiDownload, FiFileText, FiPlayCircle, FiRefreshCcw } from "react-icons/fi";
+import { toast } from "react-hot-toast";
+import {
+  listReports,
+  requestReport,
+  getReportStatus,
+  downloadReport,
+} from "../../../api/reporting";
 
-// Correctly import from the new api file
-import { requestReport, getReportStatus, getReportDownloadUrl } from '../../../api/reporting';
-
-// A component for each individual report job row
-const ReportJobRow = ({ job }) => {
-    const { data: report } = useQuery({
-        queryKey: ['reportStatus', job.id],
-        queryFn: () => getReportStatus(job.id),
-        // Refetch every 2.5 seconds ONLY if the report is still processing
-        refetchInterval: (query) => {
-            const status = query.state.data?.status;
-            return status === 'PENDING' || status === 'IN_PROGRESS' ? 2500 : false;
-        },
-    });
-
-    const getStatusInfo = (status) => {
-        switch (status) {
-            case 'COMPLETED': return { icon: <FiCheckCircle className="text-green-500" />, text: 'Completed' };
-            case 'PENDING': return { icon: <FiClock className="text-yellow-500" />, text: 'Pending...' };
-            case 'IN_PROGRESS': return { icon: <FiLoader className="animate-spin text-blue-500" />, text: 'In Progress...' };
-            case 'FAILED': return { icon: <FiXCircle className="text-red-500" />, text: 'Failed' };
-            default: return { icon: <FiFile className="text-gray-400" />, text: 'Loading...' };
-        }
-    };
-    
-    const { icon, text } = getStatusInfo(report?.status);
-
-    return (
-        <div className="flex items-center justify-between p-4 border-b last:border-b-0">
-            <div className="flex items-center gap-4">
-                {icon}
-                <div>
-                    <p className="font-semibold">{report?.report_type?.replace(/_/g, ' ') || 'Report'}</p>
-                    <p className="text-sm text-gray-500">
-                        Requested on {new Date(job.created_at).toLocaleString()}
-                    </p>
-                </div>
-            </div>
-            <div>
-                {report?.status === 'COMPLETED' ? (
-                    <a href={getReportDownloadUrl(job.id)} download target="_blank" rel="noopener noreferrer" className="btn-primary flex items-center gap-2">
-                        <FiDownload /> Download
-                    </a>
-                ) : (
-                    <p className="text-sm text-gray-500">{text}</p>
-                )}
-            </div>
-        </div>
-    );
+const REPORTS = {
+  // Finance
+  PNL:           { label: "Profit & Loss",              params: ["dates"], formats: ["PDF"] },
+  CASH:          { label: "Cash Flow",                  params: ["dates"], formats: ["PDF"] },
+  // Inventory
+  LOW_STOCK:     { label: "Inventory: Low Stock",       params: ["threshold"], formats: ["PDF", "XLSX"] },
+  // Documents
+  DOC_EXP:       { label: "Expiring Documents",         params: ["daysAhead"], formats: ["XLSX"] },
+  // Students
+  STUDENT_DOCS:  { label: "Student Documents",          params: [],          formats: ["PDF"] },
+  STUDENT_FEES:  { label: "Student Fees (Paid/Unpaid)", params: ["dates"],   formats: ["PDF", "XLSX"] },
+  ENROLL_SUMMARY:{ label: "Enrollment Summary",         params: [],          formats: ["PDF", "XLSX"] },
 };
 
-
-// The main page component
-export default function ReportsPage() {
-    const [reportType, setReportType] = useState('PNL');
-    const [params, setParams] = useState({ start: new Date(), end: new Date() });
-    const [jobs, setJobs] = useState(() => JSON.parse(localStorage.getItem('reportJobs')) || []);
-    const [isGenerating, setIsGenerating] = useState(false);
-
-    const handleGenerate = async () => {
-        setIsGenerating(true);
-        const formattedParams = {
-            start: params.start.toISOString().split('T')[0],
-            end: params.end.toISOString().split('T')[0],
-        };
-
-        try {
-            const data = await requestReport(reportType, formattedParams);
-            toast.success(`Report generation started! (Job ID: ${data.job_id})`);
-            const newJob = { id: data.job_id, created_at: new Date().toISOString() };
-            const updatedJobs = [...jobs, newJob];
-            setJobs(updatedJobs);
-            localStorage.setItem('reportJobs', JSON.stringify(updatedJobs));
-        } catch (error) {
-            toast.error("Failed to request report.");
-        } finally {
-            setIsGenerating(false);
-        }
-    };
-
-    return (
-        <div className="space-y-6">
-            <Toaster position="top-right" />
-            <h1 className="text-3xl font-bold">Reports</h1>
-
-            <div className="bg-white p-6 rounded-lg shadow-md border">
-                <h2 className="text-xl font-semibold mb-4">Generate a New Report</h2>
-                <div className="flex flex-wrap items-end gap-4">
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700">Report Type</label>
-                        <select value={reportType} onChange={(e) => setReportType(e.target.value)} className="input">
-                            <option value="PNL">Profit & Loss</option>
-                            <option value="BS">Balance Sheet</option>
-                            <option value="CASH">Cash Flow</option>
-                            <option value="PAYROLL_VS_ATT">Payroll vs Attendance</option>
-                            <option value="LOW_STOCK">Low Stock</option>
-                            <option value="DOC_EXP">Expiring Documents</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700">Start Date</label>
-                        <DatePicker selected={params.start} onChange={(date) => setParams({ ...params, start: date })} className="input"/>
-                    </div>
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700">End Date</label>
-                        <DatePicker selected={params.end} onChange={(date) => setParams({ ...params, end: date })} className="input"/>
-                    </div>
-                    <button onClick={handleGenerate} disabled={isGenerating} className="btn-primary">
-                        {isGenerating ? "Generating..." : "Generate Report"}
-                    </button>
-                </div>
-            </div>
-
-            <div className="bg-white p-6 rounded-lg shadow-md border">
-                <h2 className="text-xl font-semibold mb-4">Your Report Jobs</h2>
-                <div className="space-y-2">
-                    {jobs.length > 0 ? (
-                        [...jobs].reverse().map(job => <ReportJobRow key={job.id} job={job} />)
-                    ) : (
-                        <p className="text-gray-500 p-4">You haven't generated any reports yet.</p>
-                    )}
-                </div>
-            </div>
-        </div>
-    );
+function fmtDate(d) {
+  if (!d) return "";
+  const iso = new Date(d).toISOString();
+  return iso.split("T")[0];
 }
+
+export default function ReportsPage() {
+  const qc = useQueryClient();
+  const [reportType, setReportType] = useState("CASH");
+  const [format, setFormat] = useState("PDF");
+  const [params, setParams] = useState({
+    start: new Date(new Date().getFullYear(), new Date().getMonth(), 1),
+    end: new Date(),
+    threshold: 5,
+    days_ahead: 30,
+  });
+  const [currentJobId, setCurrentJobId] = useState(null);
+
+  const jobsQuery = useQuery({
+    queryKey: ["reports", "list"],
+    queryFn: listReports,
+    refetchInterval: 8000,
+  });
+
+  const jobStatusQuery = useQuery({
+    queryKey: ["reports", "job", currentJobId],
+    queryFn: () => getReportStatus(currentJobId),
+    enabled: !!currentJobId,
+    refetchInterval: 2500,
+    staleTime: 0,
+  });
+
+  const createMutation = useMutation({
+    mutationFn: async () => {
+      const cfg = REPORTS[reportType] || {};
+      let payload = { format };
+      if (cfg.params?.includes("dates")) {
+        payload.start = fmtDate(params.start);
+        payload.end = fmtDate(params.end);
+      }
+      if (cfg.params?.includes("threshold")) {
+        payload.threshold = Number(params.threshold) || null;
+      }
+      if (cfg.params?.includes("daysAhead")) {
+        payload.days_ahead = Number(params.days_ahead) || 30;
+      }
+      return await requestReport(reportType, payload);
+    },
+    onSuccess: (job) => {
+      setCurrentJobId(job.id);
+      toast.success(`${REPORTS[reportType].label} requested`);
+      qc.invalidateQueries({ queryKey: ["reports", "list"] });
+    },
+    onError: () => toast.error("Failed to request report"),
+  });
+
+  const currentJob = jobStatusQuery.data;
+  const cfg = REPORTS[reportType] || {};
+
+  async function downloadById(jobId, fallbackName = "report") {
+    try {
+      const { blob, filename } = await downloadReport(jobId);
+      const name = filename || `${fallbackName}.${format === "XLSX" ? "xlsx" : "pdf"}`;
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url; a.download = name; document.body.appendChild(a);
+      a.click(); a.remove(); URL.revokeObjectURL(url);
+    } catch (e) {
+      console.error(e); toast.error("Download failed");
+    }
+  }
+
+  const controls = useMemo(() => (
+    <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
+      {/* Report selector */}
+      <div className="md:col-span-2">
+        <label className="block mb-1 font-medium">Report</label>
+        <select
+          className="w-full border rounded px-3 py-2"
+          value={reportType}
+          onChange={(e) => {
+            const next = e.target.value;
+            setReportType(next);
+            const available = REPORTS[next]?.formats || ["PDF"];
+            if (!available.includes(format)) setFormat(available[0]);
+          }}
+        >
+          {Object.entries(REPORTS).map(([key, v]) => (
+            <option key={key} value={key}>{v.label}</option>
+          ))}
+        </select>
+      </div>
+
+      {/* Format */}
+      <div>
+        <label className="block mb-1 font-medium">Format</label>
+        <select
+          className="w-full border rounded px-3 py-2"
+          value={format}
+          onChange={(e) => setFormat(e.target.value)}
+        >
+          {(REPORTS[reportType]?.formats || ["PDF"]).map((f) => (
+            <option key={f} value={f}>{f}</option>
+          ))}
+        </select>
+      </div>
+
+      {/* Date range */}
+      {cfg.params?.includes("dates") && (
+        <>
+          <div>
+            <label className="block mb-1 font-medium">Start</label>
+            <DatePicker
+              selected={params.start}
+              onChange={(date) => setParams((p) => ({ ...p, start: date }))}
+              className="w-full border rounded px-3 py-2"
+              dateFormat="yyyy-MM-dd"
+            />
+          </div>
+          <div>
+            <label className="block mb-1 font-medium">End</label>
+            <DatePicker
+              selected={params.end}
+              onChange={(date) => setParams((p) => ({ ...p, end: date }))}
+              className="w-full border rounded px-3 py-2"
+              dateFormat="yyyy-MM-dd"
+            />
+          </div>
+        </>
+      )}
+
+      {/* Threshold */}
+      {cfg.params?.includes("threshold") && (
+        <div>
+          <label className="block mb-1 font-medium">Threshold</label>
+          <input
+            type="number"
+            className="w-full border rounded px-3 py-2"
+            value={params.threshold}
+            onChange={(e) => setParams((p) => ({ ...p, threshold: e.target.value }))}
+          />
+        </div>
+      )}
+
+      {/* Days ahead */}
+      {cfg.params?.includes("daysAhead") && (
+        <div>
+          <label className="block mb-1 font-medium">Days Ahead</label>
+          <input
+            type="number"
+            className="w-full border rounded px-3 py-2"
+            value={params.days_ahead}
+            onChange={(e) => setParams((p) => ({ ...p, days_ahead: e.target.value }))}
+          />
+        </div>
+      )}
+    </div>
+  ), [reportType, params, format]);
+
+  return (
+    <div className="p-4 max-w-6xl mx-auto">
+      <div className="flex items-center gap-3 mb-4">
+        <FiFileText /><h1 className="text-xl font-semibold">Reports</h1>
+      </div>
+
+      <div className="space-y-4">
+        {controls}
+
+        <div className="flex gap-3">
+          <button
+            onClick={() => createMutation.mutate()}
+            disabled={createMutation.isPending}
+            className="px-4 py-2 rounded bg-blue-600 text-white flex items-center gap-2 disabled:opacity-60"
+          >
+            <FiPlayCircle /> {createMutation.isPending ? "Requesting..." : "Generate"}
+          </button>
+
+          {currentJob?.status === "COMPLETED" && (
+            <button
+              onClick={() => downloadById(currentJob.id)}
+              className="px-4 py-2 rounded bg-emerald-600 text-white flex items-center gap-2"
+            >
+              <FiDownload /> Download
+            </button>
+          )}
+
+          {currentJob?.status && (
+            <span className="px-3 py-2 rounded border bg-gray-50">
+              Status: <b>{currentJob.status_display || currentJob.status}</b>
+            </span>
+          )}
+
+          <button
+            onClick={() => qc.invalidateQueries({ queryKey: ["reports", "list"] })}
+            className="px-3 py-2 rounded border flex items-center gap-2"
+            title="Refresh list"
+          >
+            <FiRefreshCcw /> Refresh
+          </button>
+        </div>
+
+        {/* recent jobs */}
+        <div className="border rounded">
+          <div className="px-3 py-2 border-b bg-gray-50 font-medium">Recent Jobs</div>
+          <div className="divide-y">
+            {(jobsQuery.data || []).map((j) => (
+              <div key={j.id} className="px-3 py-2 flex items-center justify-between">
+                <div className="space-x-2">
+                  <span className="font-mono text-sm">#{j.id}</span>
+                  <span>{j.report_type_display || j.report_type}</span>
+                  <span className="text-gray-500 text-sm">
+                    {j.generated_at?.replace("T"," ").replace("Z","")}
+                  </span>
+                  {j.error && <span className="text-red-600 text-sm">Error: {j.error}</span>}
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="text-sm">{j.status_display || j.status}</span>
+                  {j.status === "COMPLETED" && (
+                    <button
+                      onClick={() => downloadById(j.id, (j.file || "").split("/").pop() || "report")}
+                      className="px-3 py-1 rounded bg-emerald-600 text-white flex items-center gap-2"
+                    >
+                      <FiDownload /> Download
+                    </button>
+                  )}
+                </div>
+              </div>
+            ))}
+            {jobsQuery.isFetching && <div className="px-3 py-2 text-sm text-gray-500">Refreshing…</div>}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+

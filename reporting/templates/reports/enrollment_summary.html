@@ -1,0 +1,19 @@
+{% extends "reports/base_report.html" %}
+{% block content %}
+<h2>Enrollment Summary</h2>
+<table class="rp-metrics">
+  <tr><th>Total Students</th><td class="num">{{ total }}</td></tr>
+</table>
+<h3>By Class</h3>
+<table class="rp-table">
+  <thead><tr><th>Class</th><th class="num">Count</th></tr></thead>
+  <tbody>
+    {% for r in by_class %}
+      <tr><td>{{ r.class_name }}</td><td class="num">{{ r.count }}</td></tr>
+    {% empty %}
+      <tr><td colspan="2" class="muted">No class data</td></tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
+

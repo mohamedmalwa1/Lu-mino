@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>{{ title|default:"Report" }}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'reports/report.css' %}">
+    <style>
+      @page { size: A4; margin: 14mm; }
+      @page { @bottom-right { content: "Page " counter(page) " of " counter(pages); } }
+    </style>
+  </head>
+  <body>
+    <header class="rp-header">
+      <div class="rp-brand">
+        <h1>{{ title|default:"Report" }}</h1>
+        <div class="rp-meta">
+          <span>Generated: {{ now|default:None }}</span>
+        </div>
+      </div>
+      <hr>
+    </header>
+
+    <main class="rp-content">
+      {% block content %}{% endblock %}
+    </main>
+
+    <footer class="rp-footer">
+      <hr>
+      <small>© {{ company_name|default:"Lumino" }}</small>
+    </footer>
+  </body>
+</html>
+

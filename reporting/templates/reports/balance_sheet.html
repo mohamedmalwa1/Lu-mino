@@ -1,7 +1,12 @@
-<h3>Balance Sheet as of {{ as_of }}</h3>
-<table border="1" cellpadding="4">
-<tr><th>Assets</th><td>{{ assets }}</td></tr>
-<tr><th>Liabilities</th><td>{{ debts }}</td></tr>
-<tr><th><b>Equity</b></th><td><b>{{ equity }}</b></td></tr>
+{% extends "reports/base_report.html" %}
+{% block content %}
+<h2>Balance Sheet</h2>
+<p><strong>As of:</strong> {{ as_of }}</p>
+
+<table class="rp-metrics">
+  <tr><th>Assets</th><td class="num">{{ assets }}</td></tr>
+  <tr><th>Debts</th><td class="num">{{ debts }}</td></tr>
+  <tr><th>Equity (A-D)</th><td class="num">{{ equity }}</td></tr>
 </table>
+{% endblock %}
 

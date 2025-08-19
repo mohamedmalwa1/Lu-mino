@@ -1,11 +1,24 @@
-<h3>Cash-Flow ({{ start }} → {{ end }})</h3>
-<table border="1" cellpadding="4">
-<tr><th>Month</th><th>Inflow</th><th>Outflow</th><th>Net</th></tr>
-{% for r in rows %}
-<tr><td>{{ r.month|date:"M Y" }}</td>
-    <td align="right">{{ r.in }}</td>
-    <td align="right">{{ r.out }}</td>
-    <td align="right">{{ r.net }}</td></tr>
-{% endfor %}
+{% extends "reports/base_report.html" %}
+{% block content %}
+<h2>Cash Flow</h2>
+<p><strong>Period:</strong> {{ start }} → {{ end }}</p>
+
+<table class="rp-table">
+  <thead>
+    <tr><th>Month</th><th class="num">In</th><th class="num">Out</th><th class="num">Net</th></tr>
+  </thead>
+  <tbody>
+    {% for r in rows %}
+      <tr>
+        <td>{{ r.month }}</td>
+        <td class="num">{{ r.in }}</td>
+        <td class="num">{{ r.out }}</td>
+        <td class="num">{{ r.net }}</td>
+      </tr>
+    {% empty %}
+      <tr><td colspan="4" class="muted">No data</td></tr>
+    {% endfor %}
+  </tbody>
 </table>
+{% endblock %}
 

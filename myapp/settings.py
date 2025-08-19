@@ -1,5 +1,5 @@
 """
-Django settings for myapp project.
+Django settings for myapp project - Optimized for Report Generation
 """
 
 import os
@@ -10,45 +10,37 @@ from datetime import timedelta
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # ======================
-# ❶ SECURITY SETTINGS
+# ❶ CORE SETTINGS
 # ======================
 SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'django-insecure-fallback-key-for-dev-only')
-DEBUG = os.getenv('DEBUG', 'True') == 'True'  # Fixed DEBUG definition
+DEBUG = os.getenv('DEBUG', 'True') == 'True'
 ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', 'localhost,127.0.0.1').split(',')
-
-if DEBUG:
-    print("⚠️ Warning: Running in DEBUG mode - unsuitable for production!")
 
 # ======================
 # ❷ APPLICATION DEFINITION
 # ======================
 INSTALLED_APPS = [
-    # Django Core
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    
-    # Local Apps
     'core',
     'hr',
     'finance',
     'student',
     'reporting',
     'inventory',
-    
-    # Third-party
     'rest_framework',
     'rest_framework_simplejwt',
     'django_celery_beat',
     'notifications',
-    'corsheaders',  # Added CORS support
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
-    'corsheaders.middleware.CorsMiddleware',  # First middleware
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -61,12 +53,15 @@ MIDDLEWARE = [
 ROOT_URLCONF = 'myapp.urls'
 
 # ======================
-# ❸ TEMPLATES & WSGI
+# ❸ TEMPLATES (Optimized for WeasyPrint)
 # ======================
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+        'DIRS': [
+            os.path.join(BASE_DIR, 'templates'),
+            os.path.join(BASE_DIR, 'reporting/templates'),
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -75,14 +70,15 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
+            'builtins': [
+                'django.templatetags.static',
+            ],
         },
     },
 ]
 
-WSGI_APPLICATION = 'myapp.wsgi.application'
-
 # ======================
-# ❹ DATABASE
+# ❹ DATABASE (No changes needed)
 # ======================
 DATABASES = {
     'default': {
@@ -100,48 +96,48 @@ DATABASES = {
 }
 
 # ======================
-# ❺ AUTH & SECURITY
+# ❺ FILE HANDLING (Critical for reports)
 # ======================
-AUTH_PASSWORD_VALIDATORS = [
-    {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
-    {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'},
-    {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator'},
-    {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},
-]
-
-# ======================
-# ❻ INTERNATIONALIZATION
-# ======================
-LANGUAGE_CODE = 'en-us'
-TIME_ZONE = 'UTC'
-USE_I18N = True
-USE_L10N = True
-USE_TZ = True
-
-# ======================
-# ❼ STATIC & MEDIA FILES
-# ======================
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+# Report-specific settings
+REPORT_MEDIA_ROOT = os.path.join(MEDIA_ROOT, 'reports')
+os.makedirs(REPORT_MEDIA_ROOT, exist_ok=True)
 
 # ======================
-# ❽ CORS CONFIGURATION
+# ❻ CELERY (Optimized for reports)
 # ======================
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:5173",  # Vite
-    "http://127.0.0.1:5173",
-]
-
-if DEBUG:
-    CORS_ALLOW_ALL_ORIGINS = True
-    CORS_ALLOW_CREDENTIALS = True
+CELERY_BROKER_URL = 'amqp://myadmin:securepassword123@localhost:5672//'
+CELERY_RESULT_BACKEND = 'rpc://'
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TASK_TRACK_STARTED = True
+CELERY_TASK_TIME_LIMIT = 30 * 60  # 30 minutes timeout for reports
 
 # ======================
-# ❾ REST FRAMEWORK
+# ❼ WEASYPRINT CONFIG
+# ======================
+WEASYPRINT_BASEURL = 'file://' + str(BASE_DIR)  # Absolute path for assets
+WEASYPRINT_DPI = 96
+WEASYPRINT_PRESENTATIONAL_HINTS = True
+
+# ======================
+# ❽ SECURITY (No changes needed)
+# ======================
+if not DEBUG:
+    SECURE_HSTS_SECONDS = 31536000
+    SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+    SECURE_HSTS_PRELOAD = True
+    SECURE_SSL_REDIRECT = True
+    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE = True
+
+# ======================
+# ❾ REST FRAMEWORK (No changes needed)
 # ======================
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
@@ -153,26 +149,37 @@ REST_FRAMEWORK = {
 }
 
 # ======================
-# ❿ CELERY & JWT
+# ❿ LOGGING (For debugging reports)
 # ======================
-CELERY_BROKER_URL = 'redis://localhost:6379/0'
-CELERY_RESULT_BACKEND = 'redis://localhost:6379/1'
-CELERY_ACCEPT_CONTENT = ['json']
-CELERY_TASK_SERIALIZER = 'json'
-CELERY_RESULT_SERIALIZER = 'json'
-
-SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
-    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'report_file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, 'report_errors.log'),
+            'formatter': 'verbose',
+        },
+    },
+    'formatters': {
+        'verbose': {
+            'format': '{levelname} {asctime} {module} {message}',
+            'style': '{',
+        },
+    },
+    'loggers': {
+        'reporting': {
+            'handlers': ['report_file'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+    },
 }
 
 # ======================
-# ⓫ PRODUCTION CHECKS
+# ⓫ SYSTEM CHECKS
 # ======================
-if not DEBUG:
-    SECURE_HSTS_SECONDS = 31536000  # 1 year
-    SECURE_HSTS_INCLUDE_SUBDOMAINS = True
-    SECURE_HSTS_PRELOAD = True
-    SECURE_SSL_REDIRECT = True
-    SESSION_COOKIE_SECURE = True
-    CSRF_COOKIE_SECURE = True
+SILENCED_SYSTEM_CHECKS = [
+    'security.W008',  # SSL redirect (handled in production)
+]

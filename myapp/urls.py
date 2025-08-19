@@ -21,5 +21,5 @@ urlpatterns = [
     path("api/v1/finance/",   include("finance.api.urls")),
     
     # Add this line to include your reporting API
-    path("api/reporting/", include("reporting.api.urls")),
+    path("api/v1/reporting/", include("reporting.api.urls")),
 ]

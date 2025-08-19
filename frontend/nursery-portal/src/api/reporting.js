@@ -1,22 +1,44 @@
+// src/api/reporting.js
+// Axios instance must already inject Authorization: Bearer <token>
+// and have baseURL="/api" (so BASE becomes "/api/v1/reporting").
+
 import api from "./axios";
 
-// --- Reporting API Functions ---
+const BASE = "/v1/reporting";
 
-// POST to /api/reporting/ to request a new report
-export const requestReport = async (reportType, params = {}) => {
-    const { data } = await api.post('/reporting/', { type: reportType, params });
-    return data;
-};
+// List recent report jobs
+export async function listReports() {
+  const res = await api.get(`${BASE}/`);
+  return res.data;
+}
 
-// GET from /api/reporting/{jobId}/ to check a report's status
-export const getReportStatus = async (jobId) => {
-    const { data } = await api.get(`/reporting/${jobId}/`);
-    return data;
-};
+// Request a new report
+export async function requestReport(reportType, parameters = {}) {
+  const res = await api.post(`${BASE}/create/`, { report_type: reportType, parameters });
+  return res.data;
+}
 
-// GET from /api/reporting/{jobId}/download/ to download the file
-export const getReportDownloadUrl = (jobId) => {
-    // This returns the URL string for the 'href' attribute, not an axios call
-    // Note: We are using the full path because this will be used in an `<a>` tag.
-    return `/api/reporting/${jobId}/download/`;
-};
+// Get a single job status
+export async function getReportStatus(jobId) {
+  const res = await api.get(`${BASE}/${jobId}/`);
+  return res.data;
+}
+
+// Build a direct URL (only useful if endpoint is public; we keep for UI linking)
+export function getReportDownloadUrl(jobId) {
+  const base = api.defaults.baseURL ? api.defaults.baseURL.replace(/\/+$/, "") : "";
+  return `${base}${BASE}/${jobId}/download/`;
+}
+
+// Authenticated download (fixes 401 from <a href>)
+export async function downloadReport(jobId) {
+  const res = await api.get(`${BASE}/${jobId}/download/`, { responseType: "blob" });
+  let filename = "report.pdf";
+  const dispo = res.headers?.["content-disposition"];
+  if (dispo) {
+    const m = /filename\*?=(?:UTF-8''|")?([^;"']+)/i.exec(dispo);
+    if (m) filename = decodeURIComponent(m[1].replace(/"/g, ""));
+  }
+  return { blob: res.data, filename };
+}
+

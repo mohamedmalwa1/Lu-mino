@@ -1,0 +1,30 @@
+{% extends "reports/base_report.html" %}
+{% block content %}
+<h2>Student Fees Status</h2>
+<p><strong>Period:</strong> {{ start }} → {{ end }}</p>
+<table class="rp-metrics">
+  <tr><th>Total Billed</th><td class="num">{{ totals.billed }}</td></tr>
+  <tr><th>Total Paid</th><td class="num">{{ totals.paid }}</td></tr>
+  <tr><th>Total Balance</th><td class="num">{{ totals.balance }}</td></tr>
+  <tr><th>Paid / Unpaid</th><td class="num">{{ totals.paid_count }} / {{ totals.unpaid_count }}</td></tr>
+</table>
+<h3>Details</h3>
+<table class="rp-table">
+  <thead><tr><th>Student</th><th>Class</th><th class="num">Billed</th><th class="num">Paid</th><th class="num">Balance</th><th>Status</th></tr></thead>
+  <tbody>
+    {% for r in rows %}
+      <tr>
+        <td>{{ r.student_name }}</td>
+        <td>{{ r.class_name }}</td>
+        <td class="num">{{ r.billed }}</td>
+        <td class="num">{{ r.paid }}</td>
+        <td class="num">{{ r.balance }}</td>
+        <td>{{ r.status }}</td>
+      </tr>
+    {% empty %}
+      <tr><td colspan="6" class="muted">No data</td></tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
+

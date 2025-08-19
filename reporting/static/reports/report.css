@@ -1,0 +1,16 @@
+/* reporting/static/reports/report.css */
+* { font-family: "Inter", "Segoe UI", "Noto Sans", "Noto Naskh Arabic", sans-serif; font-size: 12px; }
+h1, h2 { margin: 0 0 8px 0; }
+.rp-header .rp-brand { display: flex; justify-content: space-between; align-items: baseline; }
+.rp-meta { font-size: 11px; color: #666; }
+.rp-content { margin-top: 8px; }
+.rp-table { width: 100%; border-collapse: collapse; }
+.rp-table th, .rp-table td { border-bottom: 1px solid #ddd; padding: 6px 8px; vertical-align: top; }
+.rp-table th { text-align: left; }
+.num { text-align: right; }
+.muted { color: #777; text-align: center; }
+.rp-metrics { width: 60%; border-collapse: collapse; }
+.rp-metrics th, .rp-metrics td { border-bottom: 1px solid #ddd; padding: 6px 8px; }
+@page { size: A4; margin: 14mm; }
+@page { @bottom-right { content: "Page " counter(page) " of " counter(pages); } }
+

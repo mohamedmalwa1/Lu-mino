@@ -1,53 +1,51 @@
+# reporting/api/views.py
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status, permissions
 from django.shortcuts import get_object_or_404
-from reporting.models import ReportJob
-from reporting.api.serializers import ReportJobSerializer
-from reporting.tasks import build_report
+from django.http import FileResponse
+import os
+
+from ..models import ReportJob
+from ..tasks import build_report
+from .serializers import ReportJobSerializer
+
+class ReportListView(APIView):
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get(self, request):
+        jobs = ReportJob.objects.all().order_by('-created_at')
+        serializer = ReportJobSerializer(jobs, many=True)
+        return Response(serializer.data)
 
 class ReportRequestView(APIView):
-    """
-    POST {"type":"PNL","params":{"start":"2025-01-01","end":"2025-06-30"}}
-    → returns {"job_id":123}
-    """
     permission_classes = [permissions.IsAuthenticated]
 
     def post(self, request):
-        rtype   = request.data.get("type")
-        kwargs  = request.data.get("params", {})
+        serializer = ReportJobSerializer(data=request.data)
+        if serializer.is_valid():
+            job = serializer.save()
+            build_report.delay(job.id)
+            return Response(serializer.data, status=status.HTTP_202_ACCEPTED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-        job = ReportJob.objects.create(report_type=rtype, parameters=kwargs)
-        build_report.delay(job.id, rtype, kwargs)  # queue async build
-
-        return Response({"job_id": job.id}, status=status.HTTP_202_ACCEPTED)
-
-
-class ReportStatusView(APIView):
-    """
-    GET /api/reports/123/ → job meta
-    """
+class ReportDetailView(APIView):
     permission_classes = [permissions.IsAuthenticated]
 
     def get(self, request, job_id):
         job = get_object_or_404(ReportJob, id=job_id)
-        ser = ReportJobSerializer(job)
-        return Response(ser.data)
-
-
-from django.http import FileResponse
+        serializer = ReportJobSerializer(job)
+        return Response(serializer.data)
 
 class ReportDownloadView(APIView):
-    """
-    GET /api/reports/123/download/ → file
-    """
     permission_classes = [permissions.IsAuthenticated]
 
     def get(self, request, job_id):
         job = get_object_or_404(ReportJob, id=job_id)
+        if job.status != 'COMPLETED':
+            return Response({"error": "Report is not ready yet."}, status=status.HTTP_404_NOT_FOUND)
         if not job.file:
-            return Response(
-                {"detail": "Report not ready"}, status=status.HTTP_425_TOO_EARLY
-            )
-        return FileResponse(job.file.open(), as_attachment=True)
+            return Response({"error": "Report data was empty or the file is missing."}, status=status.HTTP_404_NOT_FOUND)
+        filename = os.path.basename(job.file.name)  # cleaner download name
+        return FileResponse(job.file.open('rb'), as_attachment=True, filename=filename)
 
