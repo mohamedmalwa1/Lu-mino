@@ -12,18 +12,33 @@ import {
   downloadReport,
 } from "../../../api/reporting";
 
+// Report catalog:
+// - params: which extra inputs to show ("dates", "threshold", "daysAhead")
+// - formats: which output formats are supported for this report
 const REPORTS = {
   // Finance
-  PNL:           { label: "Profit & Loss",              params: ["dates"], formats: ["PDF"] },
-  CASH:          { label: "Cash Flow",                  params: ["dates"], formats: ["PDF"] },
+  PNL:             { label: "Profit & Loss",                params: ["dates"],   formats: ["PDF"] },
+  CASH:            { label: "Cash Flow",                    params: ["dates"],   formats: ["PDF"] },
+  BS:              { label: "Balance Sheet",                params: [],          formats: ["PDF"] },
+
   // Inventory
-  LOW_STOCK:     { label: "Inventory: Low Stock",       params: ["threshold"], formats: ["PDF", "XLSX"] },
+  LOW_STOCK:       { label: "Inventory: Low Stock",         params: ["threshold"], formats: ["PDF", "XLSX"] },
+  INV_VALUATION:   { label: "Inventory Valuation",          params: [],          formats: ["PDF", "XLSX"] },
+
   // Documents
-  DOC_EXP:       { label: "Expiring Documents",         params: ["daysAhead"], formats: ["XLSX"] },
+  DOC_EXP:         { label: "Expiring Documents",           params: ["daysAhead"], formats: ["XLSX"] },
+  STUDENT_DOCS:    { label: "Student Documents",            params: [],          formats: ["PDF"] },
+
   // Students
-  STUDENT_DOCS:  { label: "Student Documents",          params: [],          formats: ["PDF"] },
-  STUDENT_FEES:  { label: "Student Fees (Paid/Unpaid)", params: ["dates"],   formats: ["PDF", "XLSX"] },
-  ENROLL_SUMMARY:{ label: "Enrollment Summary",         params: [],          formats: ["PDF", "XLSX"] },
+  STUDENT_FEES:    { label: "Student Fees (Paid/Unpaid)",   params: ["dates"],   formats: ["PDF", "XLSX"] },
+  ENROLL_SUMMARY:  { label: "Enrollment Summary",           params: [],          formats: ["PDF", "XLSX"] },
+
+  // Finance (aging)
+  AR_AGING:        { label: "Accounts Receivable Aging",    params: [],          formats: ["PDF", "XLSX"] },
+  AP_AGING:        { label: "Accounts Payable Aging",       params: [],          formats: ["PDF", "XLSX"] },
+
+  // HR
+  HR_ATT_SUMMARY:  { label: "HR Attendance Summary",        params: ["dates"],   formats: ["PDF", "XLSX"] },
 };
 
 function fmtDate(d) {
@@ -34,6 +49,7 @@ function fmtDate(d) {
 
 export default function ReportsPage() {
   const qc = useQueryClient();
+
   const [reportType, setReportType] = useState("CASH");
   const [format, setFormat] = useState("PDF");
   const [params, setParams] = useState({
@@ -61,7 +77,8 @@ export default function ReportsPage() {
   const createMutation = useMutation({
     mutationFn: async () => {
       const cfg = REPORTS[reportType] || {};
-      let payload = { format };
+      const payload = { format };
+
       if (cfg.params?.includes("dates")) {
         payload.start = fmtDate(params.start);
         payload.end = fmtDate(params.end);
@@ -72,14 +89,19 @@ export default function ReportsPage() {
       if (cfg.params?.includes("daysAhead")) {
         payload.days_ahead = Number(params.days_ahead) || 30;
       }
-      return await requestReport(reportType, payload);
+
+      const job = await requestReport(reportType, payload);
+      return job;
     },
     onSuccess: (job) => {
       setCurrentJobId(job.id);
       toast.success(`${REPORTS[reportType].label} requested`);
       qc.invalidateQueries({ queryKey: ["reports", "list"] });
     },
-    onError: () => toast.error("Failed to request report"),
+    onError: (e) => {
+      console.error(e);
+      toast.error("Failed to request report");
+    },
   });
 
   const currentJob = jobStatusQuery.data;
@@ -88,20 +110,21 @@ export default function ReportsPage() {
   async function downloadById(jobId, fallbackName = "report") {
     try {
       const { blob, filename } = await downloadReport(jobId);
-      const name = filename || `${fallbackName}.${format === "XLSX" ? "xlsx" : "pdf"}`;
+      const name = filename || `${fallbackName}.${(filename||"").endsWith(".xlsx") ? "xlsx" : (format === "XLSX" ? "xlsx" : "pdf")}`;
       const url = URL.createObjectURL(blob);
       const a = document.createElement("a");
       a.href = url; a.download = name; document.body.appendChild(a);
       a.click(); a.remove(); URL.revokeObjectURL(url);
     } catch (e) {
-      console.error(e); toast.error("Download failed");
+      console.error(e);
+      toast.error("Download failed");
     }
   }
 
   const controls = useMemo(() => (
-    <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
-      {/* Report selector */}
-      <div className="md:col-span-2">
+    <div className="grid grid-cols-1 lg:grid-cols-4 gap-3">
+      {/* Report */}
+      <div className="lg:col-span-2">
         <label className="block mb-1 font-medium">Report</label>
         <select
           className="w-full border rounded px-3 py-2"
@@ -109,8 +132,8 @@ export default function ReportsPage() {
           onChange={(e) => {
             const next = e.target.value;
             setReportType(next);
-            const available = REPORTS[next]?.formats || ["PDF"];
-            if (!available.includes(format)) setFormat(available[0]);
+            const avail = REPORTS[next]?.formats || ["PDF"];
+            if (!avail.includes(format)) setFormat(avail[0]);
           }}
         >
           {Object.entries(REPORTS).map(([key, v]) => (
@@ -133,7 +156,7 @@ export default function ReportsPage() {
         </select>
       </div>
 
-      {/* Date range */}
+      {/* Dates */}
       {cfg.params?.includes("dates") && (
         <>
           <div>
@@ -194,7 +217,7 @@ export default function ReportsPage() {
       <div className="space-y-4">
         {controls}
 
-        <div className="flex gap-3">
+        <div className="flex flex-wrap gap-3">
           <button
             onClick={() => createMutation.mutate()}
             disabled={createMutation.isPending}
@@ -227,7 +250,7 @@ export default function ReportsPage() {
           </button>
         </div>
 
-        {/* recent jobs */}
+        {/* Recent jobs list */}
         <div className="border rounded">
           <div className="px-3 py-2 border-b bg-gray-50 font-medium">Recent Jobs</div>
           <div className="divide-y">
@@ -243,12 +266,19 @@ export default function ReportsPage() {
                 </div>
                 <div className="flex items-center gap-2">
                   <span className="text-sm">{j.status_display || j.status}</span>
-                  {j.status === "COMPLETED" && (
+                  {j.status === "COMPLETED" ? (
                     <button
                       onClick={() => downloadById(j.id, (j.file || "").split("/").pop() || "report")}
                       className="px-3 py-1 rounded bg-emerald-600 text-white flex items-center gap-2"
                     >
                       <FiDownload /> Download
+                    </button>
+                  ) : (
+                    <button
+                      onClick={() => setCurrentJobId(j.id)}
+                      className="px-3 py-1 rounded border"
+                    >
+                      Track
                     </button>
                   )}
                 </div>

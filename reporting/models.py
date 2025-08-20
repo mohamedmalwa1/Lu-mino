@@ -17,6 +17,10 @@ class ReportJob(models.Model):
         ("LOW_STOCK_PDF", "Low Stock (PDF)"),
         ("STUDENT_FEES", "Student Fees Status"),
         ("ENROLL_SUMMARY", "Enrollment Summary"),
+        ("AR_AGING", "Accounts Receivable Aging"),
+        ("AP_AGING", "Accounts Payable Aging"),
+        ("INV_VALUATION", "Inventory Valuation"),
+        ("HR_ATT_SUMMARY", "HR Attendance Summary"),
     ]
 
     STATUS_CHOICES = [

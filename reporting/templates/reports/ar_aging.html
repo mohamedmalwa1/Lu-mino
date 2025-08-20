@@ -1,0 +1,23 @@
+{% extends "reports/base_report.html" %}
+{% block content %}
+<h2>Accounts Receivable Aging</h2>
+<table class="rp-metrics">
+  <tr><th>Total</th><td class="num">{{ totals.total }}</td></tr>
+  <tr><th>Paid</th><td class="num">{{ totals.paid }}</td></tr>
+  <tr><th>Balance</th><td class="num">{{ totals.balance }}</td></tr>
+  <tr><th>0–30</th><td class="num">{{ totals.b0_30 }}</td></tr>
+  <tr><th>31–60</th><td class="num">{{ totals.b31_60 }}</td></tr>
+  <tr><th>61–90</th><td class="num">{{ totals.b61_90 }}</td></tr>
+  <tr><th>90+</th><td class="num">{{ totals.b90p }}</td></tr>
+</table>
+<h3>Details</h3>
+<table class="rp-table">
+  <thead><tr><th>Customer</th><th>Due</th><th class="num">Total</th><th class="num">Paid</th><th class="num">Balance</th><th class="num">Age</th></tr></thead>
+  <tbody>
+  {% for r in rows %}
+    <tr><td>{{ r.name }}</td><td>{{ r.due_date }}</td><td class="num">{{ r.total }}</td><td class="num">{{ r.paid }}</td><td class="num">{{ r.balance }}</td><td class="num">{{ r.age }}</td></tr>
+  {% empty %}<tr><td colspan="6" class="muted">No data</td></tr>{% endfor %}
+  </tbody>
+</table>
+{% endblock %}
+

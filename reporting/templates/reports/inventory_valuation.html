@@ -1,0 +1,16 @@
+{% extends "reports/base_report.html" %}
+{% block content %}
+<h2>Inventory Valuation</h2>
+<table class="rp-metrics">
+  <tr><th>Total Inventory Value</th><td class="num">{{ total }}</td></tr>
+</table>
+<table class="rp-table">
+  <thead><tr><th>SKU</th><th>Name</th><th class="num">Qty</th><th class="num">Unit Cost</th><th class="num">Value</th></tr></thead>
+  <tbody>
+  {% for r in rows %}
+    <tr><td>{{ r.sku }}</td><td>{{ r.name }}</td><td class="num">{{ r.qty }}</td><td class="num">{{ r.cost }}</td><td class="num">{{ r.value }}</td></tr>
+  {% empty %}<tr><td colspan="5" class="muted">No data</td></tr>{% endfor %}
+  </tbody>
+</table>
+{% endblock %}
+

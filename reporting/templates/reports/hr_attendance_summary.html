@@ -1,0 +1,17 @@
+{% extends "reports/base_report.html" %}
+{% block content %}
+<h2>HR Attendance Summary</h2>
+<p><strong>Period:</strong> {{ start }} → {{ end }}</p>
+<table class="rp-metrics">
+  <tr><th>Total Presence Entries</th><td class="num">{{ total_days }}</td></tr>
+</table>
+<table class="rp-table">
+  <thead><tr><th>Staff</th><th class="num">Present Days</th></tr></thead>
+  <tbody>
+  {% for r in rows %}
+    <tr><td>{{ r.staff }}</td><td class="num">{{ r.present }}</td></tr>
+  {% empty %}<tr><td colspan="2" class="muted">No data</td></tr>{% endfor %}
+  </tbody>
+</table>
+{% endblock %}
+
