@@ -1,3 +1,4 @@
+# student/serializers.py
 from rest_framework import serializers
 from student.models import (
     Student, Classroom, StudentDocument,
@@ -6,7 +7,6 @@ from student.models import (
 from hr.models import Staff
 
 class ClassroomSerializer(serializers.ModelSerializer):
-    # Use a source to get the full_name directly from the Staff model
     teacher_name = serializers.CharField(source='assigned_teacher.full_name', read_only=True, allow_null=True)
 
     class Meta:
@@ -16,19 +16,18 @@ class ClassroomSerializer(serializers.ModelSerializer):
         ]
 
 class StudentSerializer(serializers.ModelSerializer):
-    # Use source for direct access and read_only=True for safety
     class_name   = serializers.CharField(source="classroom.name", read_only=True, allow_null=True)
     teacher_name = serializers.CharField(source="classroom.assigned_teacher.full_name", read_only=True, allow_null=True)
     
     class Meta:
         model  = Student
-        # Add the 'name' property from the model to the fields list
         fields = [
             'id', 'first_name', 'last_name', 'name', 'gender', 'date_of_birth',
             'enrollment_date', 'end_date', 'enrollment_status',
             'enrollment_history', 'is_active', 'classroom',
             'parent_id_number', 'parent_id_expiry', 'student_id_number',
             'student_id_expiry', 'guardian_name', 'guardian_phone',
+            'guardian_email',  # ADD THIS LINE
             'class_name', 'teacher_name'
         ]
 
@@ -65,11 +64,10 @@ class MedicalRecordSerializer(serializers.ModelSerializer):
         model  = MedicalRecord
         fields = "__all__"
 
-# student/serializers.py - Update StudentDocumentSerializer only
 class StudentDocumentSerializer(serializers.ModelSerializer):
     student_name = serializers.CharField(source='student.name', read_only=True)
     doc_type_display = serializers.CharField(source='get_doc_type_display', read_only=True)
-    is_expired = serializers.BooleanField(read_only=True)  # Add computed property
+    is_expired = serializers.BooleanField(read_only=True)
 
     class Meta:
         model = StudentDocument
@@ -82,4 +80,3 @@ class StudentDocumentSerializer(serializers.ModelSerializer):
             'expiration_date': {'required': False},
             'notes': {'required': False}
         }
-

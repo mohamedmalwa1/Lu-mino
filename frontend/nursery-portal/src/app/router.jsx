@@ -14,6 +14,7 @@ import Enrollments from "../features/students/pages/Enrollments";
 import Evaluations from "../features/students/pages/Evaluations";
 import MedicalRecords from "../features/students/pages/MedicalRecords";
 import Documents from "../features/students/pages/Documents";
+import StudentAttendance from "../features/students/pages/StudentAttendance"; // ADDED
 
 /* --- HR Management --- */
 import Staff from "../features/hr/pages/Staff";
@@ -71,6 +72,7 @@ export const router = createBrowserRouter([
       { path: "students", element: <Students /> },
       { path: "classrooms", element: <Classrooms /> },
       { path: "enrollments", element: <Enrollments /> },
+      { path: "attendance", element: <StudentAttendance /> }, // ADDED
       { path: "evaluations", element: <Evaluations /> },
       { path: "medical", element: <MedicalRecords /> },
       { path: "documents", element: <Documents /> },

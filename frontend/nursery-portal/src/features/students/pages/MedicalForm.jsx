@@ -6,7 +6,11 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { createMedicalRecord, updateMedicalRecord, listStudents } from "../../../api/students";
+
+// THE FIX IS HERE: Imports are now from the correct files
+import { createMedicalRecord, updateMedicalRecord } from "../../../api/medical";
+import { listStudents } from "../../../api/students";
+
 import Spinner from "../../../components/ui/Spinner";
 
 const schema = yup.object({

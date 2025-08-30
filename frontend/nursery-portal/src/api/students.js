@@ -33,11 +33,19 @@ export const createMedicalRecord = (data) => axios.post(`${STUDENT_URL}/medical-
 export const updateMedicalRecord = (id, data) => axios.put(`${STUDENT_URL}/medical-records/${id}/`, data);
 export const deleteMedicalRecord = (id) => axios.delete(`${STUDENT_URL}/medical-records/${id}/`);
 
-/* ------------------ Student Documents (ADDED HERE) ------------------ */
+/* ------------------ Student Documents ------------------ */
 export const listDocuments = () => axios.get(`${STUDENT_URL}/documents/`).then(r => r.data.results ?? r.data);
 export const createDocument = (formData) => axios.post(`${STUDENT_URL}/documents/`, formData, { headers: { "Content-Type": "multipart/form-data" } });
 export const updateDocument = (id, formData) => axios.patch(`${STUDENT_URL}/documents/${id}/`, formData, { headers: { "Content-Type": "multipart/form-data" } });
 export const deleteDocument = (id) => axios.delete(`${STUDENT_URL}/documents/${id}/`);
+
+// --- ADD THIS NEW SECTION ---
+/* ------------------ Attendance Records ------------------ */
+export const listAttendances = () => axios.get(`${STUDENT_URL}/attendances/`).then(r => r.data.results ?? r.data);
+export const createAttendance = (data) => axios.post(`${STUDENT_URL}/attendances/`, data);
+export const updateAttendance = (id, data) => axios.put(`${STUDENT_URL}/attendances/${id}/`, data);
+export const deleteAttendance = (id) => axios.delete(`${STUDENT_URL}/attendances/${id}/`);
+// -----------------------------
 
 /* ------------------ Teacher Helper ------------------ */
 export const listTeachers = () => axios.get(`${HR_URL}/staff/`, { params: { role: "TEACHER" } }).then(r => r.data.results ?? r.data);

@@ -1,12 +1,18 @@
+# reporting/urls.py
 from django.urls import path
-from . import views
+from .api.views import (
+    ReportRequestView, ReportDetailView, ReportDownloadView, ReportListView
+)
+from .views import ReportEmailView
 
 urlpatterns = [
-    path("pnl/", views.pnl_report, name="pnl_report"),
-    path("low-stock/", views.low_stock_report, name="low_stock_report"),
-    path("balance-sheet/", views.balance_sheet, name="balance_sheet"),
-    path("cash-flow/", views.cash_flow, name="cash_flow"),
-    path("payroll-vs-att/", views.payroll_vs_att, name="payroll_vs_att"),
-    path("expiring-docs/", views.expiring_docs, name="expiring_docs"),
-]   
+    # Core job lifecycle
+    path("", ReportListView.as_view(), name="report_list"),
+    path("create/", ReportRequestView.as_view(), name="report_create"),
+    path("<int:job_id>/", ReportDetailView.as_view(), name="report_detail"),
+    path("<int:job_id>/download/", ReportDownloadView.as_view(), name="report_download"),
+
+    # Optional: email a generated report file
+    path("email/", ReportEmailView.as_view(), name="report_email"),
+]
 

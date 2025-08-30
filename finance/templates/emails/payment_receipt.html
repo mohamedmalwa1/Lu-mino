@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Payment Receipt for Invoice {{ invoice_number }}</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; }
+        .header { text-align: center; margin-bottom: 30px; }
+        .details { margin-bottom: 20px; }
+        .amount { font-size: 18px; font-weight: bold; margin: 20px 0; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>PAYMENT RECEIPT</h1>
+        <h2>For Invoice #{{ invoice_number }}</h2>
+    </div>
+    
+    <div class="details">
+        <p><strong>Date:</strong> {{ date }}</p>
+        <p><strong>Student:</strong> {{ contact_name }}</p>
+        {% if contact_email %}<p><strong>Email:</strong> {{ contact_email }}</p>{% endif %}
+    </div>
+    
+    <div class="amount">
+        <p>Amount Paid: ${{ amount }}</p>
+    </div>
+    
+    <div class="payment-details">
+        <p><strong>Invoice Total:</strong> ${{ total }}</p>
+        <p><strong>Total Paid:</strong> ${{ paid }}</p>
+        <p><strong>Remaining Balance:</strong> ${{ balance }}</p>
+    </div>
+    
+    <div class="footer">
+        <p>Thank you for your payment!</p>
+        <p>{{ site_name }}</p>
+    </div>
+</body>
+</html>

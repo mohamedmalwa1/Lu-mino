@@ -31,7 +31,6 @@ class ReportJobSerializer(serializers.ModelSerializer):
         return value
 
     def get_download_url(self, obj):
-        # Always build from the named route so prefixes like /api/v1/ stay correct
         if obj.file:
             return reverse('report_download', kwargs={'job_id': obj.id})
         return None

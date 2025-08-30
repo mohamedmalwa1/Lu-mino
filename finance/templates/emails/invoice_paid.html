@@ -1,0 +1,17 @@
+<!doctype html>
+<html>
+  <body style="font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;">
+    <h3>Thank you, {{ customer_name }}!</h3>
+    <p>Your payment for <strong>Invoice {{ invoice_number }}</strong> has been received.</p>
+    <table style="border-collapse:collapse;">
+      <tr><td style="padding:4px 8px;">Invoice #</td><td style="padding:4px 8px;"><strong>{{ invoice_number }}</strong></td></tr>
+      <tr><td style="padding:4px 8px;">Issued</td><td style="padding:4px 8px;">{{ issued_at }}</td></tr>
+      <tr><td style="padding:4px 8px;">Paid</td><td style="padding:4px 8px;">{{ paid_at }}</td></tr>
+      <tr><td style="padding:4px 8px;">Amount paid</td><td style="padding:4px 8px;">{{ paid }}</td></tr>
+      <tr><td style="padding:4px 8px;">Total</td><td style="padding:4px 8px;">{{ total }}</td></tr>
+      <tr><td style="padding:4px 8px;">Balance</td><td style="padding:4px 8px;">{{ balance }}</td></tr>
+    </table>
+    <p>— {{ company }}</p>
+  </body>
+</html>
+

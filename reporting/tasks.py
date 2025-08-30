@@ -1,90 +1,91 @@
 # reporting/tasks.py
-from datetime import timedelta
-
+from __future__ import annotations
+import json
 from celery import shared_task
-from celery.utils.log import get_task_logger
+from django.core.files.base import ContentFile
 from django.utils import timezone
 
 from .models import ReportJob
 from . import utils
 
-logger = get_task_logger(__name__)
+
+def _set_status(job: ReportJob, value: str) -> None:
+    # works whether you use enum-like containers or plain choices
+    for attr in ("Status", "Statuses", "StatusEnum", "StatusChoices"):
+        enum = getattr(ReportJob, attr, None)
+        if enum and hasattr(enum, value):
+            job.status = getattr(enum, value)
+            return
+    job.status = value
 
 
-def _get_builder(report_type: str, fmt: str, params: dict):
-    mapping = {
-        # Finance
-        "PNL":             lambda: utils.generate_pnl_pdf(**params),
-        "BS":              lambda: utils.generate_balance_sheet_pdf(**params),
-        "CASH":            lambda: utils.generate_cash_flow_pdf(**params),
-
-        # Inventory
-        "LOW_STOCK":       (lambda: utils.generate_low_stock_pdf(**params))
-                           if fmt == "PDF" else (lambda: utils.generate_low_stock_excel(**params)),
-        "INV_VALUATION":   (lambda: utils.generate_inventory_valuation_pdf(**params))
-                           if fmt == "PDF" else (lambda: utils.generate_inventory_valuation_excel(**params)),
-
-        # Documents
-        "DOC_EXP":         lambda: utils.generate_expiring_docs_excel(**params),   # XLSX only
-        "STUDENT_DOCS":    lambda: utils.generate_student_docs_pdf(**params),      # PDF only
-
-        # Students
-        "STUDENT_FEES":    (lambda: utils.generate_student_fees_pdf(**params))
-                           if fmt == "PDF" else (lambda: utils.generate_student_fees_excel(**params)),
-        "ENROLL_SUMMARY":  (lambda: utils.generate_enroll_summary_pdf(**params))
-                           if fmt == "PDF" else (lambda: utils.generate_enroll_summary_excel(**params)),
-
-        # NEW: Finance (AR/AP)
-        "AR_AGING":        (lambda: utils.generate_ar_aging_pdf(**params))
-                           if fmt == "PDF" else (lambda: utils.generate_ar_aging_excel(**params)),
-        "AP_AGING":        (lambda: utils.generate_ap_aging_pdf(**params))
-                           if fmt == "PDF" else (lambda: utils.generate_ap_aging_excel(**params)),
-
-        # NEW: HR
-        "HR_ATT_SUMMARY":  (lambda: utils.generate_hr_attendance_summary_pdf(**params))
-                           if fmt == "PDF" else (lambda: utils.generate_hr_attendance_summary_excel(**params)),
-    }
-    return mapping.get(report_type)
+def _as_kwargs(parameters):
+    if isinstance(parameters, dict):
+        return parameters
+    if not parameters:
+        return {}
+    try:
+        return json.loads(parameters)
+    except Exception:
+        return {}
 
 
-@shared_task(bind=True, autoretry_for=(Exception,), retry_backoff=10, retry_kwargs={"max_retries": 3})
+# Central registry — use getattr so missing builders don’t crash the worker
+REPORT_BUILDERS = {
+    # PDFs
+    "PNL":                    getattr(utils, "generate_pnl_pdf", None),
+    "BS":                     getattr(utils, "generate_balance_sheet_pdf", None),
+    "CASH":                   getattr(utils, "generate_cash_flow_pdf", None),
+    "ENROLL_SUMMARY":         getattr(utils, "generate_enroll_summary_pdf", None),
+    "AP_AGING":               getattr(utils, "generate_ap_aging_pdf", None),
+    "AR_AGING":               getattr(utils, "generate_ar_aging_pdf", None),
+    "STUDENT_DOCS":           getattr(utils, "generate_student_docs_pdf", None),
+    "STUDENT_FEES":           getattr(utils, "generate_student_fees_pdf", None),
+    "STUDENT_FEES_STATUS":    getattr(utils, "generate_student_fees_status_pdf", None),
+
+    # Excel
+    "LOW_STOCK":              getattr(utils, "generate_low_stock_excel", None),
+    "DOC_EXP":                getattr(utils, "generate_expiring_docs_excel", None),
+    "INV_VALUATION":          getattr(utils, "generate_inventory_valuation", None),
+    "PAYROLL_VS_ATT":         getattr(utils, "generate_payroll_vs_att_excel", None),  # optional
+}
+
+
+@shared_task(bind=True, max_retries=0)
 def build_report(self, job_id: int):
-    job = ReportJob.objects.get(id=job_id)
-    job.status = "IN_PROGRESS"
-    job.task_id = getattr(self.request, "id", None)
-    job.save(update_fields=["status", "task_id"])
+    job = ReportJob.objects.get(pk=job_id)
+    _set_status(job, "IN_PROGRESS")
+    job.save(update_fields=["status"])
 
-    params = dict(job.parameters or {})
-    fmt = (params.get("format") or "PDF").upper()
+    params = _as_kwargs(job.parameters or {})
+    rtype = job.report_type
+
+    builder = REPORT_BUILDERS.get(rtype)
+    if not builder:
+        _set_status(job, "FAILED")
+        job.error = f"No builder for report type '{rtype}'"
+        job.save(update_fields=["status", "error"])
+        return
 
     try:
-        builder = _get_builder(job.report_type, fmt, params)
-        if builder is None:
-            raise ValueError(f"Unknown report type: {job.report_type}")
-
-        file_obj = builder()
-        if file_obj:
-            job.file.save(getattr(file_obj, "name", "report.bin"), file_obj, save=False)
-            job.status = "COMPLETED"
-            job.error = None
-        else:
-            job.status = "COMPLETED"
+        content: ContentFile | None = builder(**params)
+        if not content:
+            _set_status(job, "COMPLETED")
             job.error = "Report generated, but no data was found for the given parameters."
-    except Exception as exc:
-        logger.exception("Report job %s failed", job_id)
-        job.status = "FAILED"
-        job.error = str(exc)
-        raise
-    finally:
+            job.save(update_fields=["status", "error"])
+            return
+
+        name = getattr(content, "name", f"report_{job.id}.bin")
+        job.file.save(name, content, save=False)
+        _set_status(job, "COMPLETED")
         job.generated_at = timezone.now()
-        job.save()
+        job.error = None
+        job.save(update_fields=["file", "status", "generated_at", "error"])
+        return
 
-
-@shared_task
-def rescue_stuck_jobs(minutes: int = 2) -> dict:
-    cutoff = timezone.now() - timedelta(minutes=minutes)
-    stuck = list(ReportJob.objects.filter(status="PENDING", created_at__lte=cutoff).values_list("id", flat=True))
-    for jid in stuck:
-        build_report.delay(jid)
-    return {"rescued": len(stuck), "ids": stuck}
+    except Exception as e:
+        _set_status(job, "FAILED")
+        job.error = f"{type(e).__name__}: {e}"
+        job.save(update_fields=["status", "error"])
+        raise
 

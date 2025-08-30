@@ -30,14 +30,15 @@ export default function Sidebar() {
         <MenuItem to="/students" icon={FiUsers}>Students</MenuItem>
         <MenuItem to="/classrooms" icon={FiLayers}>Classrooms</MenuItem>
         <MenuItem to="/enrollments" icon={FiUserPlus}>Enrollments</MenuItem>
+        <MenuItem to="/attendance" icon={FiCalendar}>Attendance</MenuItem> {/* ADDED */}
         <MenuItem to="/evaluations" icon={FiClipboard}>Evaluations</MenuItem>
         <MenuItem to="/medical" icon={FiHeart}>Medical Records</MenuItem>
         <MenuItem to="/documents" icon={FiFile}>Documents</MenuItem>
 
         <p className="text-sm font-semibold text-slate-500 uppercase pt-6 pb-3 px-4 tracking-wider">HUMAN RESOURCES</p>
         <MenuItem to="/hr/staff" icon={FiUserCheck}>Staff Directory</MenuItem>
-        <MenuItem to="/hr/attendance" icon={FiCalendar}>Attendance</MenuItem>
-        <MenuItem to="/hr/documents" icon={FiFile}>Documents</MenuItem>
+        <MenuItem to="/hr/attendance" icon={FiCalendar}>Staff Attendance</MenuItem>
+        <MenuItem to="/hr/documents" icon={FiFile}>Staff Documents</MenuItem>
         <MenuItem to="/hr/vacations" icon={FiSun}>Leave Management</MenuItem>
         <MenuItem to="/hr/evaluations" icon={FiAward}>Performance</MenuItem>
         <MenuItem to="/hr/contracts" icon={FiFileText}>Payroll</MenuItem>

@@ -1,0 +1,2 @@
+INFO 2025-08-29 19:43:36,735 autoreload 1984138 137015621185664 Watching for file changes with StatReloader
+INFO 2025-08-29 19:43:48,908 autoreload 1984138 137015621185664 /home/lumino/app/myapp/myapp/settings.py changed, reloading.

@@ -46,6 +46,6 @@ class ReportDownloadView(APIView):
             return Response({"error": "Report is not ready yet."}, status=status.HTTP_404_NOT_FOUND)
         if not job.file:
             return Response({"error": "Report data was empty or the file is missing."}, status=status.HTTP_404_NOT_FOUND)
-        filename = os.path.basename(job.file.name)  # cleaner download name
+        filename = os.path.basename(job.file.name)
         return FileResponse(job.file.open('rb'), as_attachment=True, filename=filename)
 

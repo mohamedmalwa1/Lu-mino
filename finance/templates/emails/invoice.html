@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Invoice {{ invoice_number }}</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; }
+        .header { text-align: center; margin-bottom: 30px; }
+        .details { margin-bottom: 20px; }
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        .total { font-weight: bold; text-align: right; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>INVOICE</h1>
+        <h2>#{{ invoice_number }}</h2>
+    </div>
+    
+    <div class="details">
+        <p><strong>Date:</strong> {{ date }}</p>
+        <p><strong>Due Date:</strong> {{ due_date }}</p>
+        <p><strong>Student:</strong> {{ contact_name }}</p>
+        {% if contact_email %}<p><strong>Email:</strong> {{ contact_email }}</p>{% endif %}
+    </div>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>Description</th>
+                <th>Amount</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Tuition Fee</td>
+                <td>${{ total }}</td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <div class="total">
+        <p>Total: ${{ total }}</p>
+        <p>Paid: ${{ paid }}</p>
+        <p>Balance Due: ${{ balance }}</p>
+    </div>
+    
+    <div class="footer">
+        <p>Thank you for your business!</p>
+        <p>{{ site_name }}</p>
+    </div>
+</body>
+</html>

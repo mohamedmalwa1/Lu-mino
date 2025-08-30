@@ -31,6 +31,7 @@ class Student(TimestampMixin):
     classroom = models.ForeignKey(Classroom, on_delete=models.SET_NULL, null=True, blank=True)
     guardian_name = models.CharField(max_length=100)
     guardian_phone = models.CharField(max_length=20)
+    guardian_email = models.EmailField(max_length=254, blank=True, null=True) # ADD THIS LINE
     parent_id_number = models.CharField(max_length=50, unique=True)
     parent_id_expiry = models.DateField()
     student_id_number = models.CharField(max_length=20, unique=True, null=True, blank=True)
@@ -73,13 +74,29 @@ class Evaluation(TimestampMixin):
     improvement_plan = models.TextField(blank=True)
     follow_up_date = models.DateField(null=True, blank=True)
 
+# In student/models.py
+
 class MedicalRecord(TimestampMixin):
-    RECORD_TYPE_CHOICES = [("ALLERGY", "Allergy"), ("MEDICATION", "Medication"), ("VACCINATION", "Vaccination")]
+    # THE FIX IS HERE: Added all the missing choices
+    RECORD_TYPE_CHOICES = [
+        ("ALLERGY", "Allergy"),
+        ("MEDICATION", "Medication"),
+        ("TREATMENT", "Treatment"),
+        ("VACCINATION", "Vaccination"),
+        ("CHECKUP", "Checkup"),
+        ("DOCTOR_NOTE", "Doctor's Note"),
+        ("EDUCATION", "Health Education"),
+    ]
     student = models.ForeignKey(Student, on_delete=models.CASCADE, related_name="medical_records")
     record_type = models.CharField(max_length=20, choices=RECORD_TYPE_CHOICES)
     date = models.DateField(default=timezone.now)
     description = models.TextField()
     is_urgent = models.BooleanField(default=False)
+    # These fields are in your form, but not in the model. Let's add them.
+    doctor_name = models.CharField(max_length=100, blank=True, null=True)
+    conducted_by = models.CharField(max_length=100, blank=True, null=True)
+    program_name = models.CharField(max_length=100, blank=True, null=True)
+    next_checkup_date = models.DateField(blank=True, null=True)
 
 class StudentDocument(TimestampMixin):
     DOC_TYPE_CHOICES = [
@@ -95,14 +112,14 @@ class StudentDocument(TimestampMixin):
     
     student = models.ForeignKey(Student, on_delete=models.CASCADE, related_name="documents")
     doc_type = models.CharField(max_length=20, choices=DOC_TYPE_CHOICES)
-    file = models.FileField(upload_to="student_docs/%Y/%m/%d/")  # Better file organization
-    issue_date = models.DateField(default=date.today)  # New field
+    file = models.FileField(upload_to="student_docs/%Y/%m/%d/")
+    issue_date = models.DateField(default=date.today)
     expiration_date = models.DateField(null=True, blank=True)
-    notes = models.TextField(blank=True)  # New field for additional info
+    notes = models.TextField(blank=True)
     
     @property
     def is_expired(self):
         return self.expiration_date and self.expiration_date < date.today()
     
     class Meta:
-        ordering = ['-issue_date']  # New default ordering
+        ordering = ['-issue_date']

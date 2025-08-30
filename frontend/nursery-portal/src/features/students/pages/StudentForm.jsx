@@ -1,3 +1,4 @@
+// src/features/students/pages/StudentForm.jsx
 import { useEffect } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -18,6 +19,7 @@ const schema = yup.object({
   classroom: yup.number().required(),
   guardian_name: yup.string().required(),
   guardian_phone: yup.string().required(),
+  guardian_email: yup.string().email("Invalid email format").nullable().transform(v => v || null), // ADD THIS LINE
   parent_id_number: yup.string().required(),
   parent_id_expiry: yup.date().required(),
   student_id_number: yup.string().nullable().transform(v => v || null),
@@ -58,7 +60,6 @@ export default function StudentForm({ initialData, onSaved }) {
     const { mutate: saveStudent, isPending } = useMutation({
         mutationFn: (data) => {
             const payload = { ...data };
-            // Format all date fields before sending to the backend
             for (const key in payload) {
                 if (payload[key] instanceof Date) {
                     payload[key] = payload[key].toISOString().split("T")[0];
@@ -101,7 +102,7 @@ export default function StudentForm({ initialData, onSaved }) {
                 {...field}
                 className="input w-full"
                 placeholderText="Date of Birth *"
-                dateFormat="yyyy-MM-dd" // Allows typing
+                dateFormat="yyyy-MM-dd"
                 selected={field.value}
                 onChange={(date) => field.onChange(date)}
               />
@@ -111,10 +112,11 @@ export default function StudentForm({ initialData, onSaved }) {
         </div>
       </fieldset>
       
-      <fieldset className="grid grid-cols-2 gap-4 border p-4 rounded-md">
+      <fieldset className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 border p-4 rounded-md">
           <legend className="px-2 font-medium">Guardian Information</legend>
           <div><input {...register("guardian_name")} className="input" placeholder="Guardian Name *" />{errors.guardian_name && <p className="text-red-500 text-xs mt-1">{errors.guardian_name.message}</p>}</div>
           <div><input {...register("guardian_phone")} className="input" placeholder="Guardian Phone *" />{errors.guardian_phone && <p className="text-red-500 text-xs mt-1">{errors.guardian_phone.message}</p>}</div>
+          <div><input {...register("guardian_email")} className="input" placeholder="Guardian Email" />{errors.guardian_email && <p className="text-red-500 text-xs mt-1">{errors.guardian_email.message}</p>}</div>
       </fieldset>
 
       <fieldset className="grid grid-cols-2 gap-4 border p-4 rounded-md">

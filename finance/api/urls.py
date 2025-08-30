@@ -1,4 +1,7 @@
+# finance/api/urls.py
+from django.urls import path
 from rest_framework.routers import DefaultRouter
+
 from finance.api.views import (
     InvoiceViewSet,
     PaymentViewSet,
@@ -6,20 +9,31 @@ from finance.api.views import (
     PurchaseOrderViewSet,
     TreasuryViewSet,
     TreasuryTransactionViewSet,
-    SalaryPaymentViewSet  # Added
+    SalaryPaymentViewSet,
+)
+from finance.views import (  # ← our custom endpoints live here
+    InvoicePDFView, InvoiceEmailView,
+    PaymentReceiptPDFView, PaymentReceiptEmailView,
 )
 
 router = DefaultRouter()
-
-# Existing routes (unchanged)
 router.register("invoices", InvoiceViewSet)
 router.register("payments", PaymentViewSet)
 router.register("expenses", ExpenseViewSet)
 router.register("purchase-orders", PurchaseOrderViewSet)
 router.register("treasuries", TreasuryViewSet)
 router.register("transactions", TreasuryTransactionViewSet)
-
-# New route
 router.register("salary-payments", SalaryPaymentViewSet)
 
-urlpatterns = router.urls
+urlpatterns = [
+    # Invoice
+    path("invoices/<int:pk>/pdf/",   InvoicePDFView.as_view(),    name="invoice_pdf"),
+    path("invoices/<int:pk>/email/", InvoiceEmailView.as_view(),  name="invoice_email"),
+
+    # Payment receipt
+    path("payments/<int:pk>/receipt.pdf", PaymentReceiptPDFView.as_view(), name="payment_receipt_pdf"),
+    path("payments/<int:pk>/email/",      PaymentReceiptEmailView.as_view(), name="payment_receipt_email"),
+]
+
+urlpatterns += router.urls
+
