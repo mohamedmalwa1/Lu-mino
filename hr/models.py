@@ -1,6 +1,9 @@
+# hr/models.py
+
 from django.db import models
 from core.models import TimestampMixin
 
+# --- CORE HR MODELS (UNCHANGED) ---
 
 class Staff(TimestampMixin):
     ROLE = [("TEACHER", "Teacher"), ("ASSISTANT", "Assistant"),
@@ -16,17 +19,13 @@ class Staff(TimestampMixin):
     hire_date    = models.DateField()
     is_active    = models.BooleanField(default=True)
 
-    # --- ADD THIS PROPERTY ---
     @property
     def full_name(self):
         return f"{self.first_name} {self.last_name}"
-    # -------------------------
 
     def __str__(self):
         return self.full_name
 
-
-# ─────────── Staff Attendance ───────────
 class StaffAttendance(TimestampMixin):
     STATUS = [("PRESENT", "Present"), ("ABSENT", "Absent"), ("SICK", "Sick"), ("LEAVE", "On Leave")]
     staff  = models.ForeignKey(Staff, on_delete=models.CASCADE, related_name="attendances")
@@ -38,8 +37,6 @@ class StaffAttendance(TimestampMixin):
         unique_together = [("staff", "date")]
         ordering = ("-date",)
 
-
-# ─────────── Staff Documents ───────────
 class StaffDocument(TimestampMixin):
     TYPE = [("ID", "ID Card"), ("CONTRACT", "Contract"), ("CERTIFICATE", "Certificate"), ("OTHER", "Other")]
     staff           = models.ForeignKey(Staff, on_delete=models.CASCADE, related_name="documents")
@@ -51,8 +48,6 @@ class StaffDocument(TimestampMixin):
     def __str__(self):
         return f"{self.staff} - {self.doc_type}"
 
-
-# ─────────── Vacation ───────────
 class Vacation(TimestampMixin):
     staff       = models.ForeignKey(Staff, on_delete=models.CASCADE, related_name="vacations")
     start_date  = models.DateField()
@@ -63,8 +58,6 @@ class Vacation(TimestampMixin):
     def __str__(self):
         return f"{self.staff} vacation {self.start_date} to {self.end_date}"
 
-
-# ─────────── Evaluation ───────────
 class StaffEvaluation(TimestampMixin):
     staff     = models.ForeignKey(Staff, on_delete=models.CASCADE, related_name="evaluations")
     eval_date = models.DateField()
@@ -74,20 +67,37 @@ class StaffEvaluation(TimestampMixin):
         return f"{self.staff} eval on {self.eval_date}"
 
 
-# ─────────── Payroll ───────────
-class PayrollContract(TimestampMixin):
-    staff          = models.OneToOneField(Staff, on_delete=models.CASCADE, related_name="contract")
-    base_salary    = models.DecimalField(max_digits=10, decimal_places=2)
-    allowance      = models.DecimalField(max_digits=10, decimal_places=2, default=0)
-    contract_start = models.DateField()
-    contract_end   = models.DateField(null=True, blank=True)
+# --- NEW, REFACTORED PAYROLL DOMAIN ---
 
+class PayrollProfile(TimestampMixin):
+    """
+    This REPLACES the old PayrollContract.
+    It stores the financial agreement for a staff member.
+    """
+    staff = models.OneToOneField(Staff, on_delete=models.CASCADE, related_name="payroll_profile")
+    base_salary = models.DecimalField(max_digits=10, decimal_places=2)
+    allowances = models.DecimalField(max_digits=10, decimal_places=2, default=0)
+    contract_start_date = models.DateField()
+    contract_end_date = models.DateField(null=True, blank=True)
 
-class SalaryRecord(TimestampMixin):
-    staff   = models.ForeignKey(Staff, on_delete=models.CASCADE, related_name="salaries")
-    month   = models.DateField(help_text="Set to 1st of month")
-    gross   = models.DecimalField(max_digits=10, decimal_places=2)
-    deduct  = models.DecimalField(max_digits=10, decimal_places=2, default=0)
-    net     = models.DecimalField(max_digits=10, decimal_places=2)
-    paid    = models.BooleanField(default=False)
+    def __str__(self):
+        return f"Payroll Profile for {self.staff.full_name}"
 
+class Payslip(TimestampMixin):
+    """
+    This REPLACES the old SalaryRecord.
+    It is a monthly record of earnings and deductions, generated from the PayrollProfile.
+    """
+    payroll_profile = models.ForeignKey(PayrollProfile, on_delete=models.CASCADE, related_name="payslips")
+    month = models.DateField(help_text="The first day of the month for this payslip.")
+    gross_salary = models.DecimalField(max_digits=10, decimal_places=2)
+    deductions = models.DecimalField(max_digits=10, decimal_places=2, default=0)
+    net_salary = models.DecimalField(max_digits=10, decimal_places=2)
+    is_paid = models.BooleanField(default=False)
+    
+    class Meta:
+        unique_together = [("payroll_profile", "month")]
+        ordering = ['-month']
+        
+    def __str__(self):
+        return f"Payslip for {self.payroll_profile.staff.full_name} - {self.month.strftime('%B %Y')}"

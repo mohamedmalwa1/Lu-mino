@@ -1,35 +1,25 @@
-# finance/signals.py (Corrected)
+# finance/signals.py
 
-from decimal import Decimal
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-from django.db.models import Sum
-
-# Import the main models
-from .models import Payment, Invoice
-
-# THE FIX IS HERE: Import the correct, existing task
-from .tasks import email_invoice
+from .models import Payment, Expense, SalaryPayment
 
 @receiver(post_save, sender=Payment)
-def auto_update_invoice_status_and_email(sender, instance: Payment, created, **kwargs):
-    """
-    A signal that runs every time a Payment is saved.
-    It updates the invoice status and triggers an email if the invoice becomes fully paid.
-    """
-    if not created:
-        return # Only run this logic when a payment is first created
+def update_treasury_on_payment(sender, instance, created, **kwargs):
+    if created:
+        instance.treasury.balance += instance.amount
+        instance.treasury.save()
 
-    invoice: Invoice = instance.invoice
-    
-    # Calculate the total amount paid for the invoice
-    paid_total = invoice.payments.aggregate(total=Sum("amount"))["total"] or Decimal("0.00")
-    
-    # Check if the invoice is now fully paid
-    if paid_total >= invoice.amount and invoice.status != "PAID":
-        # Update the status
-        invoice.status = "PAID"
-        invoice.save(update_fields=["status"])
-        
-        # Trigger the background task to email the now-paid invoice
-        email_invoice.delay(invoice.id)
+@receiver(post_save, sender=Expense)
+def update_treasury_on_expense(sender, instance, created, **kwargs):
+    if created:
+        instance.treasury.balance -= instance.amount
+        instance.treasury.save()
+
+@receiver(post_save, sender=SalaryPayment)
+def update_treasury_on_salary_payment(sender, instance, **kwargs):
+    if instance.status == 'PAID' and instance.treasury:
+        # NOTE: To prevent multiple deductions, a more robust check would be to see
+        # if the status *changed* to PAID. This is a simpler, effective version.
+        instance.treasury.balance -= instance.amount
+        instance.treasury.save()

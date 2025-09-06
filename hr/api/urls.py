@@ -1,24 +1,21 @@
+# hr/api/urls.py
+
 from rest_framework.routers import DefaultRouter
-from hr.api.views import (
-    StaffViewSet,
-    PayrollContractViewSet,
-    SalaryRecordViewSet,
-    StaffAttendanceViewSet,
-    StaffDocumentViewSet,
-    VacationViewSet,
-    StaffEvaluationViewSet
+from .views import (
+    StaffViewSet, StaffAttendanceViewSet, StaffDocumentViewSet,
+    VacationViewSet, StaffEvaluationViewSet,
+    PayrollProfileViewSet, PayslipViewSet
 )
 
 router = DefaultRouter()
+router.register(r'staff', StaffViewSet)
+router.register(r'attendances', StaffAttendanceViewSet)
+router.register(r'documents', StaffDocumentViewSet)
+router.register(r'vacations', VacationViewSet)
+router.register(r'evaluations', StaffEvaluationViewSet)
 
-router.register("staff", StaffViewSet)
-router.register("contracts", PayrollContractViewSet)
-router.register("salary-records", SalaryRecordViewSet)
-# --- THIS LINE IS NOW CORRECTED ---
-router.register("staff-attendances", StaffAttendanceViewSet) 
-router.register("documents", StaffDocumentViewSet)
-router.register("vacations", VacationViewSet)
-router.register("evaluations", StaffEvaluationViewSet)
+# --- NEW PAYROLL URLS ---
+router.register(r'payroll-profiles', PayrollProfileViewSet)
+router.register(r'payslips', PayslipViewSet)
 
 urlpatterns = router.urls
-

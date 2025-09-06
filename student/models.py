@@ -15,6 +15,8 @@ class Classroom(TimestampMixin):
     )
     def __str__(self): return self.name
 
+# In student/models.py
+
 class Student(TimestampMixin):
     GENDER_CHOICES = [("M", "Male"), ("F", "Female")]
     STATUS_CHOICES = [
@@ -31,14 +33,27 @@ class Student(TimestampMixin):
     classroom = models.ForeignKey(Classroom, on_delete=models.SET_NULL, null=True, blank=True)
     guardian_name = models.CharField(max_length=100)
     guardian_phone = models.CharField(max_length=20)
-    guardian_email = models.EmailField(max_length=254, blank=True, null=True) # ADD THIS LINE
+    guardian_email = models.EmailField(max_length=254, blank=True, null=True)
     parent_id_number = models.CharField(max_length=50, unique=True)
     parent_id_expiry = models.DateField()
-    student_id_number = models.CharField(max_length=20, unique=True, null=True, blank=True)
+    
+    # --- THIS FIELD WILL NOW BE AUTO-GENERATED ---
+    student_id_number = models.CharField(max_length=20, unique=True, null=True, blank=True, editable=False)
+    
     student_id_expiry = models.DateField(null=True, blank=True)
     enrollment_history = models.TextField(blank=True, null=True)
     is_active = models.BooleanField(default=True)
     
+    # --- ADD THIS METHOD ---
+    def save(self, *args, **kwargs):
+        if not self.student_id_number:
+            # Find the last student's ID to determine the next number
+            last_student = Student.objects.all().order_by('id').last()
+            new_id = (last_student.id + 1) if last_student else 1
+            # Format the new ID (e.g., STU-1001)
+            self.student_id_number = f'STU-{1000 + new_id}'
+        super().save(*args, **kwargs)
+
     @property
     def name(self): return f"{self.first_name} {self.last_name}"
     def __str__(self): return self.name
