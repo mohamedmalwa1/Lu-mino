@@ -1,3 +1,5 @@
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
 from rest_framework import viewsets
 from finance.models import (
     Invoice,
@@ -18,6 +20,7 @@ from finance.api.serializers import (
     SalaryPaymentSerializer
 )
 
+# API ViewSets
 class InvoiceViewSet(viewsets.ModelViewSet):
     queryset = Invoice.objects.select_related("student")
     serializer_class = InvoiceSerializer
@@ -42,9 +45,22 @@ class TreasuryTransactionViewSet(viewsets.ModelViewSet):
     queryset = TreasuryTransaction.objects.all()
     serializer_class = TreasuryTransactionSerializer
 
-# --- THIS VIEWSET IS NOW UPDATED ---
 class SalaryPaymentViewSet(viewsets.ModelViewSet):
-    # Use select_related to efficiently join the related tables
     queryset = SalaryPayment.objects.select_related("salary_record__staff", "treasury")
     serializer_class = SalaryPaymentSerializer
 
+# API endpoint function
+@api_view(['GET'])
+def check_existing_salary_payment(request):
+    """Check if a salary payment already exists for the given parameters"""
+    salary_record_id = request.GET.get('salary_record')
+    treasury_id = request.GET.get('treasury')
+    date = request.GET.get('date')
+    
+    exists = SalaryPayment.objects.filter(
+        salary_record_id=salary_record_id,
+        treasury_id=treasury_id,
+        date=date
+    ).exists()
+    
+    return Response({'exists': exists})

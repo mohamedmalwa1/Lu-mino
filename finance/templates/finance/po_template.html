@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Purchase Order {{ po.po_number }}</title>
+    <style>
+        body { font-family: sans-serif; margin: 40px; color: #333; }
+        .header { display: flex; justify-content: space-between; align-items: flex-start; }
+        .logo { font-size: 24px; font-weight: bold; color: #4A90E2; }
+        h1 { font-size: 36px; text-align: right; }
+        .details-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin: 40px 0; }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { border-bottom: 1px solid #ddd; padding: 12px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        .totals { float: right; width: 40%; margin-top: 20px; }
+        .totals table td { text-align: right; }
+        .totals table tr:last-child td { border-top: 2px solid #333; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo">Lu-mino Education ERP</div>
+        <h1>PURCHASE ORDER</h1>
+    </div>
+    <div class="details-grid">
+        <div>
+            <h3>Vendor</h3>
+            <p>{{ po.vendor.name }}</p>
+        </div>
+        <div style="text-align: right;">
+            <p><strong>PO #:</strong> {{ po.po_number }}</p>
+            <p><strong>Order Date:</strong> {{ po.order_date|date:"F j, Y" }}</p>
+        </div>
+    </div>
+    <h3>Order Details</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Item</th>
+                <th style="text-align: center;">Quantity</th>
+                <th style="text-align: right;">Unit Price</th>
+                <th style="text-align: right;">Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{ po.item.name }}</td>
+                <td style="text-align: center;">{{ po.quantity }}</td>
+                <td style="text-align: right;">AED{{ po.unit_price|floatformat:2 }}</td>
+                <td style="text-align: right;">AED{{ po.total|floatformat:2 }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="totals">
+        <table>
+            <tr>
+                <td><strong>Total Amount:</strong></td>
+                <td><strong>AED{{ po.total|floatformat:2 }}</strong></td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

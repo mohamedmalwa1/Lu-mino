@@ -83,11 +83,42 @@ class PayrollContract(TimestampMixin):
     contract_end   = models.DateField(null=True, blank=True)
 
 
+# Add these methods to your SalaryRecord model:
+
 class SalaryRecord(TimestampMixin):
-    staff   = models.ForeignKey(Staff, on_delete=models.CASCADE, related_name="salaries")
-    month   = models.DateField(help_text="Set to 1st of month")
-    gross   = models.DecimalField(max_digits=10, decimal_places=2)
-    deduct  = models.DecimalField(max_digits=10, decimal_places=2, default=0)
-    net     = models.DecimalField(max_digits=10, decimal_places=2)
-    paid    = models.BooleanField(default=False)
+    staff = models.ForeignKey(Staff, on_delete=models.CASCADE, related_name="salaries")
+    month = models.DateField(help_text="Set to 1st of month")
+    gross = models.DecimalField(max_digits=10, decimal_places=2)
+    deduct = models.DecimalField(max_digits=10, decimal_places=2, default=0)
+    net = models.DecimalField(max_digits=10, decimal_places=2)
+    paid = models.BooleanField(default=False)
+    
+    def save(self, *args, **kwargs):
+        # Automatically calculate net salary
+        self.net = self.gross - self.deduct
+        super().save(*args, **kwargs)
+
+    class Meta:
+        unique_together = [("staff", "month")]
+        ordering = ['-month']
+        
+    def __str__(self):
+        return f"Salary for {self.staff.full_name} - {self.month.strftime('%B %Y')}"
+    
+    # Add this method for API serialization
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "staff": {
+                "id": self.staff.id,
+                "full_name": self.staff.full_name
+            },
+            "month": self.month,
+            "gross": str(self.gross),
+            "deduct": str(self.deduct),
+            "net": str(self.net),
+            "paid": self.paid,
+            "created_at": self.created_at,
+            "updated_at": self.updated_at
+        }
 

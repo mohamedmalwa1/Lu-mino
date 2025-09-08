@@ -57,8 +57,12 @@ class PayrollContractAdmin(admin.ModelAdmin):
 # ───────── SALARY RECORD ─────────
 @admin.register(SalaryRecord)
 class SalaryRecordAdmin(admin.ModelAdmin):
-    list_display  = ("id", "staff", "month", "gross", "net", "paid")
+    list_display  = ("id", "staff", "month", "gross", "net", "paid", "finance_payments_count")
     list_filter   = ("paid", "month")
     autocomplete_fields = ("staff",)
     search_fields = ("staff__first_name", "staff__last_name")
+    
+    def finance_payments_count(self, obj):
+        return obj.finance_payments.count()
+    finance_payments_count.short_description = "Payments"
 

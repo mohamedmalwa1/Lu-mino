@@ -2,148 +2,81 @@ import { useEffect } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { toast } from "react-hot-toast";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { useNavigate, useParams } from "react-router-dom";
+import toast from "react-hot-toast";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-
-import {
-  createPurchaseOrder,
-  updatePurchaseOrder,
-  getPurchaseOrder,
-} from "../../../api/finance";
-import { listVendors, listItems } from "../../../api/inventory";
-import Spinner from "../../../components/ui/Spinner";
+import { createPurchaseOrder, updatePurchaseOrder, getPurchaseOrder } from "../../../api/finance";
+import { listVendors, listItems } from "../../../api/inventory"; // Assuming you have these
 
 const schema = yup.object({
-  po_number: yup.string().required("PO Number is required"),
-  vendor: yup.number().required("Vendor is required"),
-  item: yup.number().required("Item is required"),
-  quantity: yup.number().positive("Quantity must be positive").integer().required(),
-  unit_price: yup.number().positive("Unit price must be positive").required(),
-  order_date: yup.date().required("Order date is required"),
+  // po_number is removed from validation
+  vendor: yup.number().required(),
+  item: yup.number().required(),
+  quantity: yup.number().positive().integer().required(),
+  unit_price: yup.number().positive().required(),
+  order_date: yup.date().required(),
   received: yup.boolean(),
 });
 
-const blank = {
-  po_number: "",
-  vendor: "",
-  item: "",
-  quantity: "",
-  unit_price: "",
-  order_date: new Date(),
-  received: false,
-};
-
 export default function PurchaseOrderForm() {
-    const navigate = useNavigate();
-    const { id } = useParams();
-    const qc = useQueryClient();
-    const isNew = !id;
+  const navigate = useNavigate();
+  const { id } = useParams();
+  const isNew = !id;
 
-  const {
-    register,
-    handleSubmit,
-    control,
-    reset,
-    formState: { errors },
-  } = useForm({
+  const { register, handleSubmit, control, reset, formState: { errors } } = useForm({
     resolver: yupResolver(schema),
-    defaultValues: blank,
+    defaultValues: { received: false, order_date: new Date() }
   });
 
-  const { data: purchaseOrder, isLoading: isLoadingPO } = useQuery({
-      queryKey: ["purchaseOrder", id],
-      queryFn: () => getPurchaseOrder(id),
-      enabled: !isNew,
+  // Fetch existing PO data if editing
+  const { data: poData } = useQuery({
+    queryKey: ["purchaseOrder", id],
+    queryFn: () => getPurchaseOrder(id),
+    enabled: !isNew,
   });
 
   useEffect(() => {
-    if (purchaseOrder) {
-        reset({ ...purchaseOrder, order_date: new Date(purchaseOrder.order_date) });
-    } else {
-        reset(blank);
+    if (poData) {
+      reset({ ...poData, order_date: new Date(poData.order_date) });
     }
-  }, [purchaseOrder, reset]);
-
-  const { data: vendors, isLoading: isLoadingVendors } = useQuery({
-    queryKey: ["vendors"],
-    queryFn: listVendors,
-  });
-
-  const { data: items, isLoading: isLoadingItems } = useQuery({
-    queryKey: ["items"],
-    queryFn: listItems,
-  });
+  }, [poData, reset]);
+  
+  // Fetch dropdown data
+  const { data: vendors = [] } = useQuery({ queryKey: ["vendors"], queryFn: listVendors });
+  const { data: items = [] } = useQuery({ queryKey: ["inventoryItems"], queryFn: listItems });
 
   const { mutate: save, isPending } = useMutation({
     mutationFn: (data) => {
-      const payload = { ...data, order_date: data.order_date.toISOString().split("T")[0] };
-      return isNew ? createPurchaseOrder(payload) : updatePurchaseOrder(id, payload);
+        const payload = { ...data, order_date: data.order_date.toISOString().split('T')[0] };
+        return isNew ? createPurchaseOrder(payload) : updatePurchaseOrder(id, payload);
     },
-    onSuccess: () => { 
+    onSuccess: () => {
         toast.success(`Purchase Order ${isNew ? 'created' : 'updated'}!`);
-        qc.invalidateQueries({ queryKey: ["purchaseOrders"] });
         navigate("/finance/purchase-orders");
     },
-    onError: (err) => { 
-        console.error("Save failed:", err.response?.data);
-        toast.error("Failed to save Purchase Order."); 
-    },
+    onError: () => toast.error("Save failed."),
   });
 
-  if (!isNew && isLoadingPO) {
-      return <Spinner />;
-  }
-
   return (
-    <div className="bg-white shadow-lg rounded-2xl p-6">
-        <h2 className="text-2xl font-semibold mb-6">
-            {isNew ? "Create Purchase Order" : "Edit Purchase Order"}
-        </h2>
-        <form onSubmit={handleSubmit(save)} className="space-y-6 max-w-2xl">
-            
-            <input {...register("po_number")} className="input w-full" placeholder="PO Number *" />
-            {errors.po_number && <p className="text-red-600 text-sm mt-1">{errors.po_number.message}</p>}
+    <form onSubmit={handleSubmit(save)} className="p-6 bg-white shadow-lg rounded-2xl space-y-4">
+      <h2 className="text-2xl font-semibold">
+        {isNew ? "Create Purchase Order" : `Edit Purchase Order: ${poData?.po_number || ''}`}
+      </h2>
+      
+      {/* PO Number input is REMOVED */}
 
-            <select {...register("vendor")} className="input w-full">
-                <option value="">— Select Vendor * —</option>
-                {vendors?.map((v) => (<option key={v.id} value={v.id}>{v.name}</option>))}
-            </select>
-            {errors.vendor && <p className="text-red-600 text-sm mt-1">{errors.vendor.message}</p>}
-
-            <select {...register("item")} className="input w-full">
-                <option value="">— Select Item * —</option>
-                {items?.map((i) => (<option key={i.id} value={i.id}>{i.name}</option>))}
-            </select>
-            {errors.item && <p className="text-red-600 text-sm mt-1">{errors.item.message}</p>}
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <input type="number" {...register("quantity")} className="input w-full" placeholder="Quantity *" />
-                <input type="number" step="0.01" {...register("unit_price")} className="input w-full" placeholder="Unit Price *" />
-            </div>
-             {errors.quantity && <p className="text-red-600 text-sm mt-1">{errors.quantity.message}</p>}
-             {errors.unit_price && <p className="text-red-600 text-sm mt-1">{errors.unit_price.message}</p>}
-
-            <Controller control={control} name="order_date" render={({ field }) => (
-                <DatePicker className="input w-full" selected={field.value} onChange={field.onChange} dateFormat="yyyy-MM-dd" />
-            )}/>
-            {errors.order_date && <p className="text-red-600 text-sm mt-1">{errors.order_date.message}</p>}
-
-            <label className="flex items-center gap-2">
-                <input type="checkbox" {...register("received")} />
-                <span>Mark as Received</span>
-            </label>
-
-            <div className="flex justify-end gap-4 pt-4">
-                <button type="button" className="btn-secondary" onClick={() => navigate("/finance/purchase-orders")}>Cancel</button>
-                <button type="submit" disabled={isPending} className="btn-primary disabled:opacity-60">
-                {isPending ? "Saving…" : "Save PO"}
-                </button>
-            </div>
-        </form>
-    </div>
+      <div className="grid grid-cols-2 gap-4">
+          <div><label>Vendor</label><select {...register("vendor")} className="input"><option value="">--Select--</option>{vendors.map(v => <option key={v.id} value={v.id}>{v.name}</option>)}</select>{errors.vendor && <p className="text-red-500 text-xs">{errors.vendor.message}</p>}</div>
+          <div><label>Item</label><select {...register("item")} className="input"><option value="">--Select--</option>{items.map(i => <option key={i.id} value={i.id}>{i.name}</option>)}</select>{errors.item && <p className="text-red-500 text-xs">{errors.item.message}</p>}</div>
+          <div><label>Quantity</label><input type="number" {...register("quantity")} className="input" />{errors.quantity && <p className="text-red-500 text-xs">{errors.quantity.message}</p>}</div>
+          <div><label>Unit Price</label><input type="number" step="0.01" {...register("unit_price")} className="input" />{errors.unit_price && <p className="text-red-500 text-xs">{errors.unit_price.message}</p>}</div>
+          <div><label>Order Date</label><Controller name="order_date" control={control} render={({field}) => <DatePicker {...field} className="input w-full" selected={field.value} onChange={date => field.onChange(date)} />} /></div>
+      </div>
+      
+      <div className="flex items-center gap-2"><input type="checkbox" {...register("received")} /> Mark as Received</div>
+      <div className="flex justify-end gap-3 pt-4 border-t"><button type="button" className="btn-secondary" onClick={() => navigate("/finance/purchase-orders")}>Cancel</button><button type="submit" disabled={isPending} className="btn-primary">{isPending ? "Saving..." : "Save PO"}</button></div>
+    </form>
   );
 }
-
