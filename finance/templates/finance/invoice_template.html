@@ -54,7 +54,7 @@
         <tbody>
             <tr>
                 <td>{{ invoice.description|default:"School Fees" }}</td>
-                <td style="text-align: right;">${{ invoice.amount|floatformat:2 }}</td>
+                <td style="text-align: right;">AED{{ invoice.amount|floatformat:2 }}</td>
             </tr>
         </tbody>
     </table>
@@ -63,15 +63,15 @@
         <table>
             <tr>
                 <td>Subtotal:</td>
-                <td>${{ invoice.amount|floatformat:2 }}</td>
+                <td>AED{{ invoice.amount|floatformat:2 }}</td>
             </tr>
             <tr>
                 <td>Amount Paid:</td>
-                <td>-${{ paid_total|floatformat:2 }}</td>
+                <td>-AED{{ paid_total|floatformat:2 }}</td>
             </tr>
             <tr>
                 <td><strong>Balance Due:</strong></td>
-                <td><strong>${{ balance|floatformat:2 }}</strong></td>
+                <td><strong>AED{{ balance|floatformat:2 }}</strong></td>
             </tr>
         </table>
     </div>

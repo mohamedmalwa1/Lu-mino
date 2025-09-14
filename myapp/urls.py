@@ -5,7 +5,6 @@ from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
 )
-# --- ADD THESE TWO IMPORTS ---
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -23,10 +22,12 @@ urlpatterns = [
     path("api/v1/inventory/", include("inventory.api.urls")),
     path("api/v1/finance/",   include("finance.api.urls")),
     path("api/v1/reporting/", include("reporting.api.urls")),
-    path("api/v1/core/",      include("core.urls")),
+    
+    # --- CORRECTED LINE FOR CONSISTENCY ---
+    # This now correctly points to the new permissions API under the v1 path.
+    path("api/v1/core/",      include("core.api.urls")),
 ]
 
-# --- ADD THIS BLOCK AT THE END OF THE FILE ---
 # This is crucial for serving user-uploaded files (media) in development mode.
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

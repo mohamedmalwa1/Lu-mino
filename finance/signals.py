@@ -1,35 +1,71 @@
-# finance/signals.py (Corrected)
-
-from decimal import Decimal
-from django.db.models.signals import post_save
+# finance/signals.py - COMPLETE FIXED VERSION
+from django.db.models.signals import post_save, post_delete
 from django.dispatch import receiver
-from django.db.models import Sum
+from django.db.models import F
+from django.apps import apps  # ← ADD THIS
+import logging  # ← ADD THIS
 
-# Import the main models
-from .models import Payment, Invoice
-
-# THE FIX IS HERE: Import the correct, existing task
+from .models import Payment, Expense, SalaryPayment, Treasury, Invoice
 from .tasks import email_invoice
 
-@receiver(post_save, sender=Payment)
-def auto_update_invoice_status_and_email(sender, instance: Payment, created, **kwargs):
-    """
-    A signal that runs every time a Payment is saved.
-    It updates the invoice status and triggers an email if the invoice becomes fully paid.
-    """
-    if not created:
-        return # Only run this logic when a payment is first created
+logger = logging.getLogger(__name__)  # ← ADD THIS
 
-    invoice: Invoice = instance.invoice
-    
-    # Calculate the total amount paid for the invoice
-    paid_total = invoice.payments.aggregate(total=Sum("amount"))["total"] or Decimal("0.00")
-    
-    # Check if the invoice is now fully paid
-    if paid_total >= invoice.amount and invoice.status != "PAID":
-        # Update the status
-        invoice.status = "PAID"
-        invoice.save(update_fields=["status"])
+@receiver([post_save, post_delete], sender=Payment)
+def update_treasury_on_payment(sender, instance, **kwargs):
+    # This logic runs when a Payment is created or deleted
+    if kwargs.get('created', True): # True on create, not present on delete
+        Treasury.objects.filter(id=instance.treasury.id).update(balance=F('balance') + instance.amount)
+    else: # This is a delete signal
+        Treasury.objects.filter(id=instance.treasury.id).update(balance=F('balance') - instance.amount)
+
+@receiver([post_save, post_delete], sender=Expense)
+def update_treasury_on_expense(sender, instance, **kwargs):
+    # This logic runs when an Expense is created or deleted
+    if kwargs.get('created', True):
+        Treasury.objects.filter(id=instance.treasury.id).update(balance=F('balance') - instance.amount)
+    else:
+        Treasury.objects.filter(id=instance.treasury.id).update(balance=F('balance') + instance.amount)
+
+@receiver([post_save, post_delete], sender=SalaryPayment)
+def update_treasury_on_salary(sender, instance, **kwargs):
+    # This logic runs when a SalaryPayment is created or deleted
+    if kwargs.get('created', True):
+        Treasury.objects.filter(id=instance.treasury.id).update(balance=F('balance') - instance.amount)
+    else:
+        Treasury.objects.filter(id=instance.treasury.id).update(balance=F('balance') + instance.amount)
+
+@receiver(post_save, sender=SalaryPayment)
+def mark_salary_record_as_paid(sender, instance, created, **kwargs):
+    """
+    When a salary payment is created, find the related salary record
+    and mark its 'paid' field as True.
+    """
+    if created:
+        # Use lazy loading to avoid circular imports
+        SalaryRecord = apps.get_model('hr', 'SalaryRecord')
+        salary_record = instance.salary_record
+        if salary_record:
+            salary_record.paid = True
+            salary_record.save()
+            logger.info(f"Marked salary record {salary_record.id} as paid for staff {salary_record.staff.full_name}")
+
+@receiver(post_save, sender=Payment)
+def update_invoice_status_on_payment(sender, instance, created, **kwargs):
+    """
+    Automatically update invoice status when payments are made
+    """
+    if created:
+        invoice = instance.invoice
+        new_status = invoice.update_status_based_on_payments()
         
-        # Trigger the background task to email the now-paid invoice
-        email_invoice.delay(invoice.id)
+        # If invoice just became PAID, trigger email
+        if new_status == 'PAID':
+            email_invoice.delay(invoice.id)
+
+@receiver(post_delete, sender=Payment)
+def update_invoice_status_on_payment_delete(sender, instance, **kwargs):
+    """
+    Update invoice status when payments are deleted
+    """
+    invoice = instance.invoice
+    invoice.update_status_based_on_payments()

@@ -20,13 +20,28 @@ export default function PayrollContracts() {
     queryFn: listPayrollContracts,
   });
 
+  // Debug: Check what the API actually returns
+  console.log("Contracts API response:", contracts);
+
+  const getStaffName = (contract) => {
+    // Try different possible field structures
+    if (contract.staff_full_name) return contract.staff_full_name;
+    if (contract.staff_name) return contract.staff_name;
+    if (contract.staff?.full_name) return contract.staff.full_name;
+    if (contract.staff?.first_name && contract.staff?.last_name) {
+      return `${contract.staff.first_name} ${contract.staff.last_name}`;
+    }
+    return "Unknown Staff";
+  };
+
   const filtered = contracts.filter((c) =>
-    (c.staff_name?.toLowerCase() || "").includes(search.toLowerCase())
+    getStaffName(c).toLowerCase().includes(search.toLowerCase())
   );
 
   const rows = filtered.map((c, idx) => ({
     ...c,
     idx: idx + 1,
+    staff_name: getStaffName(c),
     contract_start: new Date(c.contract_start).toLocaleDateString(),
     contract_end: c.contract_end ? new Date(c.contract_end).toLocaleDateString() : "N/A",
     base_salary: parseFloat(c.base_salary).toFixed(2),
@@ -52,8 +67,8 @@ export default function PayrollContracts() {
   const columns = [
     { key: "idx", label: "#" },
     { key: "staff_name", label: "Staff Member" },
-    { key: "base_salary", label: "Base Salary" },
-    { key: "allowance", label: "Allowance" },
+    { key: "base_salary", label: "Base Salary", align: "right" },
+    { key: "allowance", label: "Allowance", align: "right" },
     { key: "contract_start", label: "Start Date" },
     { key: "contract_end", label: "End Date" },
     { key: "_actions", label: "Actions" },
@@ -119,4 +134,3 @@ export default function PayrollContracts() {
     </>
   );
 }
-

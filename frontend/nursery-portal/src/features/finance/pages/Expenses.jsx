@@ -1,17 +1,19 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { FiSearch, FiX, FiPlus } from "react-icons/fi";
+import { useState, useMemo } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast, Toaster } from "react-hot-toast";
+import { FiSearch, FiX, FiPlus } from "react-icons/fi";
 
 import { listExpenses, deleteExpense } from "../../../api/finance";
 import DataTable from "../../../components/ui/DataTable";
 import SkeletonTable from "../../../components/ui/SkeletonTable";
 import ConfirmDialog from "../../../components/ui/ConfirmDialog";
+import Drawer from "../../../components/ui/Drawer";
+import ExpenseForm from "./ExpenseForm";
 
 export default function Expenses() {
   const qc = useQueryClient();
-  const navigate = useNavigate();
+  const [isDrawerOpen, setDrawerOpen] = useState(false);
+  const [editingExpense, setEditingExpense] = useState(null);
   const [confirmID, setConfirmID] = useState(null);
   const [search, setSearch] = useState("");
 
@@ -20,23 +22,38 @@ export default function Expenses() {
     queryFn: listExpenses,
   });
 
-  const filtered = expenses.filter((exp) =>
-    (exp.vendor_name?.toLowerCase() || "").includes(search.toLowerCase()) ||
-    (exp.reference?.toLowerCase() || "").includes(search.toLowerCase()) ||
-    (exp.description?.toLowerCase() || "").includes(search.toLowerCase())
+  const onSaved = () => {
+    setDrawerOpen(false);
+    qc.invalidateQueries({ queryKey: ["expenses"] });
+  };
+
+  const openDrawer = (expense = null) => {
+    setEditingExpense(expense);
+    setDrawerOpen(true);
+  };
+
+  const filtered = expenses.filter(
+    (exp) =>
+      (exp.vendor_name?.toLowerCase() || "").includes(search.toLowerCase()) ||
+      (exp.po_number?.toLowerCase() || "").includes(search.toLowerCase()) ||
+      (exp.description?.toLowerCase() || "").includes(search.toLowerCase())
+  );
+  
+  const totalAmount = useMemo(() => 
+    filtered.reduce((sum, exp) => sum + parseFloat(exp.amount), 0),
+    [filtered]
   );
 
   const rows = filtered.map((exp, idx) => ({
     ...exp,
     idx: idx + 1,
     date: new Date(exp.date).toLocaleDateString(),
-    category: exp.category_display,
     amount: parseFloat(exp.amount).toFixed(2),
     _actions: (
       <div className="flex gap-4">
         <button
           className="text-blue-600 hover:underline font-semibold"
-          onClick={() => navigate(`/finance/expenses/${exp.id}`)}
+          onClick={() => openDrawer(exp)}
         >
           Edit
         </button>
@@ -53,8 +70,8 @@ export default function Expenses() {
   const columns = [
     { key: "idx", label: "#" },
     { key: "date", label: "Date" },
-    { key: "reference", label: "Reference #" }, // New Column
-    { key: "vendor_name", label: "Vendor" },     // New Column
+    { key: "po_number", label: "Linked PO #" },
+    { key: "vendor_name", label: "Vendor" },
     { key: "description", label: "Description" },
     { key: "amount", label: "Amount" },
     { key: "treasury_name", label: "Paid From" },
@@ -71,26 +88,15 @@ export default function Expenses() {
     onError: () => toast.error("Delete failed"),
   });
 
-  const removeMany = async (ids) => {
-    if (!window.confirm(`Delete ${ids.length} expenses?`)) return;
-    try {
-      await Promise.all(ids.map(deleteExpense));
-      toast.success("Expenses deleted");
-      qc.invalidateQueries({ queryKey: ["expenses"] });
-    } catch {
-      toast.error("Bulk delete failed");
-    }
-  };
-
   return (
     <>
       <Toaster position="top-right" />
-      <div className="px-4 sm:px-6 lg:px-8 py-6 space-y-6">
+      <div className="p-6 space-y-6">
         <div className="bg-white shadow-lg rounded-2xl p-6 space-y-6">
           <div className="flex items-center justify-between">
             <h2 className="text-2xl font-semibold">Expenses</h2>
             <button
-              onClick={() => navigate("/finance/expenses/new")}
+              onClick={() => openDrawer(null)}
               className="btn-primary flex items-center gap-2"
             >
               <FiPlus /> Add Expense
@@ -103,8 +109,8 @@ export default function Expenses() {
               type="text"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              placeholder="Search by vendor, reference, or description…"
-              className="w-full pl-12 pr-12 py-2 rounded-full border border-gray-300 shadow-sm focus:ring-2 focus:ring-blue-500 outline-none"
+              placeholder="Search by vendor, PO #, or description…"
+              className="input w-full pl-12"
             />
             {search && (
               <button
@@ -116,9 +122,20 @@ export default function Expenses() {
             )}
           </div>
 
-          {isLoading ? <SkeletonTable /> : <DataTable columns={columns} rows={rows} onBulkDelete={removeMany} />}
+          {isLoading ? <SkeletonTable /> : <DataTable columns={columns} rows={rows} />}
+
+          {!isLoading && (
+            <div className="pt-4 mt-4 border-t text-right">
+              <span className="text-gray-500 font-medium">Total Expenses Displayed: </span>
+              <span className="font-bold text-lg text-gray-800">AED{totalAmount.toFixed(2)}</span>
+            </div>
+          )}
         </div>
       </div>
+      
+      <Drawer open={isDrawerOpen} onClose={() => setDrawerOpen(false)} width="36rem">
+        {isDrawerOpen && <ExpenseForm initialData={editingExpense} onSaved={onSaved} />}
+      </Drawer>
 
       {confirmID && (
         <ConfirmDialog
@@ -132,4 +149,3 @@ export default function Expenses() {
     </>
   );
 }
-

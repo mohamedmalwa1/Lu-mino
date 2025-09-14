@@ -23,6 +23,14 @@ export const deleteStaff = (id) =>
 export const listSalaryRecords = (params) =>
   axios.get(`${HR_URL}/salary-records/`, { params }).then((r) => r.data);
 
+export const getSalaryRecord = (id) =>
+  axios.get(`${HR_URL}/salary-records/${id}/`).then((r) => r.data);
+
+export const updateSalaryRecord = (id, data) =>
+  axios.patch(`${HR_URL}/salary-records/${id}/`, data).then((r) => r.data);
+
+export const deleteSalaryRecord = (id) =>
+  axios.delete(`${HR_URL}/salary-records/${id}/`);
 /* ------------- Staff Attendance ------------- */
 export const listStaffAttendance = () =>
   axios.get(`${HR_URL}/staff-attendances/`).then((r) => r.data);
@@ -107,4 +115,3 @@ export const updatePayrollContract = (id, data) =>
 
 export const deletePayrollContract = (id) =>
   axios.delete(`${HR_URL}/contracts/${id}/`);
-
