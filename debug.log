@@ -3392,3 +3392,993 @@ INFO 2025-09-14 15:28:27,418 basehttp 673308 136458137495232 "GET /api/v1/financ
 INFO 2025-09-14 15:38:44,854 basehttp 673308 136458137495232 "GET /admin/auth/user/2/change/ HTTP/1.1" 200 48435
 INFO 2025-09-14 15:38:44,886 basehttp 673308 136458137495232 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
 WARNING 2025-09-14 15:38:44,945 log 673308 136458137495232 Not Found: /favicon.ico
+INFO 2025-09-14 15:43:42,740 basehttp 673308 136458137495232 "GET /api/v1/finance/expenses/ HTTP/1.1" 200 340
+INFO 2025-09-14 15:43:48,270 basehttp 673308 136458137495232 "POST /api/token/ HTTP/1.1" 200 483
+INFO 2025-09-14 15:43:50,742 basehttp 673308 136458137495232 "GET /api/v1/student/students/?client=[object+Object]&queryKey[]=students&signal=[object+AbortSignal] HTTP/1.1" 200 2182
+INFO 2025-09-14 15:43:50,742 basehttp 673308 136458129102528 "GET /api/v1/student/students/?client=[object+Object]&queryKey[]=students&signal=[object+AbortSignal] HTTP/1.1" 200 2182
+INFO 2025-09-14 15:43:51,633 basehttp 673308 136458137495232 "GET /api/v1/student/classrooms/ HTTP/1.1" 200 92
+INFO 2025-09-14 15:43:52,351 basehttp 673308 136458137495232 "GET /api/v1/student/students/?client=[object+Object]&queryKey[]=students&signal=[object+AbortSignal] HTTP/1.1" 200 2182
+INFO 2025-09-14 15:43:52,352 basehttp 673308 136458129102528 "GET /api/v1/student/students/?client=[object+Object]&queryKey[]=students&signal=[object+AbortSignal] HTTP/1.1" 200 2182
+INFO 2025-09-14 15:43:54,828 basehttp 673308 136458129102528 "GET /api/v1/student/classrooms/ HTTP/1.1" 200 92
+INFO 2025-09-14 15:43:58,851 basehttp 673308 136458129102528 "PUT /api/v1/student/students/7/ HTTP/1.1" 200 546
+INFO 2025-09-14 15:43:58,873 basehttp 673308 136458129102528 "GET /api/v1/student/students/?client=[object+Object]&queryKey[]=students&signal=[object+AbortSignal] HTTP/1.1" 200 2184
+INFO 2025-09-14 16:16:23,237 autoreload 697967 134815459586176 Watching for file changes with StatReloader
+WARNING 2025-09-14 16:16:41,085 log 697967 134814939215552 Not Found: /api/users/me/
+WARNING 2025-09-14 16:16:41,086 log 697967 134814897252032 Not Found: /api/core/user-permissions/
+WARNING 2025-09-14 16:16:41,087 log 697967 134814922430144 Not Found: /api/users/me/
+WARNING 2025-09-14 16:16:41,089 log 697967 134814914037440 Not Found: /api/core/user-permissions/
+WARNING 2025-09-14 16:16:41,090 basehttp 697967 134814914037440 "GET /api/core/user-permissions/ HTTP/1.1" 404 3727
+WARNING 2025-09-14 16:16:41,089 basehttp 697967 134814939215552 "GET /api/users/me/ HTTP/1.1" 404 3688
+WARNING 2025-09-14 16:16:41,090 basehttp 697967 134814922430144 "GET /api/users/me/ HTTP/1.1" 404 3688
+WARNING 2025-09-14 16:16:41,091 basehttp 697967 134814897252032 "GET /api/core/user-permissions/ HTTP/1.1" 404 3727
+INFO 2025-09-14 16:16:41,114 basehttp 697967 134814905644736 "GET /api/v1/student/students/?client=[object+Object]&queryKey[]=students&signal=[object+AbortSignal] HTTP/1.1" 200 2184
+INFO 2025-09-14 16:16:41,115 basehttp 697967 134814930822848 "GET /api/v1/student/students/?client=[object+Object]&queryKey[]=students&signal=[object+AbortSignal] HTTP/1.1" 200 2184
+WARNING 2025-09-14 16:17:17,206 log 697967 134814905644736 Not Found: /api/users/me/
+WARNING 2025-09-14 16:17:17,206 basehttp 697967 134814905644736 "GET /api/users/me/ HTTP/1.1" 404 3688
+WARNING 2025-09-14 16:17:17,212 log 697967 134814897252032 Not Found: /api/users/me/
+WARNING 2025-09-14 16:17:17,216 log 697967 134814914037440 Not Found: /api/core/user-permissions/
+WARNING 2025-09-14 16:17:17,217 log 697967 134814905644736 Not Found: /api/core/user-permissions/
+WARNING 2025-09-14 16:17:17,218 basehttp 697967 134814914037440 "GET /api/core/user-permissions/ HTTP/1.1" 404 3727
+WARNING 2025-09-14 16:17:17,220 basehttp 697967 134814897252032 "GET /api/users/me/ HTTP/1.1" 404 3688
+WARNING 2025-09-14 16:17:17,220 basehttp 697967 134814905644736 "GET /api/core/user-permissions/ HTTP/1.1" 404 3727
+INFO 2025-09-14 16:17:17,227 basehttp 697967 134814930822848 "GET /api/v1/student/students/?client=[object+Object]&queryKey[]=students&signal=[object+AbortSignal] HTTP/1.1" 200 2184
+INFO 2025-09-14 16:17:17,231 basehttp 697967 134814922430144 "GET /api/v1/student/students/?client=[object+Object]&queryKey[]=students&signal=[object+AbortSignal] HTTP/1.1" 200 2184
+WARNING 2025-09-14 16:17:18,202 log 697967 134814914037440 Not Found: /api/users/me/
+WARNING 2025-09-14 16:17:18,203 log 697967 134814897252032 Not Found: /api/core/user-permissions/
+WARNING 2025-09-14 16:17:18,205 log 697967 134814930822848 Not Found: /api/users/me/
+WARNING 2025-09-14 16:17:18,206 log 697967 134814887810752 Not Found: /api/core/user-permissions/
+WARNING 2025-09-14 16:17:18,207 basehttp 697967 134814897252032 "GET /api/core/user-permissions/ HTTP/1.1" 404 3727
+WARNING 2025-09-14 16:17:18,208 basehttp 697967 134814930822848 "GET /api/users/me/ HTTP/1.1" 404 3688
+WARNING 2025-09-14 16:17:18,208 basehttp 697967 134814887810752 "GET /api/core/user-permissions/ HTTP/1.1" 404 3727
+WARNING 2025-09-14 16:17:18,208 basehttp 697967 134814914037440 "GET /api/users/me/ HTTP/1.1" 404 3688
+INFO 2025-09-14 16:17:18,223 basehttp 697967 134814905644736 "GET /api/v1/student/students/?client=[object+Object]&queryKey[]=students&signal=[object+AbortSignal] HTTP/1.1" 200 2184
+INFO 2025-09-14 16:17:18,224 basehttp 697967 134814922430144 "GET /api/v1/student/students/?client=[object+Object]&queryKey[]=students&signal=[object+AbortSignal] HTTP/1.1" 200 2184
+WARNING 2025-09-14 16:17:19,177 log 697967 134814914037440 Not Found: /api/core/user-permissions/
+WARNING 2025-09-14 16:17:19,182 log 697967 134814905644736 Not Found: /api/users/me/
+WARNING 2025-09-14 16:17:19,182 basehttp 697967 134814914037440 "GET /api/core/user-permissions/ HTTP/1.1" 404 3727
+WARNING 2025-09-14 16:17:19,184 basehttp 697967 134814905644736 "GET /api/users/me/ HTTP/1.1" 404 3688
+WARNING 2025-09-14 16:17:19,187 log 697967 134814897252032 Not Found: /api/core/user-permissions/
+WARNING 2025-09-14 16:17:19,189 log 697967 134814938166976 Not Found: /api/users/me/
+WARNING 2025-09-14 16:17:19,191 basehttp 697967 134814897252032 "GET /api/core/user-permissions/ HTTP/1.1" 404 3727
+WARNING 2025-09-14 16:17:19,191 basehttp 697967 134814938166976 "GET /api/users/me/ HTTP/1.1" 404 3688
+INFO 2025-09-14 16:17:19,202 basehttp 697967 134814922430144 "GET /api/v1/student/students/?client=[object+Object]&queryKey[]=students&signal=[object+AbortSignal] HTTP/1.1" 200 2184
+INFO 2025-09-14 16:17:19,211 basehttp 697967 134814887810752 "GET /api/v1/student/students/?client=[object+Object]&queryKey[]=students&signal=[object+AbortSignal] HTTP/1.1" 200 2184
+WARNING 2025-09-14 16:17:20,113 log 697967 134814922430144 Not Found: /api/users/me/
+WARNING 2025-09-14 16:17:20,114 basehttp 697967 134814922430144 "GET /api/users/me/ HTTP/1.1" 404 3688
+WARNING 2025-09-14 16:17:20,118 log 697967 134814922430144 Not Found: /api/users/me/
+WARNING 2025-09-14 16:17:20,120 log 697967 134814914037440 Not Found: /api/core/user-permissions/
+WARNING 2025-09-14 16:17:20,122 log 697967 134814938166976 Not Found: /api/core/user-permissions/
+WARNING 2025-09-14 16:17:20,122 basehttp 697967 134814922430144 "GET /api/users/me/ HTTP/1.1" 404 3688
+WARNING 2025-09-14 16:17:20,123 basehttp 697967 134814914037440 "GET /api/core/user-permissions/ HTTP/1.1" 404 3727
+WARNING 2025-09-14 16:17:20,123 basehttp 697967 134814938166976 "GET /api/core/user-permissions/ HTTP/1.1" 404 3727
+INFO 2025-09-14 16:17:20,134 basehttp 697967 134814887810752 "GET /api/v1/student/students/?client=[object+Object]&queryKey[]=students&signal=[object+AbortSignal] HTTP/1.1" 200 2184
+INFO 2025-09-14 16:17:20,135 basehttp 697967 134814897252032 "GET /api/v1/student/students/?client=[object+Object]&queryKey[]=students&signal=[object+AbortSignal] HTTP/1.1" 200 2184
+WARNING 2025-09-14 16:17:20,878 log 697967 134814887810752 Not Found: /api/users/me/
+WARNING 2025-09-14 16:17:20,879 basehttp 697967 134814887810752 "GET /api/users/me/ HTTP/1.1" 404 3688
+WARNING 2025-09-14 16:17:20,883 log 697967 134814938166976 Not Found: /api/core/user-permissions/
+WARNING 2025-09-14 16:17:20,885 log 697967 134814914037440 Not Found: /api/users/me/
+WARNING 2025-09-14 16:17:20,887 log 697967 134814905644736 Not Found: /api/core/user-permissions/
+WARNING 2025-09-14 16:17:20,888 basehttp 697967 134814914037440 "GET /api/users/me/ HTTP/1.1" 404 3688
+WARNING 2025-09-14 16:17:20,887 basehttp 697967 134814938166976 "GET /api/core/user-permissions/ HTTP/1.1" 404 3727
+WARNING 2025-09-14 16:17:20,888 basehttp 697967 134814905644736 "GET /api/core/user-permissions/ HTTP/1.1" 404 3727
+INFO 2025-09-14 16:17:20,900 basehttp 697967 134814897252032 "GET /api/v1/student/students/?client=[object+Object]&queryKey[]=students&signal=[object+AbortSignal] HTTP/1.1" 200 2184
+INFO 2025-09-14 16:17:20,902 basehttp 697967 134814922430144 "GET /api/v1/student/students/?client=[object+Object]&queryKey[]=students&signal=[object+AbortSignal] HTTP/1.1" 200 2184
+INFO 2025-09-14 16:17:27,187 basehttp 697967 134814922430144 "POST /api/token/ HTTP/1.1" 200 483
+WARNING 2025-09-14 16:17:27,199 log 697967 134814922430144 Not Found: /api/users/me/
+WARNING 2025-09-14 16:17:27,202 log 697967 134814905644736 Not Found: /api/users/me/
+WARNING 2025-09-14 16:17:27,204 log 697967 134814897252032 Not Found: /api/core/user-permissions/
+WARNING 2025-09-14 16:17:27,207 log 697967 134814938166976 Not Found: /api/core/user-permissions/
+WARNING 2025-09-14 16:17:27,207 basehttp 697967 134814922430144 "GET /api/users/me/ HTTP/1.1" 404 3688
+WARNING 2025-09-14 16:17:27,207 basehttp 697967 134814938166976 "GET /api/core/user-permissions/ HTTP/1.1" 404 3727
+WARNING 2025-09-14 16:17:27,208 basehttp 697967 134814905644736 "GET /api/users/me/ HTTP/1.1" 404 3688
+WARNING 2025-09-14 16:17:27,209 basehttp 697967 134814897252032 "GET /api/core/user-permissions/ HTTP/1.1" 404 3727
+INFO 2025-09-14 16:17:29,011 basehttp 697967 134814897252032 "GET /api/v1/inventory/vendors/ HTTP/1.1" 200 365
+INFO 2025-09-14 16:17:30,208 basehttp 697967 134814897252032 "GET /api/v1/finance/invoices/?client=[object+Object]&queryKey[]=invoices&signal=[object+AbortSignal] HTTP/1.1" 200 1010
+INFO 2025-09-14 16:17:30,221 basehttp 697967 134814897252032 "GET /api/v1/finance/invoices/?client=[object+Object]&queryKey[]=invoices&signal=[object+AbortSignal] HTTP/1.1" 200 1010
+INFO 2025-09-14 16:17:32,356 basehttp 697967 134814897252032 "GET /api/v1/student/students/?client=[object+Object]&queryKey[]=students&signal=[object+AbortSignal] HTTP/1.1" 200 2184
+INFO 2025-09-14 16:17:32,358 basehttp 697967 134814905644736 "GET /api/v1/student/students/?client=[object+Object]&queryKey[]=students&signal=[object+AbortSignal] HTTP/1.1" 200 2184
+INFO 2025-09-14 16:17:56,783 basehttp 697967 134814905644736 "POST /api/token/ HTTP/1.1" 200 483
+WARNING 2025-09-14 16:17:56,790 log 697967 134814905644736 Not Found: /api/users/me/
+WARNING 2025-09-14 16:17:56,795 log 697967 134814897252032 Not Found: /api/core/user-permissions/
+WARNING 2025-09-14 16:17:56,795 basehttp 697967 134814905644736 "GET /api/users/me/ HTTP/1.1" 404 3688
+WARNING 2025-09-14 16:17:56,798 log 697967 134814938166976 Not Found: /api/users/me/
+WARNING 2025-09-14 16:17:56,799 basehttp 697967 134814938166976 "GET /api/users/me/ HTTP/1.1" 404 3688
+WARNING 2025-09-14 16:17:56,801 log 697967 134814922430144 Not Found: /api/core/user-permissions/
+WARNING 2025-09-14 16:17:56,801 basehttp 697967 134814897252032 "GET /api/core/user-permissions/ HTTP/1.1" 404 3727
+WARNING 2025-09-14 16:17:56,802 basehttp 697967 134814922430144 "GET /api/core/user-permissions/ HTTP/1.1" 404 3727
+WARNING 2025-09-14 16:18:00,299 log 697967 134814897252032 Forbidden: /api/v1/student/students/
+WARNING 2025-09-14 16:18:00,299 basehttp 697967 134814897252032 "GET /api/v1/student/students/?client=[object+Object]&queryKey[]=students&signal=[object+AbortSignal] HTTP/1.1" 403 63
+WARNING 2025-09-14 16:18:00,300 log 697967 134814938166976 Forbidden: /api/v1/student/students/
+WARNING 2025-09-14 16:18:00,300 basehttp 697967 134814938166976 "GET /api/v1/student/students/?client=[object+Object]&queryKey[]=students&signal=[object+AbortSignal] HTTP/1.1" 403 63
+WARNING 2025-09-14 16:18:01,316 log 697967 134814938166976 Forbidden: /api/v1/student/students/
+WARNING 2025-09-14 16:18:01,316 basehttp 697967 134814938166976 "GET /api/v1/student/students/?client=[object+Object]&queryKey[]=students&signal=[object+AbortSignal] HTTP/1.1" 403 63
+WARNING 2025-09-14 16:18:03,338 log 697967 134814938166976 Forbidden: /api/v1/student/classrooms/
+WARNING 2025-09-14 16:18:03,338 basehttp 697967 134814938166976 "GET /api/v1/student/classrooms/ HTTP/1.1" 403 63
+WARNING 2025-09-14 16:18:04,352 log 697967 134814938166976 Forbidden: /api/v1/student/classrooms/
+WARNING 2025-09-14 16:18:04,353 basehttp 697967 134814938166976 "GET /api/v1/student/classrooms/ HTTP/1.1" 403 63
+WARNING 2025-09-14 16:18:05,520 log 697967 134814938166976 Forbidden: /api/v1/student/enrollments/
+WARNING 2025-09-14 16:18:05,520 basehttp 697967 134814938166976 "GET /api/v1/student/enrollments/ HTTP/1.1" 403 63
+WARNING 2025-09-14 16:18:06,536 log 697967 134814938166976 Forbidden: /api/v1/student/enrollments/
+WARNING 2025-09-14 16:18:06,537 basehttp 697967 134814938166976 "GET /api/v1/student/enrollments/ HTTP/1.1" 403 63
+WARNING 2025-09-14 16:18:08,551 log 697967 134814938166976 Forbidden: /api/v1/student/enrollments/
+WARNING 2025-09-14 16:18:08,551 basehttp 697967 134814938166976 "GET /api/v1/student/enrollments/ HTTP/1.1" 403 63
+WARNING 2025-09-14 16:18:08,645 log 697967 134814938166976 Forbidden: /api/v1/student/medical-records/
+WARNING 2025-09-14 16:18:08,645 basehttp 697967 134814938166976 "GET /api/v1/student/medical-records/ HTTP/1.1" 403 63
+WARNING 2025-09-14 16:18:09,668 log 697967 134814938166976 Forbidden: /api/v1/student/medical-records/
+WARNING 2025-09-14 16:18:09,668 basehttp 697967 134814938166976 "GET /api/v1/student/medical-records/ HTTP/1.1" 403 63
+WARNING 2025-09-14 16:18:10,607 log 697967 134814938166976 Forbidden: /api/v1/student/classrooms/
+WARNING 2025-09-14 16:18:10,608 basehttp 697967 134814938166976 "GET /api/v1/student/classrooms/ HTTP/1.1" 403 63
+WARNING 2025-09-14 16:18:11,245 log 697967 134814897252032 Forbidden: /api/v1/student/students/
+WARNING 2025-09-14 16:18:11,246 log 697967 134814938166976 Forbidden: /api/v1/student/students/
+WARNING 2025-09-14 16:18:11,246 basehttp 697967 134814897252032 "GET /api/v1/student/students/?client=[object+Object]&queryKey[]=students&signal=[object+AbortSignal] HTTP/1.1" 403 63
+WARNING 2025-09-14 16:18:11,246 basehttp 697967 134814938166976 "GET /api/v1/student/students/?client=[object+Object]&queryKey[]=students&signal=[object+AbortSignal] HTTP/1.1" 403 63
+WARNING 2025-09-14 16:18:12,261 log 697967 134814938166976 Forbidden: /api/v1/student/students/
+WARNING 2025-09-14 16:18:12,261 basehttp 697967 134814938166976 "GET /api/v1/student/students/?client=[object+Object]&queryKey[]=students&signal=[object+AbortSignal] HTTP/1.1" 403 63
+WARNING 2025-09-14 16:18:14,278 log 697967 134814938166976 Forbidden: /api/v1/student/students/
+WARNING 2025-09-14 16:18:14,278 basehttp 697967 134814938166976 "GET /api/v1/student/students/?client=[object+Object]&queryKey[]=students&signal=[object+AbortSignal] HTTP/1.1" 403 63
+INFO 2025-09-14 16:18:21,246 basehttp 697967 134814938166976 "GET /admin/auth/group/ HTTP/1.1" 200 26262
+INFO 2025-09-14 16:18:21,284 basehttp 697967 134814938166976 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+WARNING 2025-09-14 16:18:21,369 log 697967 134814938166976 Not Found: /favicon.ico
+INFO 2025-09-14 16:18:23,498 basehttp 697967 134814897252032 "GET /admin/auth/group/2/change/ HTTP/1.1" 200 38843
+INFO 2025-09-14 16:18:23,526 basehttp 697967 134814897252032 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-09-14 16:18:25,312 basehttp 697967 134814897252032 "GET /admin/auth/user/ HTTP/1.1" 200 29978
+INFO 2025-09-14 16:18:25,343 basehttp 697967 134814938166976 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-09-14 16:18:27,613 basehttp 697967 134814897252032 "GET /admin/auth/user/2/change/ HTTP/1.1" 200 48435
+INFO 2025-09-14 16:18:27,642 basehttp 697967 134814938166976 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-09-14 16:19:06,207 basehttp 697967 134814897252032 "GET /admin/auth/group/ HTTP/1.1" 200 26262
+INFO 2025-09-14 16:19:06,238 basehttp 697967 134814938166976 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+WARNING 2025-09-14 16:19:06,256 log 697967 134814938166976 Not Found: /favicon.ico
+INFO 2025-09-14 16:19:07,459 basehttp 697967 134814897252032 "GET /admin/auth/group/1/change/ HTTP/1.1" 200 38823
+INFO 2025-09-14 16:19:07,488 basehttp 697967 134814897252032 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-09-14 16:22:22,877 autoreload 697967 134815459586176 /home/lumino/app/myapp/core/api/permissions.py changed, reloading.
+INFO 2025-09-14 16:22:23,647 autoreload 700315 130517500682368 Watching for file changes with StatReloader
+INFO 2025-09-14 16:23:15,453 autoreload 700315 130517500682368 /home/lumino/app/myapp/core/api/views.py changed, reloading.
+INFO 2025-09-14 16:23:16,141 autoreload 700721 127740184219776 Watching for file changes with StatReloader
+INFO 2025-09-14 16:31:42,166 autoreload 700721 127740184219776 /home/lumino/app/myapp/core/api/permissions.py changed, reloading.
+INFO 2025-09-14 16:31:42,840 autoreload 703803 127010095005824 Watching for file changes with StatReloader
+INFO 2025-09-14 16:31:54,252 autoreload 703803 127010095005824 /home/lumino/app/myapp/core/api/views.py changed, reloading.
+INFO 2025-09-14 16:31:54,829 autoreload 703906 134994390737024 Watching for file changes with StatReloader
+INFO 2025-09-14 16:32:18,304 autoreload 703906 134994390737024 /home/lumino/app/myapp/core/api/urls.py changed, reloading.
+INFO 2025-09-14 16:32:18,832 autoreload 704016 127260029116544 Watching for file changes with StatReloader
+INFO 2025-09-14 16:32:45,406 autoreload 704016 127260029116544 /home/lumino/app/myapp/myapp/urls.py changed, reloading.
+INFO 2025-09-14 16:32:45,955 autoreload 704433 139010052944000 Watching for file changes with StatReloader
+WARNING 2025-09-14 16:32:49,335 log 704433 139009532499648 Forbidden: /api/v1/student/students/
+WARNING 2025-09-14 16:32:49,335 basehttp 704433 139009532499648 "GET /api/v1/student/students/?client=[object+Object]&queryKey[]=students&signal=[object+AbortSignal] HTTP/1.1" 403 63
+WARNING 2025-09-14 16:32:49,903 log 704433 139009524106944 Not Found: /api/users/me/
+WARNING 2025-09-14 16:32:49,905 basehttp 704433 139009524106944 "GET /api/users/me/ HTTP/1.1" 404 3688
+WARNING 2025-09-14 16:32:49,908 log 704433 139009300887232 Not Found: /api/users/me/
+WARNING 2025-09-14 16:32:49,911 log 704433 139009292494528 Not Found: /api/core/user-permissions/
+WARNING 2025-09-14 16:32:49,912 basehttp 704433 139009292494528 "GET /api/core/user-permissions/ HTTP/1.1" 404 3727
+WARNING 2025-09-14 16:32:49,912 basehttp 704433 139009300887232 "GET /api/users/me/ HTTP/1.1" 404 3688
+WARNING 2025-09-14 16:32:49,912 log 704433 139009524106944 Not Found: /api/core/user-permissions/
+WARNING 2025-09-14 16:32:49,913 basehttp 704433 139009524106944 "GET /api/core/user-permissions/ HTTP/1.1" 404 3727
+WARNING 2025-09-14 16:32:49,919 log 704433 139009515714240 Forbidden: /api/v1/student/students/
+WARNING 2025-09-14 16:32:49,919 basehttp 704433 139009515714240 "GET /api/v1/student/students/?client=[object+Object]&queryKey[]=students&signal=[object+AbortSignal] HTTP/1.1" 403 63
+WARNING 2025-09-14 16:32:49,919 log 704433 139009532499648 Forbidden: /api/v1/student/students/
+WARNING 2025-09-14 16:32:49,920 basehttp 704433 139009532499648 "GET /api/v1/student/students/?client=[object+Object]&queryKey[]=students&signal=[object+AbortSignal] HTTP/1.1" 403 63
+WARNING 2025-09-14 16:32:50,933 log 704433 139009532499648 Forbidden: /api/v1/student/students/
+WARNING 2025-09-14 16:32:50,934 basehttp 704433 139009532499648 "GET /api/v1/student/students/?client=[object+Object]&queryKey[]=students&signal=[object+AbortSignal] HTTP/1.1" 403 63
+WARNING 2025-09-14 16:32:52,949 log 704433 139009532499648 Forbidden: /api/v1/student/students/
+WARNING 2025-09-14 16:32:52,950 basehttp 704433 139009532499648 "GET /api/v1/student/students/?client=[object+Object]&queryKey[]=students&signal=[object+AbortSignal] HTTP/1.1" 403 63
+WARNING 2025-09-14 16:32:53,037 log 704433 139009532499648 Forbidden: /api/v1/student/classrooms/
+WARNING 2025-09-14 16:32:53,037 basehttp 704433 139009532499648 "GET /api/v1/student/classrooms/ HTTP/1.1" 403 63
+WARNING 2025-09-14 16:32:53,519 log 704433 139009532499648 Forbidden: /api/v1/student/enrollments/
+WARNING 2025-09-14 16:32:53,519 basehttp 704433 139009532499648 "GET /api/v1/student/enrollments/ HTTP/1.1" 403 63
+WARNING 2025-09-14 16:32:54,537 log 704433 139009532499648 Forbidden: /api/v1/student/enrollments/
+WARNING 2025-09-14 16:32:54,537 basehttp 704433 139009532499648 "GET /api/v1/student/enrollments/ HTTP/1.1" 403 63
+WARNING 2025-09-14 16:32:54,566 log 704433 139009532499648 Forbidden: /api/v1/student/evaluations/
+WARNING 2025-09-14 16:32:54,566 basehttp 704433 139009532499648 "GET /api/v1/student/evaluations/ HTTP/1.1" 403 63
+WARNING 2025-09-14 16:32:54,919 log 704433 139009532499648 Forbidden: /api/v1/student/medical-records/
+WARNING 2025-09-14 16:32:54,919 basehttp 704433 139009532499648 "GET /api/v1/student/medical-records/ HTTP/1.1" 403 63
+WARNING 2025-09-14 16:32:55,237 log 704433 139009532499648 Forbidden: /api/v1/student/documents/
+WARNING 2025-09-14 16:32:55,237 basehttp 704433 139009532499648 "GET /api/v1/student/documents/ HTTP/1.1" 403 63
+WARNING 2025-09-14 16:32:56,251 log 704433 139009532499648 Forbidden: /api/v1/student/documents/
+WARNING 2025-09-14 16:32:56,252 basehttp 704433 139009532499648 "GET /api/v1/student/documents/ HTTP/1.1" 403 63
+WARNING 2025-09-14 16:32:57,646 log 704433 139009515714240 Forbidden: /api/v1/finance/invoices/
+WARNING 2025-09-14 16:32:57,646 log 704433 139009532499648 Forbidden: /api/v1/finance/invoices/
+WARNING 2025-09-14 16:32:57,646 basehttp 704433 139009532499648 "GET /api/v1/finance/invoices/?client=[object+Object]&queryKey[]=invoices&signal=[object+AbortSignal] HTTP/1.1" 403 63
+WARNING 2025-09-14 16:32:57,647 basehttp 704433 139009515714240 "GET /api/v1/finance/invoices/?client=[object+Object]&queryKey[]=invoices&signal=[object+AbortSignal] HTTP/1.1" 403 63
+WARNING 2025-09-14 16:32:58,093 log 704433 139009515714240 Forbidden: /api/v1/finance/payments/
+WARNING 2025-09-14 16:32:58,093 basehttp 704433 139009515714240 "GET /api/v1/finance/payments/ HTTP/1.1" 403 63
+WARNING 2025-09-14 16:32:59,112 log 704433 139009515714240 Forbidden: /api/v1/finance/payments/
+WARNING 2025-09-14 16:32:59,113 basehttp 704433 139009515714240 "GET /api/v1/finance/payments/ HTTP/1.1" 403 63
+INFO 2025-09-14 16:33:02,078 basehttp 704433 139009515714240 "POST /api/token/ HTTP/1.1" 200 483
+WARNING 2025-09-14 16:33:02,087 log 704433 139009515714240 Not Found: /api/users/me/
+WARNING 2025-09-14 16:33:02,089 log 704433 139009532499648 Not Found: /api/core/user-permissions/
+WARNING 2025-09-14 16:33:02,089 basehttp 704433 139009532499648 "GET /api/core/user-permissions/ HTTP/1.1" 404 3727
+WARNING 2025-09-14 16:33:02,089 basehttp 704433 139009515714240 "GET /api/users/me/ HTTP/1.1" 404 3688
+WARNING 2025-09-14 16:33:02,094 log 704433 139009532499648 Not Found: /api/core/user-permissions/
+WARNING 2025-09-14 16:33:02,096 log 704433 139009515714240 Not Found: /api/users/me/
+WARNING 2025-09-14 16:33:02,096 basehttp 704433 139009532499648 "GET /api/core/user-permissions/ HTTP/1.1" 404 3727
+WARNING 2025-09-14 16:33:02,096 basehttp 704433 139009515714240 "GET /api/users/me/ HTTP/1.1" 404 3688
+INFO 2025-09-14 16:33:03,888 basehttp 704433 139009532499648 "GET /api/v1/hr/staff-attendances/ HTTP/1.1" 200 192
+INFO 2025-09-14 16:33:04,352 basehttp 704433 139009532499648 "GET /api/v1/hr/vacations/ HTTP/1.1" 200 2
+INFO 2025-09-14 16:33:04,977 basehttp 704433 139009532499648 "GET /api/v1/hr/staff-attendances/ HTTP/1.1" 200 192
+WARNING 2025-09-14 16:33:06,951 log 704433 139009532499648 Forbidden: /api/v1/finance/payments/
+WARNING 2025-09-14 16:33:06,952 basehttp 704433 139009532499648 "GET /api/v1/finance/payments/ HTTP/1.1" 403 63
+WARNING 2025-09-14 16:33:07,302 log 704433 139009515714240 Forbidden: /api/v1/finance/invoices/
+WARNING 2025-09-14 16:33:07,302 log 704433 139009532499648 Forbidden: /api/v1/finance/invoices/
+WARNING 2025-09-14 16:33:07,302 basehttp 704433 139009515714240 "GET /api/v1/finance/invoices/?client=[object+Object]&queryKey[]=invoices&signal=[object+AbortSignal] HTTP/1.1" 403 63
+WARNING 2025-09-14 16:33:07,303 basehttp 704433 139009532499648 "GET /api/v1/finance/invoices/?client=[object+Object]&queryKey[]=invoices&signal=[object+AbortSignal] HTTP/1.1" 403 63
+WARNING 2025-09-14 16:33:08,317 log 704433 139009532499648 Forbidden: /api/v1/finance/invoices/
+WARNING 2025-09-14 16:33:08,318 basehttp 704433 139009532499648 "GET /api/v1/finance/invoices/?client=[object+Object]&queryKey[]=invoices&signal=[object+AbortSignal] HTTP/1.1" 403 63
+INFO 2025-09-14 16:33:10,204 basehttp 704433 139009532499648 "GET /api/v1/hr/evaluations/ HTTP/1.1" 200 2
+INFO 2025-09-14 16:33:10,797 basehttp 704433 139009532499648 "GET /api/v1/hr/vacations/ HTTP/1.1" 200 2
+INFO 2025-09-14 16:33:11,204 basehttp 704433 139009532499648 "GET /api/v1/hr/staff-attendances/ HTTP/1.1" 200 192
+INFO 2025-09-14 16:33:12,047 basehttp 704433 139009515714240 "GET /api/v1/hr/staff/?client=[object+Object]&queryKey[]=staff&signal=[object+AbortSignal] HTTP/1.1" 200 678
+INFO 2025-09-14 16:33:12,047 basehttp 704433 139009532499648 "GET /api/v1/hr/staff/?client=[object+Object]&queryKey[]=staff&signal=[object+AbortSignal] HTTP/1.1" 200 678
+WARNING 2025-09-14 16:33:13,455 log 704433 139009515714240 Forbidden: /api/v1/student/students/
+WARNING 2025-09-14 16:33:13,455 log 704433 139009532499648 Forbidden: /api/v1/student/students/
+WARNING 2025-09-14 16:33:13,455 basehttp 704433 139009515714240 "GET /api/v1/student/students/?client=[object+Object]&queryKey[]=students&signal=[object+AbortSignal] HTTP/1.1" 403 63
+WARNING 2025-09-14 16:33:13,455 basehttp 704433 139009532499648 "GET /api/v1/student/students/?client=[object+Object]&queryKey[]=students&signal=[object+AbortSignal] HTTP/1.1" 403 63
+WARNING 2025-09-14 16:33:14,469 log 704433 139009532499648 Forbidden: /api/v1/student/students/
+WARNING 2025-09-14 16:33:14,469 basehttp 704433 139009532499648 "GET /api/v1/student/students/?client=[object+Object]&queryKey[]=students&signal=[object+AbortSignal] HTTP/1.1" 403 63
+WARNING 2025-09-14 16:33:14,843 log 704433 139009532499648 Forbidden: /api/v1/student/enrollments/
+WARNING 2025-09-14 16:33:14,843 basehttp 704433 139009532499648 "GET /api/v1/student/enrollments/ HTTP/1.1" 403 63
+WARNING 2025-09-14 16:33:15,873 log 704433 139009532499648 Forbidden: /api/v1/student/attendances/
+WARNING 2025-09-14 16:33:15,873 basehttp 704433 139009532499648 "GET /api/v1/student/attendances/ HTTP/1.1" 403 63
+WARNING 2025-09-14 16:33:16,246 log 704433 139009532499648 Forbidden: /api/v1/student/evaluations/
+WARNING 2025-09-14 16:33:16,246 basehttp 704433 139009532499648 "GET /api/v1/student/evaluations/ HTTP/1.1" 403 63
+WARNING 2025-09-14 16:33:16,580 log 704433 139009532499648 Forbidden: /api/v1/student/medical-records/
+WARNING 2025-09-14 16:33:16,580 basehttp 704433 139009532499648 "GET /api/v1/student/medical-records/ HTTP/1.1" 403 63
+WARNING 2025-09-14 16:33:16,837 log 704433 139009532499648 Forbidden: /api/v1/student/documents/
+WARNING 2025-09-14 16:33:16,837 basehttp 704433 139009532499648 "GET /api/v1/student/documents/ HTTP/1.1" 403 63
+WARNING 2025-09-14 16:33:17,849 log 704433 139009532499648 Forbidden: /api/v1/student/documents/
+WARNING 2025-09-14 16:33:17,850 basehttp 704433 139009532499648 "GET /api/v1/student/documents/ HTTP/1.1" 403 63
+WARNING 2025-09-14 16:33:23,597 log 704433 139009532499648 Forbidden: /api/v1/student/documents/
+WARNING 2025-09-14 16:33:23,597 basehttp 704433 139009532499648 "GET /api/v1/student/documents/ HTTP/1.1" 403 63
+INFO 2025-09-14 16:33:30,193 basehttp 704433 139009532499648 "POST /api/token/ HTTP/1.1" 200 483
+WARNING 2025-09-14 16:33:30,199 log 704433 139009532499648 Not Found: /api/users/me/
+WARNING 2025-09-14 16:33:30,202 log 704433 139009515714240 Not Found: /api/core/user-permissions/
+WARNING 2025-09-14 16:33:30,204 log 704433 139009292494528 Not Found: /api/users/me/
+WARNING 2025-09-14 16:33:30,205 log 704433 139009524106944 Not Found: /api/core/user-permissions/
+WARNING 2025-09-14 16:33:30,206 basehttp 704433 139009515714240 "GET /api/core/user-permissions/ HTTP/1.1" 404 3727
+WARNING 2025-09-14 16:33:30,206 basehttp 704433 139009292494528 "GET /api/users/me/ HTTP/1.1" 404 3688
+WARNING 2025-09-14 16:33:30,206 basehttp 704433 139009532499648 "GET /api/users/me/ HTTP/1.1" 404 3688
+WARNING 2025-09-14 16:33:30,206 basehttp 704433 139009524106944 "GET /api/core/user-permissions/ HTTP/1.1" 404 3727
+WARNING 2025-09-14 16:33:32,952 log 704433 139009532499648 Forbidden: /api/v1/finance/invoices/
+WARNING 2025-09-14 16:33:32,952 basehttp 704433 139009532499648 "GET /api/v1/finance/invoices/?client=[object+Object]&queryKey[]=invoices&signal=[object+AbortSignal] HTTP/1.1" 403 63
+WARNING 2025-09-14 16:33:32,953 log 704433 139009524106944 Forbidden: /api/v1/finance/invoices/
+WARNING 2025-09-14 16:33:32,953 basehttp 704433 139009524106944 "GET /api/v1/finance/invoices/?client=[object+Object]&queryKey[]=invoices&signal=[object+AbortSignal] HTTP/1.1" 403 63
+WARNING 2025-09-14 16:33:34,021 log 704433 139009524106944 Forbidden: /api/v1/finance/invoices/
+WARNING 2025-09-14 16:33:34,022 basehttp 704433 139009524106944 "GET /api/v1/finance/invoices/?client=[object+Object]&queryKey[]=invoices&signal=[object+AbortSignal] HTTP/1.1" 403 63
+WARNING 2025-09-14 16:33:34,293 log 704433 139009524106944 Forbidden: /api/v1/finance/payments/
+WARNING 2025-09-14 16:33:34,293 basehttp 704433 139009524106944 "GET /api/v1/finance/payments/ HTTP/1.1" 403 63
+WARNING 2025-09-14 16:33:34,782 log 704433 139009524106944 Forbidden: /api/v1/finance/expenses/
+WARNING 2025-09-14 16:33:34,782 basehttp 704433 139009524106944 "GET /api/v1/finance/expenses/ HTTP/1.1" 403 63
+WARNING 2025-09-14 16:33:35,203 log 704433 139009524106944 Forbidden: /api/v1/finance/purchase-orders/
+WARNING 2025-09-14 16:33:35,203 basehttp 704433 139009524106944 "GET /api/v1/finance/purchase-orders/ HTTP/1.1" 403 63
+WARNING 2025-09-14 16:33:35,554 log 704433 139009524106944 Forbidden: /api/v1/finance/salary-payments/
+WARNING 2025-09-14 16:33:35,555 basehttp 704433 139009524106944 "GET /api/v1/finance/salary-payments/ HTTP/1.1" 403 63
+WARNING 2025-09-14 16:33:35,946 log 704433 139009524106944 Forbidden: /api/v1/finance/treasuries/
+WARNING 2025-09-14 16:33:35,946 basehttp 704433 139009524106944 "GET /api/v1/finance/treasuries/ HTTP/1.1" 403 63
+INFO 2025-09-14 16:33:36,885 basehttp 704433 139009524106944 "GET /api/v1/hr/staff/?client=[object+Object]&queryKey[]=staff&signal=[object+AbortSignal] HTTP/1.1" 200 678
+INFO 2025-09-14 16:33:36,888 basehttp 704433 139009532499648 "GET /api/v1/hr/staff/?client=[object+Object]&queryKey[]=staff&signal=[object+AbortSignal] HTTP/1.1" 200 678
+INFO 2025-09-14 16:33:37,243 basehttp 704433 139009532499648 "GET /api/v1/hr/staff-attendances/ HTTP/1.1" 200 192
+INFO 2025-09-14 16:33:38,716 basehttp 704433 139009532499648 "GET /api/v1/hr/documents/ HTTP/1.1" 200 2
+INFO 2025-09-14 16:33:38,990 basehttp 704433 139009532499648 "GET /api/v1/hr/vacations/ HTTP/1.1" 200 2
+WARNING 2025-09-14 16:34:06,943 log 704433 139009292494528 Not Found: /api/core/user-permissions/
+WARNING 2025-09-14 16:34:06,944 log 704433 139009524106944 Not Found: /api/core/users/me/
+WARNING 2025-09-14 16:34:06,946 log 704433 139009515714240 Not Found: /api/core/users/me/
+WARNING 2025-09-14 16:34:06,947 basehttp 704433 139009292494528 "GET /api/core/user-permissions/ HTTP/1.1" 404 3727
+WARNING 2025-09-14 16:34:06,947 basehttp 704433 139009524106944 "GET /api/core/users/me/ HTTP/1.1" 404 3703
+WARNING 2025-09-14 16:34:06,948 basehttp 704433 139009515714240 "GET /api/core/users/me/ HTTP/1.1" 404 3703
+WARNING 2025-09-14 16:34:06,950 log 704433 139009300887232 Not Found: /api/core/user-permissions/
+WARNING 2025-09-14 16:34:06,951 basehttp 704433 139009300887232 "GET /api/core/user-permissions/ HTTP/1.1" 404 3727
+INFO 2025-09-14 16:34:06,959 basehttp 704433 139009532499648 "GET /api/v1/hr/vacations/ HTTP/1.1" 200 2
+INFO 2025-09-14 16:35:34,510 basehttp 704433 139009532499648 "GET /api/v1/hr/vacations/ HTTP/1.1" 200 2
+WARNING 2025-09-14 16:36:33,407 log 704433 139009300887232 Not Found: /api/core/users/me/
+WARNING 2025-09-14 16:36:33,409 basehttp 704433 139009300887232 "GET /api/core/users/me/ HTTP/1.1" 404 3703
+WARNING 2025-09-14 16:36:33,411 log 704433 139009515714240 Not Found: /api/core/users/me/
+WARNING 2025-09-14 16:36:33,413 log 704433 139009524106944 Not Found: /api/core/user-permissions/
+WARNING 2025-09-14 16:36:33,414 basehttp 704433 139009515714240 "GET /api/core/users/me/ HTTP/1.1" 404 3703
+WARNING 2025-09-14 16:36:33,416 log 704433 139009292494528 Not Found: /api/core/user-permissions/
+WARNING 2025-09-14 16:36:33,417 basehttp 704433 139009292494528 "GET /api/core/user-permissions/ HTTP/1.1" 404 3727
+WARNING 2025-09-14 16:36:33,419 basehttp 704433 139009524106944 "GET /api/core/user-permissions/ HTTP/1.1" 404 3727
+INFO 2025-09-14 16:36:33,420 basehttp 704433 139009532499648 "GET /api/v1/hr/vacations/ HTTP/1.1" 200 2
+WARNING 2025-09-14 16:36:34,124 log 704433 139009524106944 Not Found: /api/core/users/me/
+WARNING 2025-09-14 16:36:34,125 log 704433 139009292494528 Not Found: /api/core/user-permissions/
+WARNING 2025-09-14 16:36:34,125 basehttp 704433 139009524106944 "GET /api/core/users/me/ HTTP/1.1" 404 3703
+WARNING 2025-09-14 16:36:34,128 basehttp 704433 139009292494528 "GET /api/core/user-permissions/ HTTP/1.1" 404 3727
+WARNING 2025-09-14 16:36:34,128 log 704433 139009515714240 Not Found: /api/core/users/me/
+WARNING 2025-09-14 16:36:34,129 basehttp 704433 139009515714240 "GET /api/core/users/me/ HTTP/1.1" 404 3703
+WARNING 2025-09-14 16:36:34,130 log 704433 139009300887232 Not Found: /api/core/user-permissions/
+WARNING 2025-09-14 16:36:34,131 basehttp 704433 139009300887232 "GET /api/core/user-permissions/ HTTP/1.1" 404 3727
+INFO 2025-09-14 16:36:34,138 basehttp 704433 139009532499648 "GET /api/v1/hr/vacations/ HTTP/1.1" 200 2
+WARNING 2025-09-14 16:36:36,235 log 704433 139009532499648 Forbidden: /api/v1/reporting/
+WARNING 2025-09-14 16:36:36,235 basehttp 704433 139009532499648 "GET /api/v1/reporting/ HTTP/1.1" 403 63
+WARNING 2025-09-14 16:36:37,317 log 704433 139009532499648 Forbidden: /api/v1/reporting/
+WARNING 2025-09-14 16:36:37,317 basehttp 704433 139009532499648 "GET /api/v1/reporting/ HTTP/1.1" 403 63
+INFO 2025-09-14 16:36:41,800 basehttp 704433 139009532499648 "POST /api/token/ HTTP/1.1" 200 483
+WARNING 2025-09-14 16:36:41,806 log 704433 139009532499648 Not Found: /api/core/users/me/
+WARNING 2025-09-14 16:36:41,808 log 704433 139009300887232 Not Found: /api/core/user-permissions/
+WARNING 2025-09-14 16:36:41,810 basehttp 704433 139009300887232 "GET /api/core/user-permissions/ HTTP/1.1" 404 3727
+WARNING 2025-09-14 16:36:41,810 basehttp 704433 139009532499648 "GET /api/core/users/me/ HTTP/1.1" 404 3703
+WARNING 2025-09-14 16:36:41,812 log 704433 139009292494528 Not Found: /api/core/user-permissions/
+WARNING 2025-09-14 16:36:41,814 log 704433 139009515714240 Not Found: /api/core/users/me/
+WARNING 2025-09-14 16:36:41,815 basehttp 704433 139009515714240 "GET /api/core/users/me/ HTTP/1.1" 404 3703
+WARNING 2025-09-14 16:36:41,815 basehttp 704433 139009292494528 "GET /api/core/user-permissions/ HTTP/1.1" 404 3727
+INFO 2025-09-14 16:36:42,913 basehttp 704433 139009292494528 "GET /api/v1/reporting/ HTTP/1.1" 200 31263
+WARNING 2025-09-14 16:36:45,530 log 704433 139009515714240 Not Found: /api/core/users/me/
+WARNING 2025-09-14 16:36:45,533 log 704433 139009300887232 Not Found: /api/core/user-permissions/
+WARNING 2025-09-14 16:36:45,533 basehttp 704433 139009515714240 "GET /api/core/users/me/ HTTP/1.1" 404 3703
+WARNING 2025-09-14 16:36:45,534 basehttp 704433 139009300887232 "GET /api/core/user-permissions/ HTTP/1.1" 404 3727
+WARNING 2025-09-14 16:36:45,537 log 704433 139009292494528 Not Found: /api/core/users/me/
+WARNING 2025-09-14 16:36:45,539 log 704433 139009532499648 Not Found: /api/core/user-permissions/
+WARNING 2025-09-14 16:36:45,539 basehttp 704433 139009532499648 "GET /api/core/user-permissions/ HTTP/1.1" 404 3727
+WARNING 2025-09-14 16:36:45,540 basehttp 704433 139009292494528 "GET /api/core/users/me/ HTTP/1.1" 404 3703
+INFO 2025-09-14 16:36:54,155 basehttp 704433 139009292494528 "POST /api/token/ HTTP/1.1" 200 483
+WARNING 2025-09-14 16:36:54,163 log 704433 139009532499648 Not Found: /api/core/user-permissions/
+WARNING 2025-09-14 16:36:54,166 log 704433 139009292494528 Not Found: /api/core/users/me/
+WARNING 2025-09-14 16:36:54,167 log 704433 139009300887232 Not Found: /api/core/users/me/
+WARNING 2025-09-14 16:36:54,167 basehttp 704433 139009532499648 "GET /api/core/user-permissions/ HTTP/1.1" 404 3727
+WARNING 2025-09-14 16:36:54,169 log 704433 139009515714240 Not Found: /api/core/user-permissions/
+WARNING 2025-09-14 16:36:54,169 basehttp 704433 139009292494528 "GET /api/core/users/me/ HTTP/1.1" 404 3703
+WARNING 2025-09-14 16:36:54,169 basehttp 704433 139009300887232 "GET /api/core/users/me/ HTTP/1.1" 404 3703
+WARNING 2025-09-14 16:36:54,170 basehttp 704433 139009515714240 "GET /api/core/user-permissions/ HTTP/1.1" 404 3727
+WARNING 2025-09-14 16:36:55,883 log 704433 139009515714240 Forbidden: /api/v1/reporting/
+WARNING 2025-09-14 16:36:55,884 basehttp 704433 139009515714240 "GET /api/v1/reporting/ HTTP/1.1" 403 63
+WARNING 2025-09-14 16:36:56,903 log 704433 139009515714240 Forbidden: /api/v1/reporting/
+WARNING 2025-09-14 16:36:56,903 basehttp 704433 139009515714240 "GET /api/v1/reporting/ HTTP/1.1" 403 63
+WARNING 2025-09-14 16:37:08,068 log 704433 139009515714240 Forbidden: /api/v1/reporting/
+WARNING 2025-09-14 16:37:08,069 basehttp 704433 139009515714240 "GET /api/v1/reporting/ HTTP/1.1" 403 63
+INFO 2025-09-14 16:42:04,047 autoreload 704433 139010052944000 /home/lumino/app/myapp/core/api/permissions.py changed, reloading.
+INFO 2025-09-14 16:42:04,686 autoreload 708066 139670996574336 Watching for file changes with StatReloader
+INFO 2025-09-14 16:42:14,086 autoreload 708066 139670996574336 /home/lumino/app/myapp/core/api/views.py changed, reloading.
+INFO 2025-09-14 16:42:14,703 autoreload 708159 126264422240384 Watching for file changes with StatReloader
+INFO 2025-09-14 16:42:24,140 autoreload 708159 126264422240384 /home/lumino/app/myapp/core/api/urls.py changed, reloading.
+INFO 2025-09-14 16:42:24,707 autoreload 708255 132261047722112 Watching for file changes with StatReloader
+INFO 2025-09-14 16:42:51,328 autoreload 708255 132261047722112 /home/lumino/app/myapp/inventory/api/views.py changed, reloading.
+INFO 2025-09-14 16:42:51,859 autoreload 708644 128674048270464 Watching for file changes with StatReloader
+INFO 2025-09-14 16:42:54,178 autoreload 708644 128674048270464 /home/lumino/app/myapp/inventory/api/views.py changed, reloading.
+INFO 2025-09-14 16:42:54,739 autoreload 708716 138780253786240 Watching for file changes with StatReloader
+INFO 2025-09-14 16:43:46,619 autoreload 708716 138780253786240 /home/lumino/app/myapp/finance/api/views.py changed, reloading.
+INFO 2025-09-14 16:43:47,201 autoreload 709143 128579115892864 Watching for file changes with StatReloader
+INFO 2025-09-14 16:44:01,672 autoreload 709143 128579115892864 /home/lumino/app/myapp/hr/api/views.py changed, reloading.
+INFO 2025-09-14 16:44:02,270 autoreload 709255 128849818595456 Watching for file changes with StatReloader
+INFO 2025-09-14 16:44:19,789 autoreload 709255 128849818595456 /home/lumino/app/myapp/student/api/views.py changed, reloading.
+INFO 2025-09-14 16:44:20,354 autoreload 709361 131481572282496 Watching for file changes with StatReloader
+WARNING 2025-09-14 16:45:01,912 log 709361 131480944629440 Not Found: /api/core/user-permissions/
+WARNING 2025-09-14 16:45:01,913 log 709361 131481043199680 Not Found: /api/core/users/me/
+WARNING 2025-09-14 16:45:01,914 log 709361 131480953022144 Not Found: /api/core/users/me/
+WARNING 2025-09-14 16:45:01,916 log 709361 131480961414848 Not Found: /api/core/user-permissions/
+WARNING 2025-09-14 16:45:01,917 basehttp 709361 131481043199680 "GET /api/core/users/me/ HTTP/1.1" 404 3703
+WARNING 2025-09-14 16:45:01,917 basehttp 709361 131480953022144 "GET /api/core/users/me/ HTTP/1.1" 404 3703
+WARNING 2025-09-14 16:45:01,916 basehttp 709361 131480944629440 "GET /api/core/user-permissions/ HTTP/1.1" 404 3727
+WARNING 2025-09-14 16:45:01,918 basehttp 709361 131480961414848 "GET /api/core/user-permissions/ HTTP/1.1" 404 3727
+WARNING 2025-09-14 16:45:01,929 log 709361 131481051592384 Forbidden: /api/v1/reporting/
+WARNING 2025-09-14 16:45:01,929 basehttp 709361 131481051592384 "GET /api/v1/reporting/ HTTP/1.1" 403 63
+INFO 2025-09-14 16:45:28,276 autoreload 709921 127374759477376 Watching for file changes with StatReloader
+WARNING 2025-09-14 16:45:30,954 log 709921 127374205417152 Not Found: /api/core/user-permissions/
+WARNING 2025-09-14 16:45:30,957 log 709921 127374230595264 Not Found: /api/core/users/me/
+WARNING 2025-09-14 16:45:30,959 log 709921 127374213809856 Not Found: /api/core/user-permissions/
+WARNING 2025-09-14 16:45:30,959 basehttp 709921 127374205417152 "GET /api/core/user-permissions/ HTTP/1.1" 404 3727
+WARNING 2025-09-14 16:45:30,961 log 709921 127374222202560 Not Found: /api/core/users/me/
+WARNING 2025-09-14 16:45:30,962 basehttp 709921 127374213809856 "GET /api/core/user-permissions/ HTTP/1.1" 404 3727
+WARNING 2025-09-14 16:45:30,962 basehttp 709921 127374230595264 "GET /api/core/users/me/ HTTP/1.1" 404 3703
+WARNING 2025-09-14 16:45:30,962 basehttp 709921 127374222202560 "GET /api/core/users/me/ HTTP/1.1" 404 3703
+WARNING 2025-09-14 16:45:30,973 log 709921 127374238987968 Forbidden: /api/v1/reporting/
+WARNING 2025-09-14 16:45:30,973 basehttp 709921 127374238987968 "GET /api/v1/reporting/ HTTP/1.1" 403 63
+WARNING 2025-09-14 16:45:31,993 log 709921 127374238987968 Forbidden: /api/v1/reporting/
+WARNING 2025-09-14 16:45:31,993 basehttp 709921 127374238987968 "GET /api/v1/reporting/ HTTP/1.1" 403 63
+WARNING 2025-09-14 16:45:34,012 log 709921 127374238987968 Forbidden: /api/v1/reporting/
+WARNING 2025-09-14 16:45:34,012 basehttp 709921 127374238987968 "GET /api/v1/reporting/ HTTP/1.1" 403 63
+WARNING 2025-09-14 16:45:34,633 log 709921 127374230595264 Not Found: /api/core/users/me/
+WARNING 2025-09-14 16:45:34,638 log 709921 127374222202560 Not Found: /api/core/users/me/
+WARNING 2025-09-14 16:45:34,639 log 709921 127374203320000 Not Found: /api/core/user-permissions/
+WARNING 2025-09-14 16:45:34,641 log 709921 127374213809856 Not Found: /api/core/user-permissions/
+WARNING 2025-09-14 16:45:34,641 basehttp 709921 127374203320000 "GET /api/core/user-permissions/ HTTP/1.1" 404 3727
+WARNING 2025-09-14 16:45:34,642 basehttp 709921 127374230595264 "GET /api/core/users/me/ HTTP/1.1" 404 3703
+WARNING 2025-09-14 16:45:34,642 basehttp 709921 127374222202560 "GET /api/core/users/me/ HTTP/1.1" 404 3703
+WARNING 2025-09-14 16:45:34,642 basehttp 709921 127374213809856 "GET /api/core/user-permissions/ HTTP/1.1" 404 3727
+WARNING 2025-09-14 16:45:34,648 log 709921 127374238987968 Forbidden: /api/v1/reporting/
+WARNING 2025-09-14 16:45:34,648 basehttp 709921 127374238987968 "GET /api/v1/reporting/ HTTP/1.1" 403 63
+WARNING 2025-09-14 16:45:35,666 log 709921 127374238987968 Forbidden: /api/v1/reporting/
+WARNING 2025-09-14 16:45:35,666 basehttp 709921 127374238987968 "GET /api/v1/reporting/ HTTP/1.1" 403 63
+WARNING 2025-09-14 16:45:37,682 log 709921 127374238987968 Forbidden: /api/v1/reporting/
+WARNING 2025-09-14 16:45:37,682 basehttp 709921 127374238987968 "GET /api/v1/reporting/ HTTP/1.1" 403 63
+INFO 2025-09-14 16:45:43,635 basehttp 709921 127374238987968 "POST /api/token/ HTTP/1.1" 200 483
+WARNING 2025-09-14 16:45:43,645 log 709921 127374238987968 Not Found: /api/core/users/me/
+WARNING 2025-09-14 16:45:43,647 log 709921 127374222202560 Not Found: /api/core/user-permissions/
+WARNING 2025-09-14 16:45:43,649 log 709921 127374213809856 Not Found: /api/core/users/me/
+WARNING 2025-09-14 16:45:43,650 log 709921 127374230595264 Not Found: /api/core/user-permissions/
+WARNING 2025-09-14 16:45:43,651 basehttp 709921 127374222202560 "GET /api/core/user-permissions/ HTTP/1.1" 404 3727
+WARNING 2025-09-14 16:45:43,651 basehttp 709921 127374238987968 "GET /api/core/users/me/ HTTP/1.1" 404 3703
+WARNING 2025-09-14 16:45:43,651 basehttp 709921 127374213809856 "GET /api/core/users/me/ HTTP/1.1" 404 3703
+WARNING 2025-09-14 16:45:43,652 basehttp 709921 127374230595264 "GET /api/core/user-permissions/ HTTP/1.1" 404 3727
+INFO 2025-09-14 16:45:45,166 basehttp 709921 127374238987968 "GET /api/v1/reporting/ HTTP/1.1" 200 31263
+WARNING 2025-09-14 16:46:43,428 log 709921 127374238987968 Not Found: /api/core/users/me/
+WARNING 2025-09-14 16:46:43,430 log 709921 127374230595264 Not Found: /api/core/user-permissions/
+WARNING 2025-09-14 16:46:43,431 basehttp 709921 127374230595264 "GET /api/core/user-permissions/ HTTP/1.1" 404 3727
+WARNING 2025-09-14 16:46:43,431 basehttp 709921 127374238987968 "GET /api/core/users/me/ HTTP/1.1" 404 3703
+WARNING 2025-09-14 16:46:43,434 log 709921 127374222202560 Not Found: /api/core/users/me/
+WARNING 2025-09-14 16:46:43,436 log 709921 127374238987968 Not Found: /api/core/user-permissions/
+WARNING 2025-09-14 16:46:43,436 basehttp 709921 127374222202560 "GET /api/core/users/me/ HTTP/1.1" 404 3703
+WARNING 2025-09-14 16:46:43,436 basehttp 709921 127374238987968 "GET /api/core/user-permissions/ HTTP/1.1" 404 3727
+INFO 2025-09-14 16:46:43,452 basehttp 709921 127374213809856 "GET /api/v1/reporting/ HTTP/1.1" 200 31263
+INFO 2025-09-14 16:46:54,294 basehttp 709921 127374238987968 "GET /api/v1/student/students/?client=[object+Object]&queryKey[]=students&signal=[object+AbortSignal] HTTP/1.1" 200 2184
+INFO 2025-09-14 16:46:54,294 basehttp 709921 127374213809856 "GET /api/v1/student/students/?client=[object+Object]&queryKey[]=students&signal=[object+AbortSignal] HTTP/1.1" 200 2184
+INFO 2025-09-14 16:46:55,011 basehttp 709921 127374213809856 "GET /api/v1/student/classrooms/ HTTP/1.1" 200 92
+INFO 2025-09-14 16:46:55,312 basehttp 709921 127374213809856 "GET /api/v1/student/enrollments/ HTTP/1.1" 200 2
+INFO 2025-09-14 16:46:55,736 basehttp 709921 127374213809856 "GET /api/v1/student/evaluations/ HTTP/1.1" 200 2
+INFO 2025-09-14 16:46:56,717 basehttp 709921 127374213809856 "GET /api/v1/hr/staff/?client=[object+Object]&queryKey[]=staff&signal=[object+AbortSignal] HTTP/1.1" 200 678
+INFO 2025-09-14 16:46:56,717 basehttp 709921 127374238987968 "GET /api/v1/hr/staff/?client=[object+Object]&queryKey[]=staff&signal=[object+AbortSignal] HTTP/1.1" 200 678
+INFO 2025-09-14 16:46:57,311 basehttp 709921 127374238987968 "GET /api/v1/hr/documents/ HTTP/1.1" 200 2
+INFO 2025-09-14 16:46:57,872 basehttp 709921 127374238987968 "GET /api/v1/hr/staff-attendances/ HTTP/1.1" 200 192
+INFO 2025-09-14 16:47:02,069 basehttp 709921 127374238987968 "POST /api/token/ HTTP/1.1" 200 483
+WARNING 2025-09-14 16:47:02,078 log 709921 127374238987968 Not Found: /api/core/users/me/
+WARNING 2025-09-14 16:47:02,081 log 709921 127374230595264 Not Found: /api/core/user-permissions/
+WARNING 2025-09-14 16:47:02,083 log 709921 127374222202560 Not Found: /api/core/users/me/
+WARNING 2025-09-14 16:47:02,084 log 709921 127374213809856 Not Found: /api/core/user-permissions/
+WARNING 2025-09-14 16:47:02,084 basehttp 709921 127374238987968 "GET /api/core/users/me/ HTTP/1.1" 404 3703
+WARNING 2025-09-14 16:47:02,084 basehttp 709921 127374230595264 "GET /api/core/user-permissions/ HTTP/1.1" 404 3727
+WARNING 2025-09-14 16:47:02,085 basehttp 709921 127374222202560 "GET /api/core/users/me/ HTTP/1.1" 404 3703
+WARNING 2025-09-14 16:47:02,086 basehttp 709921 127374213809856 "GET /api/core/user-permissions/ HTTP/1.1" 404 3727
+WARNING 2025-09-14 16:47:05,166 log 709921 127374213809856 Forbidden: /api/v1/student/students/
+WARNING 2025-09-14 16:47:05,167 log 709921 127374222202560 Forbidden: /api/v1/student/students/
+WARNING 2025-09-14 16:47:05,167 basehttp 709921 127374213809856 "GET /api/v1/student/students/?client=[object+Object]&queryKey[]=students&signal=[object+AbortSignal] HTTP/1.1" 403 63
+WARNING 2025-09-14 16:47:05,167 basehttp 709921 127374222202560 "GET /api/v1/student/students/?client=[object+Object]&queryKey[]=students&signal=[object+AbortSignal] HTTP/1.1" 403 63
+WARNING 2025-09-14 16:47:05,590 log 709921 127374213809856 Forbidden: /api/v1/student/classrooms/
+WARNING 2025-09-14 16:47:05,591 basehttp 709921 127374213809856 "GET /api/v1/student/classrooms/ HTTP/1.1" 403 63
+WARNING 2025-09-14 16:47:05,939 log 709921 127374213809856 Forbidden: /api/v1/student/attendances/
+WARNING 2025-09-14 16:47:05,939 basehttp 709921 127374213809856 "GET /api/v1/student/attendances/ HTTP/1.1" 403 63
+WARNING 2025-09-14 16:47:06,265 log 709921 127374213809856 Forbidden: /api/v1/student/evaluations/
+WARNING 2025-09-14 16:47:06,265 basehttp 709921 127374213809856 "GET /api/v1/student/evaluations/ HTTP/1.1" 403 63
+WARNING 2025-09-14 16:47:07,054 log 709921 127374213809856 Forbidden: /api/v1/student/documents/
+WARNING 2025-09-14 16:47:07,055 basehttp 709921 127374213809856 "GET /api/v1/student/documents/ HTTP/1.1" 403 63
+WARNING 2025-09-14 16:47:08,072 log 709921 127374213809856 Forbidden: /api/v1/student/documents/
+WARNING 2025-09-14 16:47:08,072 basehttp 709921 127374213809856 "GET /api/v1/student/documents/ HTTP/1.1" 403 63
+INFO 2025-09-14 16:47:09,732 basehttp 709921 127374213809856 "GET /api/v1/hr/staff-attendances/ HTTP/1.1" 200 192
+INFO 2025-09-14 16:47:10,251 basehttp 709921 127374213809856 "GET /api/v1/hr/documents/ HTTP/1.1" 200 2
+INFO 2025-09-14 16:47:10,600 basehttp 709921 127374213809856 "GET /api/v1/hr/vacations/ HTTP/1.1" 200 2
+INFO 2025-09-14 16:47:11,345 basehttp 709921 127374213809856 "GET /api/v1/hr/staff/?client=[object+Object]&queryKey[]=staff&signal=[object+AbortSignal] HTTP/1.1" 200 678
+INFO 2025-09-14 16:47:11,347 basehttp 709921 127374222202560 "GET /api/v1/hr/staff/?client=[object+Object]&queryKey[]=staff&signal=[object+AbortSignal] HTTP/1.1" 200 678
+INFO 2025-09-14 16:47:12,191 basehttp 709921 127374222202560 "GET /api/v1/hr/contracts/ HTTP/1.1" 200 493
+INFO 2025-09-14 16:47:12,527 basehttp 709921 127374222202560 "GET /api/v1/hr/evaluations/ HTTP/1.1" 200 2
+INFO 2025-09-14 16:47:12,929 basehttp 709921 127374222202560 "GET /api/v1/hr/documents/ HTTP/1.1" 200 2
+WARNING 2025-09-14 16:47:14,268 log 709921 127374213809856 Forbidden: /api/v1/finance/invoices/
+WARNING 2025-09-14 16:47:14,269 basehttp 709921 127374213809856 "GET /api/v1/finance/invoices/?client=[object+Object]&queryKey[]=invoices&signal=[object+AbortSignal] HTTP/1.1" 403 63
+WARNING 2025-09-14 16:47:14,269 log 709921 127374222202560 Forbidden: /api/v1/finance/invoices/
+WARNING 2025-09-14 16:47:14,269 basehttp 709921 127374222202560 "GET /api/v1/finance/invoices/?client=[object+Object]&queryKey[]=invoices&signal=[object+AbortSignal] HTTP/1.1" 403 63
+WARNING 2025-09-14 16:47:14,656 log 709921 127374222202560 Forbidden: /api/v1/finance/payments/
+WARNING 2025-09-14 16:47:14,656 basehttp 709921 127374222202560 "GET /api/v1/finance/payments/ HTTP/1.1" 403 63
+WARNING 2025-09-14 16:47:15,017 log 709921 127374222202560 Forbidden: /api/v1/finance/expenses/
+WARNING 2025-09-14 16:47:15,017 basehttp 709921 127374222202560 "GET /api/v1/finance/expenses/ HTTP/1.1" 403 63
+WARNING 2025-09-14 16:47:16,033 log 709921 127374222202560 Forbidden: /api/v1/finance/expenses/
+WARNING 2025-09-14 16:47:16,034 basehttp 709921 127374222202560 "GET /api/v1/finance/expenses/ HTTP/1.1" 403 63
+WARNING 2025-09-14 16:47:16,384 log 709921 127374222202560 Forbidden: /api/v1/finance/salary-payments/
+WARNING 2025-09-14 16:47:16,385 basehttp 709921 127374222202560 "GET /api/v1/finance/salary-payments/ HTTP/1.1" 403 63
+WARNING 2025-09-14 16:47:16,915 log 709921 127374222202560 Forbidden: /api/v1/finance/purchase-orders/
+WARNING 2025-09-14 16:47:16,915 basehttp 709921 127374222202560 "GET /api/v1/finance/purchase-orders/ HTTP/1.1" 403 63
+WARNING 2025-09-14 16:47:17,932 log 709921 127374222202560 Forbidden: /api/v1/finance/purchase-orders/
+WARNING 2025-09-14 16:47:17,932 basehttp 709921 127374222202560 "GET /api/v1/finance/purchase-orders/ HTTP/1.1" 403 63
+INFO 2025-09-14 16:48:32,002 basehttp 709921 127374222202560 "GET /api/v1/core/users/me/ HTTP/1.1" 200 100
+INFO 2025-09-14 16:48:32,007 basehttp 709921 127374213809856 "GET /api/v1/core/user-permissions/ HTTP/1.1" 200 105
+WARNING 2025-09-14 16:48:33,279 log 709921 127374213809856 Not Found: /api/v1/v1/finance/purchase-orders/
+WARNING 2025-09-14 16:48:33,284 basehttp 709921 127374213809856 "GET /api/v1/v1/finance/purchase-orders/ HTTP/1.1" 404 3751
+INFO 2025-09-14 16:48:33,294 basehttp 709921 127374222202560 "GET /api/v1/core/users/me/ HTTP/1.1" 200 100
+INFO 2025-09-14 16:48:33,295 basehttp 709921 127374238987968 "GET /api/v1/core/users/me/ HTTP/1.1" 200 100
+INFO 2025-09-14 16:48:33,300 basehttp 709921 127374230595264 "GET /api/v1/core/user-permissions/ HTTP/1.1" 200 105
+INFO 2025-09-14 16:48:33,302 basehttp 709921 127374203320000 "GET /api/v1/core/user-permissions/ HTTP/1.1" 200 105
+WARNING 2025-09-14 16:48:34,292 log 709921 127374203320000 Not Found: /api/v1/v1/finance/purchase-orders/
+WARNING 2025-09-14 16:48:34,293 basehttp 709921 127374203320000 "GET /api/v1/v1/finance/purchase-orders/ HTTP/1.1" 404 3751
+WARNING 2025-09-14 16:48:35,472 log 709921 127374203320000 Not Found: /api/v1/v1/finance/purchase-orders/
+WARNING 2025-09-14 16:48:35,473 basehttp 709921 127374203320000 "GET /api/v1/v1/finance/purchase-orders/ HTTP/1.1" 404 3751
+INFO 2025-09-14 16:48:35,494 basehttp 709921 127374238987968 "GET /api/v1/core/users/me/ HTTP/1.1" 200 100
+INFO 2025-09-14 16:48:35,495 basehttp 709921 127374230595264 "GET /api/v1/core/users/me/ HTTP/1.1" 200 100
+INFO 2025-09-14 16:48:35,498 basehttp 709921 127374222202560 "GET /api/v1/core/user-permissions/ HTTP/1.1" 200 105
+INFO 2025-09-14 16:48:35,498 basehttp 709921 127374213809856 "GET /api/v1/core/user-permissions/ HTTP/1.1" 200 105
+WARNING 2025-09-14 16:48:36,100 log 709921 127374213809856 Not Found: /api/v1/v1/finance/purchase-orders/
+WARNING 2025-09-14 16:48:36,103 basehttp 709921 127374213809856 "GET /api/v1/v1/finance/purchase-orders/ HTTP/1.1" 404 3751
+INFO 2025-09-14 16:48:36,118 basehttp 709921 127374222202560 "GET /api/v1/core/users/me/ HTTP/1.1" 200 100
+INFO 2025-09-14 16:48:36,123 basehttp 709921 127374238987968 "GET /api/v1/core/users/me/ HTTP/1.1" 200 100
+INFO 2025-09-14 16:48:36,124 basehttp 709921 127374230595264 "GET /api/v1/core/user-permissions/ HTTP/1.1" 200 105
+INFO 2025-09-14 16:48:36,129 basehttp 709921 127374213809856 "GET /api/v1/core/user-permissions/ HTTP/1.1" 200 105
+WARNING 2025-09-14 16:48:37,119 log 709921 127374213809856 Not Found: /api/v1/v1/finance/purchase-orders/
+WARNING 2025-09-14 16:48:37,120 basehttp 709921 127374213809856 "GET /api/v1/v1/finance/purchase-orders/ HTTP/1.1" 404 3751
+WARNING 2025-09-14 16:48:38,015 log 709921 127374238987968 Not Found: /api/v1/v1/hr/staff/
+WARNING 2025-09-14 16:48:38,017 basehttp 709921 127374238987968 "GET /api/v1/v1/hr/staff/?client=[object+Object]&queryKey[]=staff&signal=[object+AbortSignal] HTTP/1.1" 404 3782
+WARNING 2025-09-14 16:48:38,017 log 709921 127374213809856 Not Found: /api/v1/v1/hr/staff/
+WARNING 2025-09-14 16:48:38,018 basehttp 709921 127374213809856 "GET /api/v1/v1/hr/staff/?client=[object+Object]&queryKey[]=staff&signal=[object+AbortSignal] HTTP/1.1" 404 3782
+WARNING 2025-09-14 16:48:38,691 log 709921 127374213809856 Not Found: /api/v1/v1/hr/staff-attendances/
+WARNING 2025-09-14 16:48:38,691 basehttp 709921 127374213809856 "GET /api/v1/v1/hr/staff-attendances/ HTTP/1.1" 404 3742
+WARNING 2025-09-14 16:48:39,700 log 709921 127374213809856 Not Found: /api/v1/v1/hr/staff-attendances/
+WARNING 2025-09-14 16:48:39,700 basehttp 709921 127374213809856 "GET /api/v1/v1/hr/staff-attendances/ HTTP/1.1" 404 3742
+WARNING 2025-09-14 16:48:41,735 log 709921 127374213809856 Not Found: /api/v1/v1/hr/staff-attendances/
+WARNING 2025-09-14 16:48:41,735 basehttp 709921 127374213809856 "GET /api/v1/v1/hr/staff-attendances/ HTTP/1.1" 404 3742
+WARNING 2025-09-14 16:48:45,580 log 709921 127374238987968 Not Found: /api/v1/v1/hr/staff/
+WARNING 2025-09-14 16:48:45,582 log 709921 127374213809856 Not Found: /api/v1/v1/hr/staff/
+WARNING 2025-09-14 16:48:45,582 basehttp 709921 127374238987968 "GET /api/v1/v1/hr/staff/?client=[object+Object]&queryKey[]=staff&signal=[object+AbortSignal] HTTP/1.1" 404 3782
+WARNING 2025-09-14 16:48:45,582 basehttp 709921 127374213809856 "GET /api/v1/v1/hr/staff/?client=[object+Object]&queryKey[]=staff&signal=[object+AbortSignal] HTTP/1.1" 404 3782
+WARNING 2025-09-14 16:48:46,408 log 709921 127374213809856 Not Found: /api/v1/v1/hr/staff-attendances/
+WARNING 2025-09-14 16:48:46,408 basehttp 709921 127374213809856 "GET /api/v1/v1/hr/staff-attendances/ HTTP/1.1" 404 3742
+WARNING 2025-09-14 16:48:46,840 log 709921 127374213809856 Not Found: /api/v1/v1/hr/documents/
+WARNING 2025-09-14 16:48:46,840 basehttp 709921 127374213809856 "GET /api/v1/v1/hr/documents/ HTTP/1.1" 404 3718
+WARNING 2025-09-14 16:48:47,397 log 709921 127374213809856 Not Found: /api/v1/v1/hr/vacations/
+WARNING 2025-09-14 16:48:47,397 basehttp 709921 127374213809856 "GET /api/v1/v1/hr/vacations/ HTTP/1.1" 404 3718
+WARNING 2025-09-14 16:48:47,871 log 709921 127374213809856 Not Found: /api/v1/v1/hr/evaluations/
+WARNING 2025-09-14 16:48:47,871 basehttp 709921 127374213809856 "GET /api/v1/v1/hr/evaluations/ HTTP/1.1" 404 3724
+WARNING 2025-09-14 16:48:48,879 log 709921 127374213809856 Not Found: /api/v1/v1/hr/evaluations/
+WARNING 2025-09-14 16:48:48,879 basehttp 709921 127374213809856 "GET /api/v1/v1/hr/evaluations/ HTTP/1.1" 404 3724
+WARNING 2025-09-14 16:48:49,120 log 709921 127374213809856 Not Found: /api/v1/v1/hr/staff/
+WARNING 2025-09-14 16:48:49,123 log 709921 127374238987968 Not Found: /api/v1/v1/hr/staff/
+WARNING 2025-09-14 16:48:49,123 basehttp 709921 127374238987968 "GET /api/v1/v1/hr/staff/?client=[object+Object]&queryKey[]=staff&signal=[object+AbortSignal] HTTP/1.1" 404 3782
+WARNING 2025-09-14 16:48:49,123 basehttp 709921 127374213809856 "GET /api/v1/v1/hr/staff/?client=[object+Object]&queryKey[]=staff&signal=[object+AbortSignal] HTTP/1.1" 404 3782
+WARNING 2025-09-14 16:48:50,130 log 709921 127374213809856 Not Found: /api/v1/v1/hr/staff/
+WARNING 2025-09-14 16:48:50,131 basehttp 709921 127374213809856 "GET /api/v1/v1/hr/staff/?client=[object+Object]&queryKey[]=staff&signal=[object+AbortSignal] HTTP/1.1" 404 3782
+WARNING 2025-09-14 16:48:52,137 log 709921 127374213809856 Not Found: /api/v1/v1/hr/staff/
+WARNING 2025-09-14 16:48:52,137 basehttp 709921 127374213809856 "GET /api/v1/v1/hr/staff/?client=[object+Object]&queryKey[]=staff&signal=[object+AbortSignal] HTTP/1.1" 404 3782
+WARNING 2025-09-14 16:49:11,741 log 709921 127374213809856 Not Found: /api/v1/v1/hr/staff/
+WARNING 2025-09-14 16:49:11,744 basehttp 709921 127374213809856 "GET /api/v1/v1/hr/staff/?client=[object+Object]&queryKey[]=staff&signal=[object+AbortSignal] HTTP/1.1" 404 3782
+WARNING 2025-09-14 16:49:11,747 log 709921 127374238987968 Not Found: /api/v1/v1/hr/staff/
+WARNING 2025-09-14 16:49:11,749 basehttp 709921 127374238987968 "GET /api/v1/v1/hr/staff/?client=[object+Object]&queryKey[]=staff&signal=[object+AbortSignal] HTTP/1.1" 404 3782
+INFO 2025-09-14 16:49:11,756 basehttp 709921 127374230595264 "GET /api/v1/core/users/me/ HTTP/1.1" 200 100
+INFO 2025-09-14 16:49:11,766 basehttp 709921 127374203320000 "GET /api/v1/core/users/me/ HTTP/1.1" 200 100
+INFO 2025-09-14 16:49:11,767 basehttp 709921 127374194927296 "GET /api/v1/core/user-permissions/ HTTP/1.1" 200 105
+INFO 2025-09-14 16:49:11,768 basehttp 709921 127374222202560 "GET /api/v1/core/user-permissions/ HTTP/1.1" 200 105
+WARNING 2025-09-14 16:49:12,771 log 709921 127374222202560 Not Found: /api/v1/v1/hr/staff/
+WARNING 2025-09-14 16:49:12,771 basehttp 709921 127374222202560 "GET /api/v1/v1/hr/staff/?client=[object+Object]&queryKey[]=staff&signal=[object+AbortSignal] HTTP/1.1" 404 3782
+WARNING 2025-09-14 16:49:12,967 log 709921 127374222202560 Not Found: /api/v1/v1/hr/staff/
+WARNING 2025-09-14 16:49:12,968 basehttp 709921 127374222202560 "GET /api/v1/v1/hr/staff/?client=[object+Object]&queryKey[]=staff&signal=[object+AbortSignal] HTTP/1.1" 404 3782
+WARNING 2025-09-14 16:49:12,972 log 709921 127374230595264 Not Found: /api/v1/v1/hr/staff/
+WARNING 2025-09-14 16:49:12,973 basehttp 709921 127374230595264 "GET /api/v1/v1/hr/staff/?client=[object+Object]&queryKey[]=staff&signal=[object+AbortSignal] HTTP/1.1" 404 3782
+INFO 2025-09-14 16:49:12,985 basehttp 709921 127374238987968 "GET /api/v1/core/users/me/ HTTP/1.1" 200 100
+INFO 2025-09-14 16:49:12,985 basehttp 709921 127374194927296 "GET /api/v1/core/users/me/ HTTP/1.1" 200 100
+INFO 2025-09-14 16:49:12,993 basehttp 709921 127374222202560 "GET /api/v1/core/user-permissions/ HTTP/1.1" 200 105
+INFO 2025-09-14 16:49:12,995 basehttp 709921 127374203320000 "GET /api/v1/core/user-permissions/ HTTP/1.1" 200 105
+WARNING 2025-09-14 16:49:13,646 log 709921 127374203320000 Not Found: /api/v1/v1/hr/staff/
+WARNING 2025-09-14 16:49:13,650 log 709921 127374238987968 Not Found: /api/v1/v1/hr/staff/
+WARNING 2025-09-14 16:49:13,650 basehttp 709921 127374203320000 "GET /api/v1/v1/hr/staff/?client=[object+Object]&queryKey[]=staff&signal=[object+AbortSignal] HTTP/1.1" 404 3782
+WARNING 2025-09-14 16:49:13,651 basehttp 709921 127374238987968 "GET /api/v1/v1/hr/staff/?client=[object+Object]&queryKey[]=staff&signal=[object+AbortSignal] HTTP/1.1" 404 3782
+INFO 2025-09-14 16:49:13,663 basehttp 709921 127374230595264 "GET /api/v1/core/users/me/ HTTP/1.1" 200 100
+INFO 2025-09-14 16:49:13,663 basehttp 709921 127374222202560 "GET /api/v1/core/users/me/ HTTP/1.1" 200 100
+INFO 2025-09-14 16:49:13,667 basehttp 709921 127374194927296 "GET /api/v1/core/user-permissions/ HTTP/1.1" 200 105
+INFO 2025-09-14 16:49:13,668 basehttp 709921 127374203320000 "GET /api/v1/core/user-permissions/ HTTP/1.1" 200 105
+WARNING 2025-09-14 16:49:14,657 log 709921 127374194927296 Not Found: /api/v1/v1/hr/staff/
+WARNING 2025-09-14 16:49:14,657 basehttp 709921 127374194927296 "GET /api/v1/v1/hr/staff/?client=[object+Object]&queryKey[]=staff&signal=[object+AbortSignal] HTTP/1.1" 404 3782
+WARNING 2025-09-14 16:49:16,185 log 709921 127374194927296 Not Found: /api/v1/v1/hr/staff-attendances/
+WARNING 2025-09-14 16:49:16,185 basehttp 709921 127374194927296 "GET /api/v1/v1/hr/staff-attendances/ HTTP/1.1" 404 3742
+WARNING 2025-09-14 16:49:17,042 log 709921 127374194927296 Not Found: /api/v1/v1/hr/documents/
+WARNING 2025-09-14 16:49:17,042 basehttp 709921 127374194927296 "GET /api/v1/v1/hr/documents/ HTTP/1.1" 404 3718
+WARNING 2025-09-14 16:49:17,965 log 709921 127374194927296 Not Found: /api/v1/v1/hr/vacations/
+WARNING 2025-09-14 16:49:17,965 basehttp 709921 127374194927296 "GET /api/v1/v1/hr/vacations/ HTTP/1.1" 404 3718
+WARNING 2025-09-14 16:49:18,881 log 709921 127374194927296 Not Found: /api/v1/v1/hr/evaluations/
+WARNING 2025-09-14 16:49:18,881 basehttp 709921 127374194927296 "GET /api/v1/v1/hr/evaluations/ HTTP/1.1" 404 3724
+WARNING 2025-09-14 16:49:19,341 log 709921 127374194927296 Not Found: /api/v1/v1/hr/contracts/
+WARNING 2025-09-14 16:49:19,342 basehttp 709921 127374194927296 "GET /api/v1/v1/hr/contracts/ HTTP/1.1" 404 3718
+WARNING 2025-09-14 16:49:19,687 log 709921 127374194927296 Not Found: /api/v1/v1/hr/salary-records/
+WARNING 2025-09-14 16:49:19,689 log 709921 127374203320000 Not Found: /api/v1/v1/hr/salary-records/
+WARNING 2025-09-14 16:49:19,689 basehttp 709921 127374203320000 "GET /api/v1/v1/hr/salary-records/?client=[object+Object]&queryKey[]=salaryRecords&signal=[object+AbortSignal] HTTP/1.1" 404 3817
+WARNING 2025-09-14 16:49:19,690 basehttp 709921 127374194927296 "GET /api/v1/v1/hr/salary-records/?client=[object+Object]&queryKey[]=salaryRecords&signal=[object+AbortSignal] HTTP/1.1" 404 3817
+WARNING 2025-09-14 16:49:20,698 log 709921 127374194927296 Not Found: /api/v1/v1/hr/salary-records/
+WARNING 2025-09-14 16:49:20,699 basehttp 709921 127374194927296 "GET /api/v1/v1/hr/salary-records/?client=[object+Object]&queryKey[]=salaryRecords&signal=[object+AbortSignal] HTTP/1.1" 404 3817
+WARNING 2025-09-14 16:49:20,994 log 709921 127374203320000 Not Found: /api/v1/v1/hr/staff/
+WARNING 2025-09-14 16:49:20,996 log 709921 127374194927296 Not Found: /api/v1/v1/hr/staff/
+WARNING 2025-09-14 16:49:20,997 basehttp 709921 127374203320000 "GET /api/v1/v1/hr/staff/?client=[object+Object]&queryKey[]=staff&signal=[object+AbortSignal] HTTP/1.1" 404 3782
+WARNING 2025-09-14 16:49:20,998 basehttp 709921 127374194927296 "GET /api/v1/v1/hr/staff/?client=[object+Object]&queryKey[]=staff&signal=[object+AbortSignal] HTTP/1.1" 404 3782
+WARNING 2025-09-14 16:49:22,004 log 709921 127374203320000 Not Found: /api/v1/v1/hr/staff/
+WARNING 2025-09-14 16:49:22,004 basehttp 709921 127374203320000 "GET /api/v1/v1/hr/staff/?client=[object+Object]&queryKey[]=staff&signal=[object+AbortSignal] HTTP/1.1" 404 3782
+WARNING 2025-09-14 16:49:24,013 log 709921 127374203320000 Not Found: /api/v1/v1/hr/staff/
+WARNING 2025-09-14 16:49:24,013 basehttp 709921 127374203320000 "GET /api/v1/v1/hr/staff/?client=[object+Object]&queryKey[]=staff&signal=[object+AbortSignal] HTTP/1.1" 404 3782
+WARNING 2025-09-14 16:49:27,892 log 709921 127374203320000 Not Found: /api/v1/token/
+WARNING 2025-09-14 16:49:27,892 basehttp 709921 127374203320000 "POST /api/v1/token/ HTTP/1.1" 404 3689
+WARNING 2025-09-14 16:49:29,552 log 709921 127374203320000 Not Found: /api/v1/token/
+WARNING 2025-09-14 16:49:29,552 basehttp 709921 127374203320000 "POST /api/v1/token/ HTTP/1.1" 404 3689
+WARNING 2025-09-14 16:49:40,093 log 709921 127374203320000 Not Found: /api/v1/token/
+WARNING 2025-09-14 16:49:40,093 basehttp 709921 127374203320000 "POST /api/v1/token/ HTTP/1.1" 404 3689
+WARNING 2025-09-14 16:49:46,433 log 709921 127374203320000 Not Found: /api/v1/token/
+WARNING 2025-09-14 16:49:46,434 basehttp 709921 127374203320000 "POST /api/v1/token/ HTTP/1.1" 404 3689
+WARNING 2025-09-14 16:49:47,047 log 709921 127374203320000 Not Found: /api/v1/token/
+WARNING 2025-09-14 16:49:47,047 basehttp 709921 127374203320000 "POST /api/v1/token/ HTTP/1.1" 404 3689
+WARNING 2025-09-14 16:49:47,708 log 709921 127374203320000 Not Found: /api/v1/token/
+WARNING 2025-09-14 16:49:47,708 basehttp 709921 127374203320000 "POST /api/v1/token/ HTTP/1.1" 404 3689
+WARNING 2025-09-14 16:49:47,863 log 709921 127374203320000 Not Found: /api/v1/token/
+WARNING 2025-09-14 16:49:47,863 basehttp 709921 127374203320000 "POST /api/v1/token/ HTTP/1.1" 404 3689
+WARNING 2025-09-14 16:49:50,550 log 709921 127374203320000 Not Found: /api/v1/token/
+WARNING 2025-09-14 16:49:50,551 basehttp 709921 127374203320000 "POST /api/v1/token/ HTTP/1.1" 404 3689
+WARNING 2025-09-14 16:49:50,702 log 709921 127374203320000 Not Found: /api/v1/token/
+WARNING 2025-09-14 16:49:50,702 basehttp 709921 127374203320000 "POST /api/v1/token/ HTTP/1.1" 404 3689
+WARNING 2025-09-14 16:49:50,864 log 709921 127374203320000 Not Found: /api/v1/token/
+WARNING 2025-09-14 16:49:50,864 basehttp 709921 127374203320000 "POST /api/v1/token/ HTTP/1.1" 404 3689
+WARNING 2025-09-14 16:49:54,296 log 709921 127374203320000 Not Found: /api/v1/token/
+WARNING 2025-09-14 16:49:54,297 basehttp 709921 127374203320000 "POST /api/v1/token/ HTTP/1.1" 404 3689
+WARNING 2025-09-14 16:49:54,903 log 709921 127374203320000 Not Found: /api/v1/token/
+WARNING 2025-09-14 16:49:54,903 basehttp 709921 127374203320000 "POST /api/v1/token/ HTTP/1.1" 404 3689
+WARNING 2025-09-14 16:49:58,452 log 709921 127374203320000 Not Found: /api/v1/token/
+WARNING 2025-09-14 16:49:58,452 basehttp 709921 127374203320000 "POST /api/v1/token/ HTTP/1.1" 404 3689
+WARNING 2025-09-14 16:49:59,162 log 709921 127374203320000 Not Found: /api/v1/token/
+WARNING 2025-09-14 16:49:59,163 basehttp 709921 127374203320000 "POST /api/v1/token/ HTTP/1.1" 404 3689
+WARNING 2025-09-14 16:49:59,335 log 709921 127374203320000 Not Found: /api/v1/token/
+WARNING 2025-09-14 16:49:59,335 basehttp 709921 127374203320000 "POST /api/v1/token/ HTTP/1.1" 404 3689
+WARNING 2025-09-14 16:49:59,464 log 709921 127374203320000 Not Found: /api/v1/token/
+WARNING 2025-09-14 16:49:59,464 basehttp 709921 127374203320000 "POST /api/v1/token/ HTTP/1.1" 404 3689
+WARNING 2025-09-14 16:50:06,009 log 709921 127374203320000 Not Found: /api/v1/token/
+WARNING 2025-09-14 16:50:06,010 basehttp 709921 127374203320000 "POST /api/v1/token/ HTTP/1.1" 404 3689
+WARNING 2025-09-14 16:52:39,925 log 709921 127374203320000 Not Found: /api/v1/token/
+WARNING 2025-09-14 16:52:39,925 basehttp 709921 127374203320000 "POST /api/v1/token/ HTTP/1.1" 404 3689
+WARNING 2025-09-14 16:52:40,439 log 709921 127374203320000 Not Found: /api/v1/token/
+WARNING 2025-09-14 16:52:40,439 basehttp 709921 127374203320000 "POST /api/v1/token/ HTTP/1.1" 404 3689
+WARNING 2025-09-14 16:52:40,595 log 709921 127374203320000 Not Found: /api/v1/token/
+WARNING 2025-09-14 16:52:40,596 basehttp 709921 127374203320000 "POST /api/v1/token/ HTTP/1.1" 404 3689
+WARNING 2025-09-14 16:52:40,763 log 709921 127374203320000 Not Found: /api/v1/token/
+WARNING 2025-09-14 16:52:40,763 basehttp 709921 127374203320000 "POST /api/v1/token/ HTTP/1.1" 404 3689
+WARNING 2025-09-14 16:52:41,447 log 709921 127374203320000 Not Found: /api/v1/token/
+WARNING 2025-09-14 16:52:41,447 basehttp 709921 127374203320000 "POST /api/v1/token/ HTTP/1.1" 404 3689
+INFO 2025-09-14 16:52:54,929 basehttp 709921 127374203320000 "POST /api/token/ HTTP/1.1" 200 483
+WARNING 2025-09-14 16:52:54,936 log 709921 127374203320000 Not Found: /api/core/users/me/
+WARNING 2025-09-14 16:52:54,938 log 709921 127374194927296 Not Found: /api/core/user-permissions/
+WARNING 2025-09-14 16:52:54,939 basehttp 709921 127374194927296 "GET /api/core/user-permissions/ HTTP/1.1" 404 3727
+WARNING 2025-09-14 16:52:54,942 log 709921 127374222202560 Not Found: /api/core/users/me/
+WARNING 2025-09-14 16:52:54,942 basehttp 709921 127374203320000 "GET /api/core/users/me/ HTTP/1.1" 404 3703
+WARNING 2025-09-14 16:52:54,945 log 709921 127374230595264 Not Found: /api/core/user-permissions/
+WARNING 2025-09-14 16:52:54,946 basehttp 709921 127374222202560 "GET /api/core/users/me/ HTTP/1.1" 404 3703
+WARNING 2025-09-14 16:52:54,946 basehttp 709921 127374230595264 "GET /api/core/user-permissions/ HTTP/1.1" 404 3727
+WARNING 2025-09-14 16:53:17,560 log 709921 127374230595264 Not Found: /api/core/users/me/
+WARNING 2025-09-14 16:53:17,564 log 709921 127374203320000 Not Found: /api/core/users/me/
+WARNING 2025-09-14 16:53:17,564 basehttp 709921 127374230595264 "GET /api/core/users/me/ HTTP/1.1" 404 3703
+WARNING 2025-09-14 16:53:17,562 log 709921 127374222202560 Not Found: /api/core/user-permissions/
+WARNING 2025-09-14 16:53:17,566 log 709921 127374194927296 Not Found: /api/core/user-permissions/
+WARNING 2025-09-14 16:53:17,567 basehttp 709921 127374203320000 "GET /api/core/users/me/ HTTP/1.1" 404 3703
+WARNING 2025-09-14 16:53:17,567 basehttp 709921 127374194927296 "GET /api/core/user-permissions/ HTTP/1.1" 404 3727
+WARNING 2025-09-14 16:53:17,567 basehttp 709921 127374222202560 "GET /api/core/user-permissions/ HTTP/1.1" 404 3727
+INFO 2025-09-14 16:53:20,210 basehttp 709921 127374203320000 "POST /api/token/ HTTP/1.1" 200 483
+WARNING 2025-09-14 16:53:20,217 log 709921 127374203320000 Not Found: /api/core/users/me/
+WARNING 2025-09-14 16:53:20,219 log 709921 127374222202560 Not Found: /api/core/user-permissions/
+WARNING 2025-09-14 16:53:20,221 log 709921 127374194927296 Not Found: /api/core/users/me/
+WARNING 2025-09-14 16:53:20,223 log 709921 127374230595264 Not Found: /api/core/user-permissions/
+WARNING 2025-09-14 16:53:20,223 basehttp 709921 127374222202560 "GET /api/core/user-permissions/ HTTP/1.1" 404 3727
+WARNING 2025-09-14 16:53:20,223 basehttp 709921 127374203320000 "GET /api/core/users/me/ HTTP/1.1" 404 3703
+WARNING 2025-09-14 16:53:20,224 basehttp 709921 127374230595264 "GET /api/core/user-permissions/ HTTP/1.1" 404 3727
+WARNING 2025-09-14 16:53:20,224 basehttp 709921 127374194927296 "GET /api/core/users/me/ HTTP/1.1" 404 3703
+INFO 2025-09-14 16:53:24,023 basehttp 709921 127374194927296 "POST /api/token/ HTTP/1.1" 200 483
+WARNING 2025-09-14 16:53:24,031 log 709921 127374194927296 Not Found: /api/core/users/me/
+WARNING 2025-09-14 16:53:24,031 basehttp 709921 127374194927296 "GET /api/core/users/me/ HTTP/1.1" 404 3703
+WARNING 2025-09-14 16:53:24,033 log 709921 127374230595264 Not Found: /api/core/user-permissions/
+WARNING 2025-09-14 16:53:24,035 log 709921 127374194927296 Not Found: /api/core/users/me/
+WARNING 2025-09-14 16:53:24,036 basehttp 709921 127374230595264 "GET /api/core/user-permissions/ HTTP/1.1" 404 3727
+WARNING 2025-09-14 16:53:24,037 log 709921 127374203320000 Not Found: /api/core/user-permissions/
+WARNING 2025-09-14 16:53:24,038 basehttp 709921 127374203320000 "GET /api/core/user-permissions/ HTTP/1.1" 404 3727
+WARNING 2025-09-14 16:53:24,037 basehttp 709921 127374194927296 "GET /api/core/users/me/ HTTP/1.1" 404 3703
+INFO 2025-09-14 16:53:26,510 basehttp 709921 127374194927296 "POST /api/token/ HTTP/1.1" 200 483
+WARNING 2025-09-14 16:53:26,516 log 709921 127374194927296 Not Found: /api/core/users/me/
+WARNING 2025-09-14 16:53:26,518 log 709921 127374203320000 Not Found: /api/core/user-permissions/
+WARNING 2025-09-14 16:53:26,521 log 709921 127374222202560 Not Found: /api/core/user-permissions/
+WARNING 2025-09-14 16:53:26,523 log 709921 127374230595264 Not Found: /api/core/users/me/
+WARNING 2025-09-14 16:53:26,523 basehttp 709921 127374194927296 "GET /api/core/users/me/ HTTP/1.1" 404 3703
+WARNING 2025-09-14 16:53:26,523 basehttp 709921 127374222202560 "GET /api/core/user-permissions/ HTTP/1.1" 404 3727
+WARNING 2025-09-14 16:53:26,523 basehttp 709921 127374203320000 "GET /api/core/user-permissions/ HTTP/1.1" 404 3727
+WARNING 2025-09-14 16:53:26,523 basehttp 709921 127374230595264 "GET /api/core/users/me/ HTTP/1.1" 404 3703
+INFO 2025-09-14 16:53:33,108 basehttp 709921 127374230595264 "POST /api/token/ HTTP/1.1" 200 483
+WARNING 2025-09-14 16:53:33,115 log 709921 127374230595264 Not Found: /api/core/users/me/
+WARNING 2025-09-14 16:53:33,118 log 709921 127374222202560 Not Found: /api/core/users/me/
+WARNING 2025-09-14 16:53:33,120 log 709921 127374203320000 Not Found: /api/core/user-permissions/
+WARNING 2025-09-14 16:53:33,121 log 709921 127374194927296 Not Found: /api/core/user-permissions/
+WARNING 2025-09-14 16:53:33,122 basehttp 709921 127374222202560 "GET /api/core/users/me/ HTTP/1.1" 404 3703
+WARNING 2025-09-14 16:53:33,122 basehttp 709921 127374203320000 "GET /api/core/user-permissions/ HTTP/1.1" 404 3727
+WARNING 2025-09-14 16:53:33,121 basehttp 709921 127374230595264 "GET /api/core/users/me/ HTTP/1.1" 404 3703
+WARNING 2025-09-14 16:53:33,122 basehttp 709921 127374194927296 "GET /api/core/user-permissions/ HTTP/1.1" 404 3727
+INFO 2025-09-14 16:53:47,596 basehttp 709921 127374194927296 "GET /api/v1/core/users/me/ HTTP/1.1" 200 100
+INFO 2025-09-14 16:53:47,601 basehttp 709921 127374230595264 "GET /api/v1/core/user-permissions/ HTTP/1.1" 200 105
+INFO 2025-09-14 16:53:47,884 basehttp 709921 127374230595264 "GET /api/v1/core/users/me/ HTTP/1.1" 200 100
+INFO 2025-09-14 16:53:47,888 basehttp 709921 127374203320000 "GET /api/v1/core/users/me/ HTTP/1.1" 200 100
+INFO 2025-09-14 16:53:47,890 basehttp 709921 127374194927296 "GET /api/v1/core/user-permissions/ HTTP/1.1" 200 105
+INFO 2025-09-14 16:53:47,891 basehttp 709921 127374222202560 "GET /api/v1/core/user-permissions/ HTTP/1.1" 200 105
+WARNING 2025-09-14 16:53:54,332 log 709921 127374222202560 Not Found: /api/v1/token/
+WARNING 2025-09-14 16:53:54,332 basehttp 709921 127374222202560 "POST /api/v1/token/ HTTP/1.1" 404 3689
+WARNING 2025-09-14 16:53:55,729 log 709921 127374222202560 Not Found: /api/v1/token/
+WARNING 2025-09-14 16:53:55,730 basehttp 709921 127374222202560 "POST /api/v1/token/ HTTP/1.1" 404 3689
+WARNING 2025-09-14 16:53:55,902 log 709921 127374222202560 Not Found: /api/v1/token/
+WARNING 2025-09-14 16:53:55,903 basehttp 709921 127374222202560 "POST /api/v1/token/ HTTP/1.1" 404 3689
+WARNING 2025-09-14 16:53:56,127 log 709921 127374222202560 Not Found: /api/v1/token/
+WARNING 2025-09-14 16:53:56,127 basehttp 709921 127374222202560 "POST /api/v1/token/ HTTP/1.1" 404 3689
+WARNING 2025-09-14 16:53:56,274 log 709921 127374222202560 Not Found: /api/v1/token/
+WARNING 2025-09-14 16:53:56,274 basehttp 709921 127374222202560 "POST /api/v1/token/ HTTP/1.1" 404 3689
+WARNING 2025-09-14 16:55:06,302 log 709921 127374222202560 Not Found: /api/v1/token/
+WARNING 2025-09-14 16:55:06,303 basehttp 709921 127374222202560 "POST /api/v1/token/ HTTP/1.1" 404 3689
+INFO 2025-09-14 16:55:13,040 basehttp 709921 127374222202560 "POST /api/token/ HTTP/1.1" 200 483
+WARNING 2025-09-14 16:55:13,049 log 709921 127374222202560 Not Found: /api/core/users/me/
+WARNING 2025-09-14 16:55:13,050 log 709921 127374194927296 Not Found: /api/core/user-permissions/
+WARNING 2025-09-14 16:55:13,052 basehttp 709921 127374222202560 "GET /api/core/users/me/ HTTP/1.1" 404 3703
+WARNING 2025-09-14 16:55:13,054 log 709921 127374230595264 Not Found: /api/core/user-permissions/
+WARNING 2025-09-14 16:55:13,056 log 709921 127374203320000 Not Found: /api/core/users/me/
+WARNING 2025-09-14 16:55:13,056 basehttp 709921 127374194927296 "GET /api/core/user-permissions/ HTTP/1.1" 404 3727
+WARNING 2025-09-14 16:55:13,056 basehttp 709921 127374230595264 "GET /api/core/user-permissions/ HTTP/1.1" 404 3727
+WARNING 2025-09-14 16:55:13,057 basehttp 709921 127374203320000 "GET /api/core/users/me/ HTTP/1.1" 404 3703
+INFO 2025-09-14 16:55:27,952 basehttp 709921 127374230595264 "GET /api/v1/core/user-permissions/ HTTP/1.1" 200 105
+INFO 2025-09-14 16:55:27,953 basehttp 709921 127374203320000 "GET /api/v1/core/users/me/ HTTP/1.1" 200 100
+INFO 2025-09-14 16:55:28,469 basehttp 709921 127374194927296 "GET /api/v1/core/users/me/ HTTP/1.1" 200 100
+INFO 2025-09-14 16:55:28,476 basehttp 709921 127374203320000 "GET /api/v1/core/users/me/ HTTP/1.1" 200 100
+INFO 2025-09-14 16:55:28,482 basehttp 709921 127374230595264 "GET /api/v1/core/user-permissions/ HTTP/1.1" 200 105
+INFO 2025-09-14 16:55:28,484 basehttp 709921 127374222202560 "GET /api/v1/core/user-permissions/ HTTP/1.1" 200 105
+WARNING 2025-09-14 16:56:31,573 log 709921 127374222202560 Not Found: /api/v1/token/
+WARNING 2025-09-14 16:56:31,574 basehttp 709921 127374222202560 "POST /api/v1/token/ HTTP/1.1" 404 3689
+WARNING 2025-09-14 17:01:06,846 log 709921 127374222202560 Not Found: /api/v1/token/
+WARNING 2025-09-14 17:01:06,846 basehttp 709921 127374222202560 "POST /api/v1/token/ HTTP/1.1" 404 3689
+INFO 2025-09-14 17:01:26,430 autoreload 716653 139465017118848 Watching for file changes with StatReloader
+INFO 2025-09-14 17:01:34,462 basehttp 716653 139464496621248 "POST /api/token/ HTTP/1.1" 200 483
+INFO 2025-09-14 17:01:34,482 basehttp 716653 139464496621248 "GET /api/v1/core/users/me/ HTTP/1.1" 200 100
+INFO 2025-09-14 17:01:34,487 basehttp 716653 139464478787264 "GET /api/v1/core/users/me/ HTTP/1.1" 200 100
+INFO 2025-09-14 17:01:34,490 basehttp 716653 139464470394560 "GET /api/v1/core/user-permissions/ HTTP/1.1" 200 105
+INFO 2025-09-14 17:01:34,491 basehttp 716653 139464487179968 "GET /api/v1/core/user-permissions/ HTTP/1.1" 200 105
+WARNING 2025-09-14 17:01:36,713 log 716653 139464487179968 Not Found: /api/v1/v1/hr/staff/
+WARNING 2025-09-14 17:01:36,713 log 716653 139464470394560 Not Found: /api/v1/v1/hr/staff/
+WARNING 2025-09-14 17:01:36,714 basehttp 716653 139464470394560 "GET /api/v1/v1/hr/staff/?client=[object+Object]&queryKey[]=staff&signal=[object+AbortSignal] HTTP/1.1" 404 3782
+WARNING 2025-09-14 17:01:36,714 basehttp 716653 139464487179968 "GET /api/v1/v1/hr/staff/?client=[object+Object]&queryKey[]=staff&signal=[object+AbortSignal] HTTP/1.1" 404 3782
+WARNING 2025-09-14 17:01:37,611 log 716653 139464487179968 Not Found: /api/v1/v1/hr/staff-attendances/
+WARNING 2025-09-14 17:01:37,611 basehttp 716653 139464487179968 "GET /api/v1/v1/hr/staff-attendances/ HTTP/1.1" 404 3742
+WARNING 2025-09-14 17:01:38,310 log 716653 139464487179968 Not Found: /api/v1/v1/hr/documents/
+WARNING 2025-09-14 17:01:38,310 basehttp 716653 139464487179968 "GET /api/v1/v1/hr/documents/ HTTP/1.1" 404 3718
+WARNING 2025-09-14 17:01:39,033 log 716653 139464487179968 Not Found: /api/v1/v1/hr/vacations/
+WARNING 2025-09-14 17:01:39,033 basehttp 716653 139464487179968 "GET /api/v1/v1/hr/vacations/ HTTP/1.1" 404 3718
+WARNING 2025-09-14 17:01:40,043 log 716653 139464487179968 Not Found: /api/v1/v1/hr/vacations/
+WARNING 2025-09-14 17:01:40,043 basehttp 716653 139464487179968 "GET /api/v1/v1/hr/vacations/ HTTP/1.1" 404 3718
+WARNING 2025-09-14 17:01:42,051 log 716653 139464487179968 Not Found: /api/v1/v1/hr/vacations/
+WARNING 2025-09-14 17:01:42,051 basehttp 716653 139464487179968 "GET /api/v1/v1/hr/vacations/ HTTP/1.1" 404 3718
+INFO 2025-09-14 17:01:48,334 basehttp 716653 139464487179968 "POST /api/token/ HTTP/1.1" 200 483
+INFO 2025-09-14 17:01:48,354 basehttp 716653 139464470394560 "GET /api/v1/core/user-permissions/ HTTP/1.1" 200 102
+INFO 2025-09-14 17:01:48,354 basehttp 716653 139464487179968 "GET /api/v1/core/users/me/ HTTP/1.1" 200 87
+INFO 2025-09-14 17:01:48,354 basehttp 716653 139464496621248 "GET /api/v1/core/user-permissions/ HTTP/1.1" 200 102
+INFO 2025-09-14 17:01:48,355 basehttp 716653 139464478787264 "GET /api/v1/core/users/me/ HTTP/1.1" 200 87
+WARNING 2025-09-14 17:01:49,884 log 716653 139464478787264 Not Found: /api/v1/v1/student/students/
+WARNING 2025-09-14 17:01:49,886 log 716653 139464496621248 Not Found: /api/v1/v1/student/students/
+WARNING 2025-09-14 17:01:49,887 basehttp 716653 139464478787264 "GET /api/v1/v1/student/students/?client=[object+Object]&queryKey[]=students&signal=[object+AbortSignal] HTTP/1.1" 404 3809
+WARNING 2025-09-14 17:01:49,887 basehttp 716653 139464496621248 "GET /api/v1/v1/student/students/?client=[object+Object]&queryKey[]=students&signal=[object+AbortSignal] HTTP/1.1" 404 3809
+WARNING 2025-09-14 17:01:50,893 log 716653 139464496621248 Not Found: /api/v1/v1/student/students/
+WARNING 2025-09-14 17:01:50,894 basehttp 716653 139464496621248 "GET /api/v1/v1/student/students/?client=[object+Object]&queryKey[]=students&signal=[object+AbortSignal] HTTP/1.1" 404 3809
+WARNING 2025-09-14 17:01:50,947 log 716653 139464496621248 Not Found: /api/v1/v1/student/classrooms/
+WARNING 2025-09-14 17:01:50,947 basehttp 716653 139464496621248 "GET /api/v1/v1/student/classrooms/ HTTP/1.1" 404 3736
+WARNING 2025-09-14 17:01:51,364 log 716653 139464496621248 Not Found: /api/v1/v1/student/enrollments/
+WARNING 2025-09-14 17:01:51,364 basehttp 716653 139464496621248 "GET /api/v1/v1/student/enrollments/ HTTP/1.1" 404 3739
+WARNING 2025-09-14 17:01:51,718 log 716653 139464496621248 Not Found: /api/v1/v1/student/attendances/
+WARNING 2025-09-14 17:01:51,718 basehttp 716653 139464496621248 "GET /api/v1/v1/student/attendances/ HTTP/1.1" 404 3739
+WARNING 2025-09-14 17:01:52,146 log 716653 139464496621248 Not Found: /api/v1/v1/student/medical-records/
+WARNING 2025-09-14 17:01:52,147 basehttp 716653 139464496621248 "GET /api/v1/v1/student/medical-records/ HTTP/1.1" 404 3751
+WARNING 2025-09-14 17:01:53,147 log 716653 139464496621248 Not Found: /api/v1/v1/hr/staff/
+WARNING 2025-09-14 17:01:53,148 log 716653 139464478787264 Not Found: /api/v1/v1/hr/staff/
+WARNING 2025-09-14 17:01:53,149 basehttp 716653 139464496621248 "GET /api/v1/v1/hr/staff/?client=[object+Object]&queryKey[]=staff&signal=[object+AbortSignal] HTTP/1.1" 404 3782
+WARNING 2025-09-14 17:01:53,149 basehttp 716653 139464478787264 "GET /api/v1/v1/hr/staff/?client=[object+Object]&queryKey[]=staff&signal=[object+AbortSignal] HTTP/1.1" 404 3782
+WARNING 2025-09-14 17:01:53,495 log 716653 139464496621248 Not Found: /api/v1/v1/hr/staff-attendances/
+WARNING 2025-09-14 17:01:53,495 basehttp 716653 139464496621248 "GET /api/v1/v1/hr/staff-attendances/ HTTP/1.1" 404 3742
+WARNING 2025-09-14 17:01:54,505 log 716653 139464496621248 Not Found: /api/v1/v1/hr/staff-attendances/
+WARNING 2025-09-14 17:01:54,506 basehttp 716653 139464496621248 "GET /api/v1/v1/hr/staff-attendances/ HTTP/1.1" 404 3742
+INFO 2025-09-14 17:01:57,884 basehttp 716653 139464496621248 "POST /api/token/ HTTP/1.1" 200 483
+INFO 2025-09-14 17:01:57,904 basehttp 716653 139464487179968 "GET /api/v1/core/users/me/ HTTP/1.1" 200 86
+INFO 2025-09-14 17:01:57,908 basehttp 716653 139464496621248 "GET /api/v1/core/users/me/ HTTP/1.1" 200 86
+INFO 2025-09-14 17:01:57,908 basehttp 716653 139464478787264 "GET /api/v1/core/user-permissions/ HTTP/1.1" 200 105
+INFO 2025-09-14 17:01:57,908 basehttp 716653 139464470394560 "GET /api/v1/core/user-permissions/ HTTP/1.1" 200 105
+WARNING 2025-09-14 17:02:00,158 log 716653 139464470394560 Not Found: /api/v1/v1/finance/payments/
+WARNING 2025-09-14 17:02:00,159 basehttp 716653 139464470394560 "GET /api/v1/v1/finance/payments/ HTTP/1.1" 404 3730
+WARNING 2025-09-14 17:02:00,579 log 716653 139464470394560 Not Found: /api/v1/v1/finance/invoices/
+WARNING 2025-09-14 17:02:00,579 basehttp 716653 139464470394560 "GET /api/v1/v1/finance/invoices/?client=[object+Object]&queryKey[]=invoices&signal=[object+AbortSignal] HTTP/1.1" 404 3809
+WARNING 2025-09-14 17:02:00,580 log 716653 139464478787264 Not Found: /api/v1/v1/finance/invoices/
+WARNING 2025-09-14 17:02:00,581 basehttp 716653 139464478787264 "GET /api/v1/v1/finance/invoices/?client=[object+Object]&queryKey[]=invoices&signal=[object+AbortSignal] HTTP/1.1" 404 3809
+WARNING 2025-09-14 17:02:01,588 log 716653 139464478787264 Not Found: /api/v1/v1/finance/invoices/
+WARNING 2025-09-14 17:02:01,588 basehttp 716653 139464478787264 "GET /api/v1/v1/finance/invoices/?client=[object+Object]&queryKey[]=invoices&signal=[object+AbortSignal] HTTP/1.1" 404 3809
+WARNING 2025-09-14 17:02:26,822 log 716653 139464470394560 Not Found: /api/v1/v1/finance/invoices/
+WARNING 2025-09-14 17:02:26,823 basehttp 716653 139464470394560 "GET /api/v1/v1/finance/invoices/?client=[object+Object]&queryKey[]=invoices&signal=[object+AbortSignal] HTTP/1.1" 404 3809
+WARNING 2025-09-14 17:02:30,910 log 716653 139464470394560 Not Found: /api/v1/v1/finance/invoices/
+WARNING 2025-09-14 17:02:30,910 basehttp 716653 139464470394560 "GET /api/v1/v1/finance/invoices/?client=[object+Object]&queryKey[]=invoices&signal=[object+AbortSignal] HTTP/1.1" 404 3809
+WARNING 2025-09-14 17:02:42,114 log 716653 139464478787264 Not Found: /api/v1/v1/finance/payments/
+WARNING 2025-09-14 17:02:42,114 basehttp 716653 139464478787264 "GET /api/v1/v1/finance/payments/ HTTP/1.1" 404 3730
+WARNING 2025-09-14 17:02:43,125 log 716653 139464478787264 Not Found: /api/v1/v1/finance/payments/
+WARNING 2025-09-14 17:02:43,125 basehttp 716653 139464478787264 "GET /api/v1/v1/finance/payments/ HTTP/1.1" 404 3730
+WARNING 2025-09-14 17:02:45,141 log 716653 139464478787264 Not Found: /api/v1/v1/finance/payments/
+WARNING 2025-09-14 17:02:45,141 basehttp 716653 139464478787264 "GET /api/v1/v1/finance/payments/ HTTP/1.1" 404 3730
+WARNING 2025-09-14 17:02:49,218 log 716653 139464478787264 Not Found: /api/v1/v1/finance/payments/
+WARNING 2025-09-14 17:02:49,219 basehttp 716653 139464478787264 "GET /api/v1/v1/finance/payments/ HTTP/1.1" 404 3730
+WARNING 2025-09-14 17:03:45,670 log 716653 139464478787264 Not Found: /api/v1/v1/finance/payments/[HTTP/1.1 404 Not Found 4ms]
+WARNING 2025-09-14 17:03:45,670 basehttp 716653 139464478787264 "GET /api/v1/v1/finance/payments/[HTTP/1.1%20404%20Not%20Found%204ms] HTTP/1.1" 404 3826
+WARNING 2025-09-14 17:03:50,622 log 716653 139464478787264 Not Found: /api/v1/v1/finance/payments/
+WARNING 2025-09-14 17:03:50,623 basehttp 716653 139464478787264 "GET /api/v1/v1/finance/payments/ HTTP/1.1" 404 3730
+WARNING 2025-09-14 17:03:54,467 log 716653 139464478787264 Not Found: /api/v1/v1/finance/payments
+WARNING 2025-09-14 17:03:54,467 basehttp 716653 139464478787264 "GET /api/v1/v1/finance/payments HTTP/1.1" 404 3727
+WARNING 2025-09-14 17:03:59,307 log 716653 139464478787264 Not Found: /api/v1/v1/finance
+WARNING 2025-09-14 17:03:59,307 basehttp 716653 139464478787264 "GET /api/v1/v1/finance HTTP/1.1" 404 3700
+WARNING 2025-09-14 17:05:27,218 log 716653 139464478787264 Unauthorized: /api/v1/finance/
+WARNING 2025-09-14 17:05:27,218 basehttp 716653 139464478787264 "GET /api/v1/finance/ HTTP/1.1" 401 58
+WARNING 2025-09-14 17:06:24,161 log 716653 139464478787264 Not Found: /api/v1/v1/finance/purchase-orders/
+WARNING 2025-09-14 17:06:24,161 basehttp 716653 139464478787264 "GET /api/v1/v1/finance/purchase-orders/ HTTP/1.1" 404 3751
+WARNING 2025-09-14 17:06:24,861 log 716653 139464478787264 Not Found: /api/v1/v1/finance/expenses/
+WARNING 2025-09-14 17:06:24,861 basehttp 716653 139464478787264 "GET /api/v1/v1/finance/expenses/ HTTP/1.1" 404 3730
+WARNING 2025-09-14 17:06:25,873 log 716653 139464478787264 Not Found: /api/v1/v1/finance/expenses/
+WARNING 2025-09-14 17:06:25,873 basehttp 716653 139464478787264 "GET /api/v1/v1/finance/expenses/ HTTP/1.1" 404 3730
+WARNING 2025-09-14 17:06:27,883 log 716653 139464478787264 Not Found: /api/v1/v1/finance/expenses/
+WARNING 2025-09-14 17:06:27,883 basehttp 716653 139464478787264 "GET /api/v1/v1/finance/expenses/ HTTP/1.1" 404 3730
+WARNING 2025-09-14 17:06:31,893 log 716653 139464478787264 Not Found: /api/v1/v1/finance/expenses/
+WARNING 2025-09-14 17:06:31,893 basehttp 716653 139464478787264 "GET /api/v1/v1/finance/expenses/ HTTP/1.1" 404 3730
+WARNING 2025-09-14 17:06:59,522 log 716653 139464478787264 Not Found: /api/v1/v1/finance/invoices/
+WARNING 2025-09-14 17:06:59,524 log 716653 139464470394560 Not Found: /api/v1/v1/finance/invoices/
+WARNING 2025-09-14 17:06:59,524 basehttp 716653 139464478787264 "GET /api/v1/v1/finance/invoices/?client=[object+Object]&queryKey[]=invoices&signal=[object+AbortSignal] HTTP/1.1" 404 3809
+WARNING 2025-09-14 17:06:59,524 basehttp 716653 139464470394560 "GET /api/v1/v1/finance/invoices/?client=[object+Object]&queryKey[]=invoices&signal=[object+AbortSignal] HTTP/1.1" 404 3809
+WARNING 2025-09-14 17:07:00,533 log 716653 139464470394560 Not Found: /api/v1/v1/finance/invoices/
+WARNING 2025-09-14 17:07:00,533 basehttp 716653 139464470394560 "GET /api/v1/v1/finance/invoices/?client=[object+Object]&queryKey[]=invoices&signal=[object+AbortSignal] HTTP/1.1" 404 3809
+WARNING 2025-09-14 17:07:03,227 log 716653 139464470394560 Not Found: /api/v1/v1/finance/invoices/
+WARNING 2025-09-14 17:07:03,228 basehttp 716653 139464470394560 "GET /api/v1/v1/finance/invoices/?client=[object+Object]&queryKey[]=invoices&signal=[object+AbortSignal] HTTP/1.1" 404 3809
+WARNING 2025-09-14 17:07:03,229 log 716653 139464478787264 Not Found: /api/v1/v1/finance/invoices/
+WARNING 2025-09-14 17:07:03,230 basehttp 716653 139464478787264 "GET /api/v1/v1/finance/invoices/?client=[object+Object]&queryKey[]=invoices&signal=[object+AbortSignal] HTTP/1.1" 404 3809
+INFO 2025-09-14 17:07:03,254 basehttp 716653 139464496621248 "GET /api/v1/core/users/me/ HTTP/1.1" 200 86
+INFO 2025-09-14 17:07:03,259 basehttp 716653 139464478787264 "GET /api/v1/core/users/me/ HTTP/1.1" 200 86
+INFO 2025-09-14 17:07:03,261 basehttp 716653 139464487179968 "GET /api/v1/core/user-permissions/ HTTP/1.1" 200 105
+INFO 2025-09-14 17:07:03,263 basehttp 716653 139464470394560 "GET /api/v1/core/user-permissions/ HTTP/1.1" 200 105
+WARNING 2025-09-14 17:07:04,247 log 716653 139464470394560 Not Found: /api/v1/v1/finance/invoices/
+WARNING 2025-09-14 17:07:04,248 basehttp 716653 139464470394560 "GET /api/v1/v1/finance/invoices/?client=[object+Object]&queryKey[]=invoices&signal=[object+AbortSignal] HTTP/1.1" 404 3809
+WARNING 2025-09-14 17:07:06,258 log 716653 139464470394560 Not Found: /api/v1/v1/finance/invoices/
+WARNING 2025-09-14 17:07:06,258 basehttp 716653 139464470394560 "GET /api/v1/v1/finance/invoices/?client=[object+Object]&queryKey[]=invoices&signal=[object+AbortSignal] HTTP/1.1" 404 3809
+WARNING 2025-09-14 17:07:10,538 log 716653 139464470394560 Not Found: /api/v1/v1/finance/invoices/
+WARNING 2025-09-14 17:07:10,539 basehttp 716653 139464470394560 "GET /api/v1/v1/finance/invoices/?client=[object+Object]&queryKey[]=invoices&signal=[object+AbortSignal] HTTP/1.1" 404 3809
+WARNING 2025-09-14 17:07:16,461 log 716653 139464470394560 Not Found: /api/v1/v1/finance/payments/
+WARNING 2025-09-14 17:07:16,461 basehttp 716653 139464470394560 "GET /api/v1/v1/finance/payments/ HTTP/1.1" 404 3730
+WARNING 2025-09-14 17:07:17,475 log 716653 139464470394560 Not Found: /api/v1/v1/finance/payments/
+WARNING 2025-09-14 17:07:17,475 basehttp 716653 139464470394560 "GET /api/v1/v1/finance/payments/ HTTP/1.1" 404 3730
+WARNING 2025-09-14 17:07:19,584 log 716653 139464470394560 Not Found: /api/v1/v1/finance/payments/
+WARNING 2025-09-14 17:07:19,584 basehttp 716653 139464470394560 "GET /api/v1/v1/finance/payments/ HTTP/1.1" 404 3730
+WARNING 2025-09-14 17:07:23,594 log 716653 139464470394560 Not Found: /api/v1/v1/finance/payments/
+WARNING 2025-09-14 17:07:23,595 basehttp 716653 139464470394560 "GET /api/v1/v1/finance/payments/ HTTP/1.1" 404 3730
+INFO 2025-09-14 17:11:23,478 basehttp 716653 139464470394560 "GET /api/v1/core/users/me/ HTTP/1.1" 200 86
+INFO 2025-09-14 17:11:23,482 basehttp 716653 139464487179968 "GET /api/v1/core/user-permissions/ HTTP/1.1" 200 105
+INFO 2025-09-14 17:11:23,484 basehttp 716653 139464478787264 "GET /api/v1/core/users/me/ HTTP/1.1" 200 86
+INFO 2025-09-14 17:11:23,484 basehttp 716653 139464496621248 "GET /api/v1/core/user-permissions/ HTTP/1.1" 200 105
+INFO 2025-09-14 17:11:24,797 basehttp 716653 139464496621248 "GET /api/v1/core/users/me/ HTTP/1.1" 200 86
+INFO 2025-09-14 17:11:24,802 basehttp 716653 139464487179968 "GET /api/v1/core/users/me/ HTTP/1.1" 200 86
+INFO 2025-09-14 17:11:24,805 basehttp 716653 139464478787264 "GET /api/v1/core/user-permissions/ HTTP/1.1" 200 105
+INFO 2025-09-14 17:11:24,826 basehttp 716653 139464478787264 "GET /api/v1/core/user-permissions/ HTTP/1.1" 200 105
+INFO 2025-09-14 17:17:05,343 basehttp 716653 139464478787264 "GET /api/v1/core/users/me/ HTTP/1.1" 200 86
+INFO 2025-09-14 17:17:05,353 basehttp 716653 139464487179968 "GET /api/v1/core/user-permissions/ HTTP/1.1" 200 105
+INFO 2025-09-14 17:17:05,363 basehttp 716653 139464496621248 "GET /api/v1/core/users/me/ HTTP/1.1" 200 86
+INFO 2025-09-14 17:17:05,367 basehttp 716653 139464470394560 "GET /api/v1/core/user-permissions/ HTTP/1.1" 200 105
+WARNING 2025-09-14 17:22:08,523 log 716653 139464487179968 Not Found: /api/v1/api/v1/core/users/me/
+WARNING 2025-09-14 17:22:08,526 log 716653 139464470394560 Not Found: /api/v1/api/v1/core/users/me/
+WARNING 2025-09-14 17:22:08,529 basehttp 716653 139464470394560 "GET /api/v1/api/v1/core/users/me/ HTTP/1.1" 404 3733
+WARNING 2025-09-14 17:22:08,528 log 716653 139464478787264 Not Found: /api/v1/api/v1/core/user-permissions/
+WARNING 2025-09-14 17:22:08,530 basehttp 716653 139464487179968 "GET /api/v1/api/v1/core/users/me/ HTTP/1.1" 404 3733
+WARNING 2025-09-14 17:22:08,532 log 716653 139464496621248 Not Found: /api/v1/api/v1/core/user-permissions/
+WARNING 2025-09-14 17:22:08,532 basehttp 716653 139464496621248 "GET /api/v1/api/v1/core/user-permissions/ HTTP/1.1" 404 3757
+WARNING 2025-09-14 17:22:08,532 basehttp 716653 139464478787264 "GET /api/v1/api/v1/core/user-permissions/ HTTP/1.1" 404 3757
+WARNING 2025-09-14 17:22:08,536 log 716653 139464478787264 Not Found: /api/v1/v1/finance/payments/
+WARNING 2025-09-14 17:22:08,536 basehttp 716653 139464478787264 "GET /api/v1/v1/finance/payments/ HTTP/1.1" 404 3730
+INFO 2025-09-14 17:22:10,967 basehttp 716653 139464478787264 "POST /api/token/ HTTP/1.1" 200 483
+WARNING 2025-09-14 17:22:10,994 log 716653 139464478787264 Not Found: /api/v1/api/v1/core/users/me/
+WARNING 2025-09-14 17:22:10,999 log 716653 139464487179968 Not Found: /api/v1/api/v1/core/users/me/
+WARNING 2025-09-14 17:22:11,001 log 716653 139464496621248 Not Found: /api/v1/api/v1/core/user-permissions/
+WARNING 2025-09-14 17:22:11,002 log 716653 139464470394560 Not Found: /api/v1/api/v1/core/user-permissions/
+WARNING 2025-09-14 17:22:11,002 basehttp 716653 139464478787264 "GET /api/v1/api/v1/core/users/me/ HTTP/1.1" 404 3733
+WARNING 2025-09-14 17:22:11,003 basehttp 716653 139464487179968 "GET /api/v1/api/v1/core/users/me/ HTTP/1.1" 404 3733
+WARNING 2025-09-14 17:22:11,003 basehttp 716653 139464496621248 "GET /api/v1/api/v1/core/user-permissions/ HTTP/1.1" 404 3757
+WARNING 2025-09-14 17:22:11,003 basehttp 716653 139464470394560 "GET /api/v1/api/v1/core/user-permissions/ HTTP/1.1" 404 3757
+INFO 2025-09-14 17:32:14,659 basehttp 716653 139464478787264 "POST /api/token/ HTTP/1.1" 200 483
+INFO 2025-09-14 17:32:14,700 basehttp 716653 139464478787264 "GET /api/v1/core/users/me/ HTTP/1.1" 200 100
+INFO 2025-09-14 17:32:14,703 basehttp 716653 139464496621248 "GET /api/v1/core/users/me/ HTTP/1.1" 200 100
+INFO 2025-09-14 17:32:14,706 basehttp 716653 139464470394560 "GET /api/v1/core/user-permissions/ HTTP/1.1" 200 105
+INFO 2025-09-14 17:32:14,706 basehttp 716653 139464487179968 "GET /api/v1/core/user-permissions/ HTTP/1.1" 200 105
+INFO 2025-09-14 17:33:13,363 basehttp 716653 139464496621248 "GET /api/v1/core/users/me/ HTTP/1.1" 200 100
+INFO 2025-09-14 17:33:13,365 basehttp 716653 139464487179968 "GET /api/v1/core/users/me/ HTTP/1.1" 200 100
+INFO 2025-09-14 17:33:13,367 basehttp 716653 139464470394560 "GET /api/v1/core/user-permissions/ HTTP/1.1" 200 105
+INFO 2025-09-14 17:33:13,368 basehttp 716653 139464478787264 "GET /api/v1/core/user-permissions/ HTTP/1.1" 200 105
+INFO 2025-09-14 17:33:17,760 basehttp 716653 139464478787264 "GET /api/v1/core/users/me/ HTTP/1.1" 200 100
+INFO 2025-09-14 17:33:17,766 basehttp 716653 139464470394560 "GET /api/v1/core/user-permissions/ HTTP/1.1" 200 105
+INFO 2025-09-14 17:33:17,771 basehttp 716653 139464487179968 "GET /api/v1/core/users/me/ HTTP/1.1" 200 100
+INFO 2025-09-14 17:33:17,777 basehttp 716653 139464496621248 "GET /api/v1/core/user-permissions/ HTTP/1.1" 200 105
+INFO 2025-09-14 17:33:31,953 basehttp 716653 139464496621248 "GET /api/v1/core/users/me/ HTTP/1.1" 200 100
+INFO 2025-09-14 17:33:31,954 basehttp 716653 139464470394560 "GET /api/v1/core/users/me/ HTTP/1.1" 200 100
+INFO 2025-09-14 17:33:31,956 basehttp 716653 139464487179968 "GET /api/v1/core/user-permissions/ HTTP/1.1" 200 105
+INFO 2025-09-14 17:33:31,973 basehttp 716653 139464487179968 "GET /api/v1/core/user-permissions/ HTTP/1.1" 200 105
+WARNING 2025-09-14 17:34:08,648 log 716653 139464460953280 Not Found: /api/v1/api/v1/core/user-permissions/
+WARNING 2025-09-14 17:34:08,650 log 716653 139464478787264 Not Found: /api/v1/api/v1/core/users/me/
+WARNING 2025-09-14 17:34:08,651 log 716653 139464487179968 Not Found: /api/v1/api/v1/core/users/me/
+WARNING 2025-09-14 17:34:08,656 basehttp 716653 139464487179968 "GET /api/v1/api/v1/core/users/me/ HTTP/1.1" 404 3733
+WARNING 2025-09-14 17:34:08,656 basehttp 716653 139464478787264 "GET /api/v1/api/v1/core/users/me/ HTTP/1.1" 404 3733
+WARNING 2025-09-14 17:34:08,653 log 716653 139464496621248 Not Found: /api/v1/api/v1/core/user-permissions/
+WARNING 2025-09-14 17:34:08,657 log 716653 139464470394560 Not Found: /api/v1/v1/hr/contracts/
+WARNING 2025-09-14 17:34:08,658 basehttp 716653 139464460953280 "GET /api/v1/api/v1/core/user-permissions/ HTTP/1.1" 404 3757
+WARNING 2025-09-14 17:34:08,662 basehttp 716653 139464496621248 "GET /api/v1/api/v1/core/user-permissions/ HTTP/1.1" 404 3757
+WARNING 2025-09-14 17:34:08,662 basehttp 716653 139464470394560 "GET /api/v1/v1/hr/contracts/ HTTP/1.1" 404 3718
+INFO 2025-09-14 17:34:11,329 basehttp 716653 139464470394560 "POST /api/token/ HTTP/1.1" 200 483
+WARNING 2025-09-14 17:34:11,370 log 716653 139464460953280 Not Found: /api/v1/api/v1/core/users/me/
+WARNING 2025-09-14 17:34:11,371 log 716653 139464470394560 Not Found: /api/v1/api/v1/core/users/me/
+WARNING 2025-09-14 17:34:11,373 log 716653 139464496621248 Not Found: /api/v1/api/v1/core/user-permissions/
+WARNING 2025-09-14 17:34:11,374 basehttp 716653 139464460953280 "GET /api/v1/api/v1/core/users/me/ HTTP/1.1" 404 3733
+WARNING 2025-09-14 17:34:11,374 basehttp 716653 139464496621248 "GET /api/v1/api/v1/core/user-permissions/ HTTP/1.1" 404 3757
+WARNING 2025-09-14 17:34:11,376 log 716653 139464478787264 Not Found: /api/v1/api/v1/core/user-permissions/
+WARNING 2025-09-14 17:34:11,376 basehttp 716653 139464470394560 "GET /api/v1/api/v1/core/users/me/ HTTP/1.1" 404 3733
+WARNING 2025-09-14 17:34:11,377 basehttp 716653 139464478787264 "GET /api/v1/api/v1/core/user-permissions/ HTTP/1.1" 404 3757
+INFO 2025-09-14 17:34:27,363 basehttp 716653 139464478787264 "POST /api/token/ HTTP/1.1" 200 483
+INFO 2025-09-14 17:34:27,389 basehttp 716653 139464496621248 "GET /api/v1/core/users/me/ HTTP/1.1" 200 100
+INFO 2025-09-14 17:34:27,394 basehttp 716653 139464478787264 "GET /api/v1/core/users/me/ HTTP/1.1" 200 100
+INFO 2025-09-14 17:34:27,395 basehttp 716653 139464460953280 "GET /api/v1/core/user-permissions/ HTTP/1.1" 200 105
+INFO 2025-09-14 17:34:27,397 basehttp 716653 139464470394560 "GET /api/v1/core/user-permissions/ HTTP/1.1" 200 105
+WARNING 2025-09-14 17:34:28,702 log 716653 139464460953280 Not Found: /api/v1/v1/hr/staff/
+WARNING 2025-09-14 17:34:28,704 log 716653 139464470394560 Not Found: /api/v1/v1/hr/staff/
+WARNING 2025-09-14 17:34:28,706 basehttp 716653 139464470394560 "GET /api/v1/v1/hr/staff/?client=[object+Object]&queryKey[]=staff&signal=[object+AbortSignal] HTTP/1.1" 404 3782
+WARNING 2025-09-14 17:34:28,706 basehttp 716653 139464460953280 "GET /api/v1/v1/hr/staff/?client=[object+Object]&queryKey[]=staff&signal=[object+AbortSignal] HTTP/1.1" 404 3782
+WARNING 2025-09-14 17:34:29,165 log 716653 139464460953280 Not Found: /api/v1/v1/hr/staff-attendances/
+WARNING 2025-09-14 17:34:29,166 basehttp 716653 139464460953280 "GET /api/v1/v1/hr/staff-attendances/ HTTP/1.1" 404 3742
+WARNING 2025-09-14 17:34:29,594 log 716653 139464460953280 Not Found: /api/v1/v1/hr/documents/
+WARNING 2025-09-14 17:34:29,594 basehttp 716653 139464460953280 "GET /api/v1/v1/hr/documents/ HTTP/1.1" 404 3718
+WARNING 2025-09-14 17:34:29,919 log 716653 139464460953280 Not Found: /api/v1/v1/hr/vacations/
+WARNING 2025-09-14 17:34:29,919 basehttp 716653 139464460953280 "GET /api/v1/v1/hr/vacations/ HTTP/1.1" 404 3718
+WARNING 2025-09-14 17:34:30,929 log 716653 139464460953280 Not Found: /api/v1/v1/hr/vacations/
+WARNING 2025-09-14 17:34:30,929 basehttp 716653 139464460953280 "GET /api/v1/v1/hr/vacations/ HTTP/1.1" 404 3718
+WARNING 2025-09-14 17:34:32,936 log 716653 139464460953280 Not Found: /api/v1/v1/hr/vacations/
+WARNING 2025-09-14 17:34:32,936 basehttp 716653 139464460953280 "GET /api/v1/v1/hr/vacations/ HTTP/1.1" 404 3718
+WARNING 2025-09-14 17:34:36,946 log 716653 139464460953280 Not Found: /api/v1/v1/hr/vacations/
+WARNING 2025-09-14 17:34:36,946 basehttp 716653 139464460953280 "GET /api/v1/v1/hr/vacations/ HTTP/1.1" 404 3718
+INFO 2025-09-14 21:18:19,342 basehttp 716653 139464460953280 "POST /api/token/ HTTP/1.1" 200 483
+INFO 2025-09-14 21:18:19,361 basehttp 716653 139464460953280 "GET /api/v1/core/users/me/ HTTP/1.1" 200 100
+INFO 2025-09-14 21:18:19,364 basehttp 716653 139464478787264 "GET /api/v1/core/users/me/ HTTP/1.1" 200 100
+INFO 2025-09-14 21:18:19,368 basehttp 716653 139464470394560 "GET /api/v1/core/user-permissions/ HTTP/1.1" 200 105
+INFO 2025-09-14 21:18:19,369 basehttp 716653 139464496621248 "GET /api/v1/core/user-permissions/ HTTP/1.1" 200 105
+WARNING 2025-09-14 21:18:33,238 log 716653 139464496621248 Not Found: /api/v1/v1/hr/staff-attendances/
+WARNING 2025-09-14 21:18:33,238 basehttp 716653 139464496621248 "GET /api/v1/v1/hr/staff-attendances/ HTTP/1.1" 404 3742
+WARNING 2025-09-14 21:18:33,808 log 716653 139464496621248 Not Found: /api/v1/v1/hr/documents/
+WARNING 2025-09-14 21:18:33,808 basehttp 716653 139464496621248 "GET /api/v1/v1/hr/documents/ HTTP/1.1" 404 3718
+WARNING 2025-09-14 21:18:34,469 log 716653 139464496621248 Not Found: /api/v1/v1/hr/vacations/
+WARNING 2025-09-14 21:18:34,475 basehttp 716653 139464496621248 "GET /api/v1/v1/hr/vacations/ HTTP/1.1" 404 3718
+WARNING 2025-09-14 21:18:35,484 log 716653 139464496621248 Not Found: /api/v1/v1/hr/vacations/
+WARNING 2025-09-14 21:18:35,484 basehttp 716653 139464496621248 "GET /api/v1/v1/hr/vacations/ HTTP/1.1" 404 3718
+WARNING 2025-09-14 21:18:37,492 log 716653 139464496621248 Not Found: /api/v1/v1/hr/vacations/
+WARNING 2025-09-14 21:18:37,492 basehttp 716653 139464496621248 "GET /api/v1/v1/hr/vacations/ HTTP/1.1" 404 3718
+WARNING 2025-09-14 21:18:41,498 log 716653 139464496621248 Not Found: /api/v1/v1/hr/vacations/
+WARNING 2025-09-14 21:18:41,499 basehttp 716653 139464496621248 "GET /api/v1/v1/hr/vacations/ HTTP/1.1" 404 3718
+INFO 2025-09-14 21:18:59,163 basehttp 716653 139464496621248 "POST /api/token/ HTTP/1.1" 200 483
+INFO 2025-09-14 21:18:59,183 basehttp 716653 139464478787264 "GET /api/v1/core/users/me/ HTTP/1.1" 200 87
+INFO 2025-09-14 21:18:59,184 basehttp 716653 139464460953280 "GET /api/v1/core/user-permissions/ HTTP/1.1" 200 102
+INFO 2025-09-14 21:18:59,186 basehttp 716653 139464496621248 "GET /api/v1/core/users/me/ HTTP/1.1" 200 87
+INFO 2025-09-14 21:18:59,186 basehttp 716653 139464470394560 "GET /api/v1/core/user-permissions/ HTTP/1.1" 200 102
+WARNING 2025-09-14 21:19:05,192 log 716653 139464496621248 Not Found: /api/v1/v1/hr/staff/
+WARNING 2025-09-14 21:19:05,194 basehttp 716653 139464496621248 "GET /api/v1/v1/hr/staff/?client=[object+Object]&queryKey[]=staff&signal=[object+AbortSignal] HTTP/1.1" 404 3782
+WARNING 2025-09-14 21:19:05,194 log 716653 139464470394560 Not Found: /api/v1/v1/hr/staff/
+WARNING 2025-09-14 21:19:05,195 basehttp 716653 139464470394560 "GET /api/v1/v1/hr/staff/?client=[object+Object]&queryKey[]=staff&signal=[object+AbortSignal] HTTP/1.1" 404 3782
+WARNING 2025-09-14 21:19:06,202 log 716653 139464470394560 Not Found: /api/v1/v1/hr/staff/
+WARNING 2025-09-14 21:19:06,202 basehttp 716653 139464470394560 "GET /api/v1/v1/hr/staff/?client=[object+Object]&queryKey[]=staff&signal=[object+AbortSignal] HTTP/1.1" 404 3782
+WARNING 2025-09-14 21:19:08,209 log 716653 139464470394560 Not Found: /api/v1/v1/hr/staff/
+WARNING 2025-09-14 21:19:08,209 basehttp 716653 139464470394560 "GET /api/v1/v1/hr/staff/?client=[object+Object]&queryKey[]=staff&signal=[object+AbortSignal] HTTP/1.1" 404 3782
+INFO 2025-09-14 21:21:08,082 basehttp 716653 139464470394560 "GET /api/v1/core/users/me/ HTTP/1.1" 200 87
+INFO 2025-09-14 21:21:08,084 basehttp 716653 139464496621248 "GET /api/v1/core/user-permissions/ HTTP/1.1" 200 102
+INFO 2025-09-14 21:21:08,085 basehttp 716653 139464460953280 "GET /api/v1/core/users/me/ HTTP/1.1" 200 87
+INFO 2025-09-14 21:21:08,091 basehttp 716653 139464478787264 "GET /api/v1/core/user-permissions/ HTTP/1.1" 200 102
+WARNING 2025-09-14 21:21:42,198 log 716653 139464478787264 Not Found: /api/v1/v1/hr/staff/
+WARNING 2025-09-14 21:21:42,200 basehttp 716653 139464478787264 "GET /api/v1/v1/hr/staff/?client=[object+Object]&queryKey[]=staff&signal=[object+AbortSignal] HTTP/1.1" 404 3782
+WARNING 2025-09-14 21:21:42,202 log 716653 139464496621248 Not Found: /api/v1/v1/hr/staff/
+WARNING 2025-09-14 21:21:42,207 basehttp 716653 139464496621248 "GET /api/v1/v1/hr/staff/?client=[object+Object]&queryKey[]=staff&signal=[object+AbortSignal] HTTP/1.1" 404 3782
+INFO 2025-09-14 21:21:42,217 basehttp 716653 139464478787264 "GET /api/v1/core/user-permissions/ HTTP/1.1" 200 102
+INFO 2025-09-14 21:21:42,220 basehttp 716653 139464487179968 "GET /api/v1/core/user-permissions/ HTTP/1.1" 200 102
+INFO 2025-09-14 21:21:42,220 basehttp 716653 139464470394560 "GET /api/v1/core/users/me/ HTTP/1.1" 200 87
+INFO 2025-09-14 21:21:42,223 basehttp 716653 139464460953280 "GET /api/v1/core/users/me/ HTTP/1.1" 200 87
+WARNING 2025-09-14 21:21:43,219 log 716653 139464460953280 Not Found: /api/v1/v1/hr/staff/
+WARNING 2025-09-14 21:21:43,219 basehttp 716653 139464460953280 "GET /api/v1/v1/hr/staff/?client=[object+Object]&queryKey[]=staff&signal=[object+AbortSignal] HTTP/1.1" 404 3782
+INFO 2025-09-14 21:28:06,881 basehttp 716653 139464478787264 "GET /api/v1/core/user-permissions/ HTTP/1.1" 200 102
+INFO 2025-09-14 21:28:06,881 basehttp 716653 139464487179968 "GET /api/v1/core/users/me/ HTTP/1.1" 200 87
+INFO 2025-09-14 21:28:06,881 basehttp 716653 139464470394560 "GET /api/v1/core/user-permissions/ HTTP/1.1" 200 102
+INFO 2025-09-14 21:28:06,882 basehttp 716653 139464460953280 "GET /api/v1/core/users/me/ HTTP/1.1" 200 87
+INFO 2025-09-14 21:28:30,366 autoreload 805610 125483369279616 Watching for file changes with StatReloader
+INFO 2025-09-14 21:30:11,684 basehttp 805610 125482823567040 "GET /api/v1/core/user-permissions/ HTTP/1.1" 200 102
+INFO 2025-09-14 21:30:11,687 basehttp 805610 125482848745152 "GET /api/v1/core/users/me/ HTTP/1.1" 200 87
+INFO 2025-09-14 21:30:11,687 basehttp 805610 125482840352448 "GET /api/v1/core/user-permissions/ HTTP/1.1" 200 102
+INFO 2025-09-14 21:30:11,687 basehttp 805610 125482831959744 "GET /api/v1/core/users/me/ HTTP/1.1" 200 87
+INFO 2025-09-14 21:30:12,876 basehttp 805610 125482823567040 "GET /api/v1/core/user-permissions/ HTTP/1.1" 200 102
+INFO 2025-09-14 21:30:12,878 basehttp 805610 125482840352448 "GET /api/v1/core/user-permissions/ HTTP/1.1" 200 102
+INFO 2025-09-14 21:30:12,881 basehttp 805610 125482831959744 "GET /api/v1/core/users/me/ HTTP/1.1" 200 87
+INFO 2025-09-14 21:30:12,881 basehttp 805610 125482848745152 "GET /api/v1/core/users/me/ HTTP/1.1" 200 87
+WARNING 2025-09-14 21:30:18,490 log 805610 125482848745152 Not Found: /api/v1/api/v1/core/users/me/
+WARNING 2025-09-14 21:30:18,490 log 805610 125482831959744 Not Found: /api/v1/api/v1/core/user-permissions/
+WARNING 2025-09-14 21:30:18,490 basehttp 805610 125482848745152 "GET /api/v1/api/v1/core/users/me/ HTTP/1.1" 404 3733
+WARNING 2025-09-14 21:30:18,491 basehttp 805610 125482831959744 "GET /api/v1/api/v1/core/user-permissions/ HTTP/1.1" 404 3757
+INFO 2025-09-14 21:30:22,784 basehttp 805610 125482831959744 "POST /api/token/ HTTP/1.1" 200 483
+WARNING 2025-09-14 21:30:22,801 log 805610 125482831959744 Not Found: /api/v1/api/v1/core/users/me/
+WARNING 2025-09-14 21:30:22,801 basehttp 805610 125482831959744 "GET /api/v1/api/v1/core/users/me/ HTTP/1.1" 404 3733
+WARNING 2025-09-14 21:30:22,810 log 805610 125482831959744 Not Found: /api/v1/api/v1/core/user-permissions/
+WARNING 2025-09-14 21:30:22,810 basehttp 805610 125482831959744 "GET /api/v1/api/v1/core/user-permissions/ HTTP/1.1" 404 3757
+WARNING 2025-09-14 21:30:22,819 log 805610 125482831959744 Not Found: /api/v1/api/v1/core/users/me/
+WARNING 2025-09-14 21:30:22,822 log 805610 125482848745152 Not Found: /api/v1/api/v1/core/user-permissions/
+WARNING 2025-09-14 21:30:22,822 basehttp 805610 125482848745152 "GET /api/v1/api/v1/core/user-permissions/ HTTP/1.1" 404 3757
+WARNING 2025-09-14 21:30:22,822 basehttp 805610 125482831959744 "GET /api/v1/api/v1/core/users/me/ HTTP/1.1" 404 3733
+INFO 2025-09-14 21:30:33,060 basehttp 805610 125482831959744 "POST /api/token/ HTTP/1.1" 200 483
+INFO 2025-09-14 21:30:33,089 basehttp 805610 125482848745152 "GET /api/v1/core/users/me/ HTTP/1.1" 200 100
+INFO 2025-09-14 21:30:33,096 basehttp 805610 125482831959744 "GET /api/v1/core/users/me/ HTTP/1.1" 200 100
+INFO 2025-09-14 21:30:33,098 basehttp 805610 125482840352448 "GET /api/v1/core/user-permissions/ HTTP/1.1" 200 105
+INFO 2025-09-14 21:30:33,098 basehttp 805610 125482823567040 "GET /api/v1/core/user-permissions/ HTTP/1.1" 200 105
+INFO 2025-09-14 21:30:39,491 basehttp 805610 125482823567040 "POST /api/token/ HTTP/1.1" 200 483
+INFO 2025-09-14 21:30:39,510 basehttp 805610 125482823567040 "GET /api/v1/core/users/me/ HTTP/1.1" 200 86
+INFO 2025-09-14 21:30:39,516 basehttp 805610 125482840352448 "GET /api/v1/core/user-permissions/ HTTP/1.1" 200 105
+INFO 2025-09-14 21:30:39,521 basehttp 805610 125482831959744 "GET /api/v1/core/users/me/ HTTP/1.1" 200 86
+INFO 2025-09-14 21:30:39,523 basehttp 805610 125482848745152 "GET /api/v1/core/user-permissions/ HTTP/1.1" 200 105

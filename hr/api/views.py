@@ -1,5 +1,5 @@
 from rest_framework import viewsets
-from rest_framework.permissions import IsAuthenticated, DjangoModelPermissions  # <-- ADD THIS LINE
+from rest_framework.permissions import IsAuthenticated  # <-- ADD THIS LINE
 from core.api.permissions import ModulePermission
 from hr.models import (
     Staff,

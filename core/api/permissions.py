@@ -1,35 +1,53 @@
 # app/core/api/permissions.py
 from rest_framework import permissions
 
+# Groups with module access (edit as needed)
+MODULE_ACCESS_RULES = {
+    "student":   {"Admissions Officer", "Teacher"},
+    "hr":        {"HR Manager"},
+    "finance":   {"Finance Manager"},
+    "inventory": {"Inventory Manager"},
+    # Give full access if you use an "Administrator" group
+    "__ALL__":   {"Administrator"},
+}
+
+def _has_django_app_perm(user, app_label: str) -> bool:
+    """
+    If the user has ANY Django permission under this app_label (e.g. 'hr.add_staff'),
+    consider that as access to the module. This lets you use the standard Django perms
+    instead of (or alongside) groups.
+    """
+    if user.is_superuser:
+        return True
+    perms = user.get_all_permissions()  # e.g. {'hr.add_staff', 'student.view_student', ...}
+    prefix = f"{app_label}."
+    return any(p.startswith(prefix) for p in perms)
+
 class ModulePermission(permissions.BasePermission):
     """
-    Checks if a user's group has permission to access a specific module.
+    Enforces module-level access.
+    Each DRF view must declare: module_name = 'student'|'hr'|'finance'|'inventory'
+    Superusers bypass all checks.
     """
     def has_permission(self, request, view):
-        # Superusers can do anything
-        if request.user.is_superuser:
+        user = request.user
+        if not user or not user.is_authenticated:
+            return False
+        if user.is_superuser:
             return True
 
-        # Get the required module from the view
-        required_module = getattr(view, 'module_name', None)
-        if not required_module:
-            # If a view doesn't specify a module, deny access by default for safety.
-            return False
+        module = getattr(view, "module_name", None)
+        if not module:
+            return False  # secure default
 
-        # Get the user's groups
-        user_groups = set(request.user.groups.values_list('name', flat=True))
+        # 1) Group-based allow
+        user_groups = set(user.groups.values_list("name", flat=True))
+        if MODULE_ACCESS_RULES.get("__ALL__") and not user_groups.isdisjoint(MODULE_ACCESS_RULES["__ALL__"]):
+            return True
+        allowed_groups = MODULE_ACCESS_RULES.get(module, set())
+        if not user_groups.isdisjoint(allowed_groups):
+            return True
 
-        # --- Define Your Rules Here ---
-        # A dictionary where keys are module names and values are a set of groups that can access it.
-        module_access_rules = {
-            'student': {'HR Manager', 'Admissions Officer', 'Teacher'},
-            'finance': {'Finance Manager', 'HR Manager'},
-            'hr': {'HR Manager'},
-            'inventory': {'Inventory Manager'},
-        }
+        # 2) OR: any Django model permission for the app_label
+        return _has_django_app_perm(user, module)
 
-        # Get the allowed groups for the required module
-        allowed_groups = module_access_rules.get(required_module, set())
-
-        # Check if the user belongs to any of the allowed groups
-        return not user_groups.isdisjoint(allowed_groups)

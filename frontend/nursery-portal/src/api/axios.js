@@ -1,104 +1,68 @@
 // src/api/axios.js
 import axios from "axios";
 
-/**
- * Axios instance:
- * - baseURL = "/api"
- * - Adds Bearer access token if found
- * - Tries a SimpleJWT refresh once on 401
- */
 const api = axios.create({
-  baseURL: "/api",
-  timeout: 30000,
+  baseURL: "/api/v1",   // all app APIs under /api/v1
+  withCredentials: false,
 });
 
-function getToken(keys) {
-  for (const k of keys) {
-    const v1 = localStorage.getItem(k);
-    if (v1) return { storage: "localStorage", key: k, value: v1 };
-    const v2 = sessionStorage.getItem(k);
-    if (v2) return { storage: "sessionStorage", key: k, value: v2 };
-  }
-  return { storage: null, key: null, value: null };
-}
-
-function setToken(where, key, value) {
-  if (!where || !key) return;
-  window[where].setItem(key, value);
-}
-function clearTokens() {
-  ["access", "access_token", "token", "jwt", "refresh", "refresh_token"].forEach(
-    (k) => {
-      localStorage.removeItem(k);
-      sessionStorage.removeItem(k);
-    }
-  );
-}
-
-api.interceptors.request.use((cfg) => {
-  const { value: access } = getToken(["access", "access_token", "token", "jwt"]);
-  if (access) {
-    cfg.headers = cfg.headers || {};
-    cfg.headers.Authorization = `Bearer ${access}`;
-  }
-  return cfg;
+// attach access token on every request
+api.interceptors.request.use((config) => {
+  const token = localStorage.getItem("access");
+  if (token) config.headers.Authorization = `Bearer ${token}`;
+  return config;
 });
 
-let refreshing = null;
-async function refreshOnce() {
-  if (refreshing) return refreshing;
+// refresh-once flow for 401s
+let isRefreshing = false;
+let queue = [];
 
-  const { value: refresh } = getToken(["refresh", "refresh_token"]);
-  if (!refresh) throw new Error("no_refresh_token");
-
-  // try a few common endpoints
-  const candidates = [
-    "/token/refresh/",
-    "/auth/jwt/refresh/",
-    "/v1/auth/jwt/refresh/",
-  ];
-
-  refreshing = (async () => {
-    for (const p of candidates) {
-      try {
-        const { data } = await axios.post(`/api${p}`, { refresh });
-        if (data?.access) {
-          // prefer to write back where access was originally
-          setToken(getToken(["access", "access_token", "token", "jwt"]).storage || "localStorage", "access", data.access);
-          if (data?.refresh) setToken("localStorage", "refresh", data.refresh);
-          return data.access;
-        }
-      } catch (_) {
-        /* try next */
-      }
-    }
-    throw new Error("refresh_failed");
-  })();
-
-  try {
-    const token = await refreshing;
-    return token;
-  } finally {
-    refreshing = null;
-  }
-}
+const flushQueue = (token) => {
+  queue.forEach((cb) => cb(token));
+  queue = [];
+};
 
 api.interceptors.response.use(
   (res) => res,
   async (err) => {
-    const original = err?.config;
-    if (!original || err?.response?.status !== 401 || original._retry) {
+    const { config, response } = err || {};
+    if (!response || response.status !== 401 || config?._retry) {
       return Promise.reject(err);
     }
+
+    // if a refresh is already in flight, wait for it
+    if (isRefreshing) {
+      return new Promise((resolve, reject) => {
+        queue.push((newToken) => {
+          if (!newToken) return reject(err);
+          config.headers.Authorization = `Bearer ${newToken}`;
+          resolve(api(config));
+        });
+      });
+    }
+
+    isRefreshing = true;
+    config._retry = true;
+
     try {
-      const newAccess = await refreshOnce();
-      original._retry = true;
-      original.headers = original.headers || {};
-      original.headers.Authorization = `Bearer ${newAccess}`;
-      return api(original);
+      const refresh = localStorage.getItem("refresh");
+      if (!refresh) throw new Error("No refresh token");
+
+      // NOTE: token endpoints are OUTSIDE /api/v1
+      const { data } = await axios.post("/api/token/refresh/", { refresh });
+      const newAccess = data?.access;
+      if (!newAccess) throw new Error("No new access token");
+
+      localStorage.setItem("access", newAccess);
+      api.defaults.headers.common.Authorization = `Bearer ${newAccess}`;
+      flushQueue(newAccess);
+      return api(config);
     } catch (e) {
-      clearTokens();
-      return Promise.reject(err);
+      flushQueue(null);
+      localStorage.clear();
+      return Promise.reject(e);
+    } finally {
+      isRefreshing = false;
     }
   }
 );

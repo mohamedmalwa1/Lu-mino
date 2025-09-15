@@ -1,7 +1,9 @@
 # app/core/api/urls.py
 from django.urls import path
-from .views import get_user_module_permissions
+from .views import user_permissions, me
 
 urlpatterns = [
-    path('user-permissions/', get_user_module_permissions, name='user-permissions'),
+    path("user-permissions/", user_permissions, name="user-permissions"),
+    path("users/me/",         me,              name="users-me"),
 ]
+

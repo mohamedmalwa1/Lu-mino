@@ -1,6 +1,6 @@
 # student/api/views.py
 from rest_framework import viewsets
-from rest_framework.permissions import IsAuthenticated, DjangoModelPermissions
+from rest_framework.permissions import IsAuthenticated
 from core.api.permissions import ModulePermission
 from student.models import Student, StudentDocument, Classroom, Enrollment, Attendance, Evaluation, MedicalRecord
 from .serializers import (

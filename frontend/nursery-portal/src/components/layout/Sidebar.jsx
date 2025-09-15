@@ -1,3 +1,4 @@
+// src/components/layout/Sidebar.jsx
 import { useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
@@ -11,7 +12,6 @@ import {
 } from "react-icons/fi";
 import { LuGem } from "react-icons/lu";
 
-// Sub-component for individual links
 const SidebarLink = ({ to, icon: Icon, children }) => (
   <NavLink
     to={to}
@@ -26,7 +26,6 @@ const SidebarLink = ({ to, icon: Icon, children }) => (
   </NavLink>
 );
 
-// Sub-component for the collapsible sections
 const CollapsibleMenuItem = ({ icon: Icon, title, links = [] }) => {
   const location = useLocation();
   const isInitiallyOpen = links.some(link => location.pathname.startsWith(link.to));
@@ -44,9 +43,7 @@ const CollapsibleMenuItem = ({ icon: Icon, title, links = [] }) => {
           <Icon size={20} className="flex-shrink-0" />
           <span className="text-[15px]">{title}</span>
         </div>
-        <FiChevronDown
-          className={`transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`}
-        />
+        <FiChevronDown className={`transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`} />
       </button>
       <AnimatePresence>
         {isOpen && (
@@ -69,64 +66,68 @@ const CollapsibleMenuItem = ({ icon: Icon, title, links = [] }) => {
   );
 };
 
-// Main Sidebar Component
 export default function Sidebar() {
-  const { user, logout } = useAuth();
+  const { user, permissions, logout } = useAuth();
 
-  const menuItems = [
-    {
-      title: "Student Management",
-      icon: FiUsers,
-      links: [
-        { to: "/students", icon: FiUsers, children: "Students" },
-        { to: "/classrooms", icon: FiLayers, children: "Classrooms" },
-        { to: "/enrollments", icon: FiUserPlus, children: "Enrollments" },
-        { to: "/attendance", icon: FiCalendar, children: "Attendance" },
-        { to: "/evaluations", icon: FiClipboard, children: "Evaluations" },
-        { to: "/medical", icon: FiHeart, children: "Medical Records" },
-        { to: "/documents", icon: FiFile, children: "Documents" },
-      ],
-    },
-    {
-      title: "Human Resources",
-      icon: FiBriefcase,
-      links: [
-        { to: "/hr/staff", icon: FiUserCheck, children: "Staff Directory" },
-        { to: "/hr/attendance", icon: FiCalendar, children: "Staff Attendance" },
-        { to: "/hr/documents", icon: FiFile, children: "Staff Documents" },
-        { to: "/hr/vacations", icon: FiSun, children: "Leave Management" },
-        { to: "/hr/evaluations", icon: FiAward, children: "Performance" },
-        { to: "/hr/contracts", icon: FiFileText, children: "Payroll" },
-        { to: "/hr/salary-records", icon: FiDollarSign, children: "Salary Records" },
-      ],
-    },
-    {
-      title: "Finance Department",
-      icon: FiDollarSign,
-      links: [
-        { to: "/finance/invoices", icon: FiFileText, children: "Invoices" },
-        { to: "/finance/payments", icon: FiCheckSquare, children: "Payments" },
-        { to: "/finance/expenses", icon: FiCreditCard, children: "Expenses" },
-        { to: "/finance/purchase-orders", icon: FiBriefcase, children: "Procurement" },
-        { to: "/finance/salary-payments", icon: FiGift, children: "Payroll Processing" },
-        { to: "/finance/treasuries", icon: FiArchive, children: "Treasury" },
-      ],
-    },
-    {
-      title: "Inventory System",
-      icon: FiPackage,
-      links: [
-        { to: "/inventory/vendors", icon: FiTruck, children: "Vendors" },
-        { to: "/inventory/items", icon: FiPackage, children: "Inventory Items" },
-        { to: "/inventory/custody", icon: FiShare2, children: "Custody Tracking" },
-        { to: "/inventory/stock-takes", icon: FiCheckCircle, children: "Stock Audits" },
-      ],
-    },
-  ];
+  // If we don't yet have permissions (first load), show all menus to avoid hiding legit sections.
+  const can = (flag) => permissions ? !!permissions[flag] : true;
+
+  const studentSection = can('can_access_student') ? {
+    title: "Student Management",
+    icon: FiUsers,
+    links: [
+      { to: "/students", icon: FiUsers, children: "Students" },
+      { to: "/classrooms", icon: FiLayers, children: "Classrooms" },
+      { to: "/enrollments", icon: FiUserPlus, children: "Enrollments" },
+      { to: "/attendance", icon: FiCalendar, children: "Attendance" },
+      { to: "/evaluations", icon: FiClipboard, children: "Evaluations" },
+      { to: "/medical", icon: FiHeart, children: "Medical Records" },
+      { to: "/documents", icon: FiFile, children: "Documents" },
+    ],
+  } : null;
+
+  const hrSection = can('can_access_hr') ? {
+    title: "Human Resources",
+    icon: FiBriefcase,
+    links: [
+      { to: "/hr/staff", icon: FiUserCheck, children: "Staff Directory" },
+      { to: "/hr/attendance", icon: FiCalendar, children: "Staff Attendance" },
+      { to: "/hr/documents", icon: FiFile, children: "Staff Documents" },
+      { to: "/hr/vacations", icon: FiSun, children: "Leave Management" },
+      { to: "/hr/evaluations", icon: FiAward, children: "Performance" },
+      { to: "/hr/contracts", icon: FiFileText, children: "Payroll" },
+      { to: "/hr/salary-records", icon: FiDollarSign, children: "Salary Records" },
+    ],
+  } : null;
+
+  const financeSection = can('can_access_finance') ? {
+    title: "Finance Department",
+    icon: FiDollarSign,
+    links: [
+      { to: "/finance/invoices", icon: FiFileText, children: "Invoices" },
+      { to: "/finance/payments", icon: FiCheckSquare, children: "Payments" },
+      { to: "/finance/expenses", icon: FiCreditCard, children: "Expenses" },
+      { to: "/finance/purchase-orders", icon: FiBriefcase, children: "Procurement" },
+      { to: "/finance/salary-payments", icon: FiGift, children: "Payroll Processing" },
+      { to: "/finance/treasuries", icon: FiArchive, children: "Treasury" },
+    ],
+  } : null;
+
+  const inventorySection = can('can_access_inventory') ? {
+    title: "Inventory System",
+    icon: FiPackage,
+    links: [
+      { to: "/inventory/vendors", icon: FiTruck, children: "Vendors" },
+      { to: "/inventory/items", icon: FiPackage, children: "Inventory Items" },
+      { to: "/inventory/custody", icon: FiShare2, children: "Custody Tracking" },
+      { to: "/inventory/stock-takes", icon: FiCheckCircle, children: "Stock Audits" },
+    ],
+  } : null;
+
+  const menuItems = [studentSection, hrSection, financeSection, inventorySection].filter(Boolean);
 
   return (
     <aside className="w-72 h-screen sticky top-0 bg-gradient-to-b from-slate-900 to-slate-800 border-r border-slate-700 flex flex-col shadow-xl">
-      {/* Logo */}
       <div className="flex items-center gap-3 px-6 py-5 border-b border-slate-700">
         <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-indigo-600 to-violet-600 flex items-center justify-center shadow-md">
           <LuGem className="text-white" size={20} />
@@ -137,7 +138,6 @@ export default function Sidebar() {
         </div>
       </div>
 
-      {/* Navigation */}
       <nav className="flex-1 px-4 py-4 space-y-2 overflow-y-auto">
         <NavLink 
           to="/" 
@@ -151,7 +151,7 @@ export default function Sidebar() {
           <FiHome size={20} />
           <span className="text-[15px]">Home</span>
         </NavLink>
-        
+
         {menuItems.map((item) => (
           <CollapsibleMenuItem key={item.title} {...item} />
         ))}
@@ -169,7 +169,6 @@ export default function Sidebar() {
         </NavLink>
       </nav>
 
-      {/* User Profile / Logout */}
       <div className="p-4 border-t border-slate-700 bg-slate-800">
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 rounded-full bg-gradient-to-br from-indigo-600 to-violet-600 flex items-center justify-center font-bold text-white shadow-md">
@@ -191,3 +190,4 @@ export default function Sidebar() {
     </aside>
   );
 }
+

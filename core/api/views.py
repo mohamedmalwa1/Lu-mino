@@ -2,28 +2,44 @@
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
+from django.contrib.auth import get_user_model
+from .permissions import _has_django_app_perm, MODULE_ACCESS_RULES
 
-@api_view(['GET'])
-@permission_classes([IsAuthenticated])
-def get_user_module_permissions(request):
-    """
-    An endpoint that returns a dictionary of modules the user can access.
-    """
-    user = request.user
+User = get_user_model()
+
+def _can(user, module: str) -> bool:
     if user.is_superuser:
-        return Response({
-            'can_access_student': True,
-            'can_access_finance': True,
-            'can_access_hr': True,
-            'can_access_inventory': True,
-        })
+        return True
+    groups = set(user.groups.values_list("name", flat=True))
+    # group allow (including "__ALL__" Administrator)
+    if MODULE_ACCESS_RULES.get("__ALL__") and not groups.isdisjoint(MODULE_ACCESS_RULES["__ALL__"]):
+        return True
+    if not groups.isdisjoint(MODULE_ACCESS_RULES.get(module, set())):
+        return True
+    # or any Django permission for that app
+    return _has_django_app_perm(user, module)
 
-    groups = set(user.groups.values_list('name', flat=True))
+@api_view(["GET"])
+@permission_classes([IsAuthenticated])
+def user_permissions(request):
+    u = request.user
+    return Response({
+        "can_access_student":   _can(u, "student"),
+        "can_access_hr":        _can(u, "hr"),
+        "can_access_finance":   _can(u, "finance"),
+        "can_access_inventory": _can(u, "inventory"),
+    })
 
-    permissions = {
-        'can_access_student': not groups.isdisjoint({'HR Manager', 'Admissions Officer', 'Teacher'}),
-        'can_access_finance': not groups.isdisjoint({'Finance Manager', 'HR Manager'}),
-        'can_access_hr': not groups.isdisjoint({'HR Manager'}),
-        'can_access_inventory': not groups.isdisjoint({'Inventory Manager'}),
-    }
-    return Response(permissions)
+@api_view(["GET"])
+@permission_classes([IsAuthenticated])
+def me(request):
+    u = request.user
+    return Response({
+        "id": u.id,
+        "username": u.username,
+        "name": (getattr(u, "get_full_name", lambda: "")() or u.username) or u.username,
+        "email": u.email,
+        "is_superuser": u.is_superuser,
+        "groups": list(u.groups.values_list("name", flat=True)),
+    })
+
