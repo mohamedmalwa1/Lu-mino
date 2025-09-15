@@ -1,7 +1,8 @@
+// mohamedmalwa1/lu-mino/Lu-mino-eef071840a5399afd97f3e5772965c80cf5a7740/frontend/nursery-portal/src/api/inventory.js
 import axios from "./axios";
 
-// Base URL for Inventory endpoints
-const INVENTORY_URL = "/v1/inventory";
+// Base URL for Inventory endpoints - CORRECTED
+const INVENTORY_URL = "/inventory";
 
 /* ------------- Vendors ------------- */
 export const listVendors = () =>
@@ -66,4 +67,3 @@ export const updateStockTake = (id, data) =>
 
 export const deleteStockTake = (id) =>
   axios.delete(`${INVENTORY_URL}/stocktakes/${id}/`);
-

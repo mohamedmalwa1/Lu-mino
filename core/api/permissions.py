@@ -1,4 +1,4 @@
-# app/core/api/permissions.py
+# /home/lumino/app/myapp/core/api/permissions.py
 from rest_framework import permissions
 
 # Groups with module access (edit as needed)
@@ -50,4 +50,3 @@ class ModulePermission(permissions.BasePermission):
 
         # 2) OR: any Django model permission for the app_label
         return _has_django_app_perm(user, module)
-

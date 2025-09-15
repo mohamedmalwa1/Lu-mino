@@ -1,7 +1,7 @@
-// src/hooks/useAuth.jsx
+// mohamedmalwa1/lu-mino/Lu-mino-eef071840a5399afd97f3e5772965c80cf5a7740/frontend/nursery-portal/src/hooks/useAuth.jsx
 import { createContext, useContext, useEffect, useState, useCallback } from "react";
 import api from "../api/axios";
-import axios from "axios"; // raw axios for token endpoints outside /api/v1
+import axios from "axios";
 
 const AuthContext = createContext(null);
 export const useAuth = () => useContext(AuthContext);
@@ -9,36 +9,30 @@ export const useAuth = () => useContext(AuthContext);
 export default function AuthProvider({ children }) {
   const [access, setAccess] = useState(localStorage.getItem("access"));
   const [refresh, setRefresh] = useState(localStorage.getItem("refresh"));
-  const [user, setUser] = useState(() => {
-    const raw = localStorage.getItem("user");
-    return raw ? JSON.parse(raw) : null;
-  });
-  const [permissions, setPermissions] = useState(() => {
-    const raw = localStorage.getItem("permissions");
-    return raw ? JSON.parse(raw) : null;
-  });
+  const [user, setUser] = useState(null);
+  const [permissions, setPermissions] = useState(null);
+  const [isLoading, setIsLoading] = useState(true); // <-- ADD THIS LOADING STATE
   const isAuthenticated = !!access;
 
   const fetchPermissions = useCallback(async () => {
-    const { data } = await api.get("/core/user-permissions/");
+    const { data } = await api.get("/core/permissions/");
     setPermissions(data);
-    localStorage.setItem("permissions", JSON.stringify(data));
   }, []);
 
   const fetchMe = useCallback(async () => {
-    const { data } = await api.get("/core/users/me/");
+    const { data } = await api.get("/core/me/");
     setUser(data);
-    localStorage.setItem("user", JSON.stringify(data));
   }, []);
 
   const login = async (username, password) => {
-    // IMPORTANT: absolute path, not through api baseURL
     const { data } = await axios.post("/api/token/", { username, password });
     localStorage.setItem("access", data.access);
     localStorage.setItem("refresh", data.refresh);
     setAccess(data.access);
     setRefresh(data.refresh);
+    // After login, fetch data and set loading to false
     await Promise.all([fetchMe(), fetchPermissions()]);
+    setIsLoading(false);
   };
 
   const logout = () => {
@@ -49,25 +43,32 @@ export default function AuthProvider({ children }) {
     setPermissions(null);
   };
 
-  // rehydrate on reload if we still have an access token
   useEffect(() => {
-    if (access) {
-      (async () => {
+    const rehydrate = async () => {
+      if (access) {
         try {
           await Promise.all([fetchMe(), fetchPermissions()]);
         } catch {
-          // if rehydrate fails (e.g., expired), clear state
           logout();
         }
-      })();
-    }
+      }
+      setIsLoading(false); // <-- SET LOADING TO FALSE AFTER CHECKING
+    };
+
+    rehydrate();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [access]);
+  }, []); // <-- RUN ONLY ONCE ON INITIAL LOAD
 
-  return (
-    <AuthContext.Provider value={{ access, refresh, user, permissions, login, logout, isAuthenticated }}>
-      {children}
-    </AuthContext.Provider>
-  );
+  const value = {
+    access,
+    refresh,
+    user,
+    permissions,
+    isAuthenticated,
+    isLoading, // <-- EXPOSE LOADING STATE
+    login,
+    logout,
+  };
+
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
-

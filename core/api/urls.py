@@ -1,9 +1,9 @@
-# app/core/api/urls.py
+# /home/lumino/app/myapp/core/api/urls.py
 from django.urls import path
-from .views import user_permissions, me
+from .views import me, user_permissions, DashboardAnalyticsView
 
 urlpatterns = [
-    path("user-permissions/", user_permissions, name="user-permissions"),
-    path("users/me/",         me,              name="users-me"),
+    path("me/", me, name="me"),
+    path("permissions/", user_permissions, name="user_permissions"),
+    path('dashboard/analytics/', DashboardAnalyticsView.as_view(), name='dashboard-analytics'),
 ]
-

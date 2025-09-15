@@ -1,7 +1,8 @@
+// mohamedmalwa1/lu-mino/Lu-mino-eef071840a5399afd97f3e5772965c80cf5a7740/frontend/nursery-portal/src/api/hr.js
 import axios from "./axios";
 
-// Base URL for HR endpoints
-const HR_URL = "/v1/hr";
+// Base URL for HR endpoints - CORRECTED
+const HR_URL = "/hr";
 
 /* ------------- Staff ------------- */
 export const listStaff = (params) =>
@@ -54,16 +55,11 @@ export const listStaffDocuments = () =>
 export const getStaffDocument = (id) =>
     axios.get(`${HR_URL}/documents/${id}/`).then((r) => r.data);
 
-// Note: Creating/updating documents requires multipart/form-data
-export const createStaffDocument = (formData) =>
-  axios.post(`${HR_URL}/documents/`, formData, {
-    headers: { "Content-Type": "multipart/form-data" },
-  }).then((r) => r.data);
+export const createStaffDocument = (data) =>
+  axios.post(`${HR_URL}/documents/`, data, { headers: { "Content-Type": "multipart/form-data" } }).then((r) => r.data);
 
-export const updateStaffDocument = (id, formData) =>
-  axios.patch(`${HR_URL}/documents/${id}/`, formData, {
-    headers: { "Content-Type": "multipart/form-data" },
-  }).then((r) => r.data);
+export const updateStaffDocument = (id, data) =>
+  axios.put(`${HR_URL}/documents/${id}/`, data, { headers: { "Content-Type": "multipart/form-data" } }).then((r) => r.data);
 
 export const deleteStaffDocument = (id) =>
   axios.delete(`${HR_URL}/documents/${id}/`);

@@ -1,10 +1,8 @@
-// src/api/reporting.js
-// Axios instance must already inject Authorization: Bearer <token>
-// and have baseURL="/api" (so BASE becomes "/api/v1/reporting").
-
+// mohamedmalwa1/lu-mino/Lu-mino-eef071840a5399afd97f3e5772965c80cf5a7740/frontend/nursery-portal/src/api/reporting.js
 import api from "./axios";
 
-const BASE = "/v1/reporting";
+// CORRECTED PATH
+const BASE = "/reporting";
 
 // List recent report jobs
 export async function listReports() {
@@ -36,9 +34,10 @@ export async function downloadReport(jobId) {
   let filename = "report.pdf";
   const dispo = res.headers?.["content-disposition"];
   if (dispo) {
-    const m = /filename\*?=(?:UTF-8''|")?([^;"']+)/i.exec(dispo);
-    if (m) filename = decodeURIComponent(m[1].replace(/"/g, ""));
+    const m = /filename\*?=(?:UTF-8''|\")?([^;\"']+)/i.exec(dispo);
+    if (m && m[1]) {
+      filename = decodeURIComponent(m[1]);
+    }
   }
-  return { blob: res.data, filename };
+  return { data: res.data, filename };
 }
-

@@ -1,7 +1,10 @@
+// mohamedmalwa1/lu-mino/Lu-mino-eef071840a5399afd97f3e5772965c80cf5a7740/frontend/nursery-portal/src/api/students.js
 import axios from "./axios";
 
-const STUDENT_URL = "/v1/student";
-const HR_URL = "/v1/hr";
+// --- CORRECTED PATHS: REMOVED /v1 ---
+const STUDENT_URL = "/student";
+const HR_URL = "/hr";
+// -----------------------------------
 
 /* ------------------ Students ------------------ */
 export const listStudents = (params) => axios.get(`${STUDENT_URL}/students/`, { params }).then(r => r.data.results ?? r.data);
@@ -48,4 +51,4 @@ export const deleteAttendance = (id) => axios.delete(`${STUDENT_URL}/attendances
 // -----------------------------
 
 /* ------------------ Teacher Helper ------------------ */
-export const listTeachers = () => axios.get(`${HR_URL}/staff/`, { params: { role: "TEACHER" } }).then(r => r.data.results ?? r.data);
+export const listTeachers = () => axios.get(`${HR_URL}/staff/`, { params: { role: 'TEACHER' } }).then(r => r.data.results ?? r.data);
